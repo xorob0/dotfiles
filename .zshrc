@@ -83,22 +83,45 @@ HISTFILE=~/.history
 SAVEHIST=1000
 HISTSIZE=1000
 
-# Don't overwrite, append!
-setopt APPEND_HISTORY
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
 
-# Write after each command
-setopt INC_APPEND_HISTORY
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
-# Killer: share history between multiple shells
-setopt SHARE_HISTORY
 
-# Save the time and how long a command ran
-#setopt EXTENDED_HISTORY
 
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FIND_NO_DUPS
+setopt always_to_end
+setopt auto_menu
+setopt complete_in_word
 
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
+
+bindkey '^r' history-incremental-search-backward
+
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 #autoload -U promptinit
 #promptinit
 
