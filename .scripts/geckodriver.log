@@ -1,0 +1,25 @@
+1484656382686	geckodriver	INFO	Listening on 127.0.0.1:51883
+1484656383683	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.GNkfPDRyjvf9
+1484656383683	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1484656383687	geckodriver::marionette	INFO	Connecting to Marionette on localhost:45311
+1484656384419	Marionette	INFO	Listening on port 45311
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:1760): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+[Child 1817] ###!!! ABORT: Aborting on channel error.: file /build/firefox/src/firefox-50.1.0/ipc/glue/MessageChannel.cpp, line 2056
+[Child 1817] ###!!! ABORT: Aborting on channel error.: file /build/firefox/src/firefox-50.1.0/ipc/glue/MessageChannel.cpp, line 2056

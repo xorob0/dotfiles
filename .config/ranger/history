@@ -1,0 +1,50 @@
+rename configOr
+open_with 
+mkdir save
+find save
+rename Table10.c
+
+rename init.vim.back
+rename init.vim
+shell vim dpi1
+find cv
+find nv
+rename Picture_Sacha.jpg
+shell !!!!!!!!!!!!!!!
+search bot
+search bost
+mkdir 
+shell vim dépsenses hambourg.txt
+rename output
+rename NO-INTRO
+find med
+search built
+mkdir iso
+find archl
+find dow
+open_with 2
+find conf
+find sw
+find vimp
+search zsh
+find git
+w
+mkdir makfile
+shell vim makefile
+touch  makefile
+mkdir .config
+mkdir ranger
+mkdir nvim
+mkdir sway
+find con
+find zsh
+open_with
+rename BitDay.sh
+open_with nvim
+find font
+open_with :su
+su
+find fonts
+mkdir Musics
+wq
+delete
