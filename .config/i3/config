@@ -13,6 +13,7 @@ exec --no-startup-id  compton -GCb
 exec --no-startup-id ~/.scripts/BitDay.sh
 #exec sleep 2 && xhost +local:
 exec --no-startup-id mpd
+exec --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
 
 ### Variables
 #
@@ -209,9 +210,9 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 #
 # MPD control
 #
-	bindsym XF86Prev exec sh /home/xorob0/.scripts/mpcPrev.sh$
-	bindsym XF86Play exec mpc toggle
-	bindsym XF86Next exec mpc next
+	bindsym XF86AudioPrev exec sh /home/xorob0/.scripts/mpcPrev.sh$
+	bindsym XF86AudioPlay exec mpc toggle
+	bindsym XF86AudioNext exec mpc next
 
 #
 # Wifi
@@ -303,7 +304,7 @@ bar {
 # class                 border  backgr. text    indicator
 client.focused          #0088CC #0088CC #ffffff #dddddd
 #client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
-client.focused_inactive #333333 #333333 #888888 #292d2e
+#client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused        #333333 #333333 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
