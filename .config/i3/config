@@ -206,7 +206,16 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 1 toggle && killall -SIGUSR1 i3status
 	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 1 false && pactl set-sink-volume 1 +5% && killall -SIGUSR1 i3status
 
+#
+# MPD control
+#
+	bindsym XF86AudioPrev exec sh /home/xorob0/.scripts/mpcPrev.sh
+	bindsym XF86AudioPlay exec mpc toggle
+	bindsym XF86AudioNext exec mpc next
+
+#
 # Wifi
+#
 	bindsym Mod4+equal exec sudo netmenu
 #
 # Scratchpad:
