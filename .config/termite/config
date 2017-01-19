@@ -1,0 +1,61 @@
+[options]
+font = Hack 10
+
+[colors]
+foreground = #E1E1E1
+background  = #121212
+background = rgba(15, 15, 15, 0.95)
+
+
+/* color0=                        #3D3D3D */
+/* color8=                        #4D4D4D */
+/* color1=                        #6673BF */
+/* color9=                        #899AFF */
+/* color2=                        #3EA290 */
+/* color10=                       #52AD91 */
+/* color3=                        #B0EAD9 */
+/* color11=                       #98C9BB */
+/* color4=                        #31658C */
+/* color12=                       #477AB3 */
+/* color5=                        #596196 */
+/* color13=                       #7882BF */
+/* color6=                        #8292B2 */
+/* color14=                       #95A7CC */
+/* color7=                        #C8CACC */
+/* color15=                       #EDEFF2 */
+
+
+/* color0=     #393939 */
+/* color8=     #AF875F */
+/* color1=     #BF1E2D */
+/* color9=     #E7212A */
+/* color2=     #9DBA3A */
+/* color10=    #A9C938 */
+/* color3=     #F5B915 */
+/* color11=    #F7D325 */
+/* color4=     #1CA1DB */
+/* color12=    #00AFDA */
+/* color5=     #652F90 */
+/* color13=    #894E9F */
+/* color6=     #EA7D24 */
+/* color14=    #F79321 */
+/* color7=     #E7E8E9 */
+/* color15=    #F3F3F4 */
+
+
+color0=    #1B1D1E
+color8=    #808080
+color1=    #FF0044
+color9=    #F92672
+color2=    #82B414
+color10=   #A6E22E
+color3=    #FD971F
+color11=   #E6DB74
+color4=    #266C98
+color12=   #7070F0
+color5=    #AC0CB1
+color13=   #D63AE1
+color6=    #AE81FF
+color14=   #66D9EF
+color7=    #CCCCCC
+color15= #F8F8F2

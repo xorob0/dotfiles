@@ -1,11 +1,3 @@
-rename configOr
-open_with 
-mkdir save
-find save
-rename Table10.c
-
-rename init.vim.back
-rename init.vim
 shell vim dpi1
 find cv
 find nv
@@ -46,5 +38,13 @@ open_with :su
 su
 find fonts
 mkdir Musics
-wq
+rename .config
+rename .scripts
+rename .vimperatorrc_
+find 
+rename .vimperatorrc
+rename .Xresources
+rename .zprofile
 delete
+rename .zshrc
+wq

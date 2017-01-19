@@ -1,0 +1,26 @@
+sw_volume: 90
+audio_device_state:1:pulse audio
+audio_device_state:1:my_fifo
+state: pause
+current: 3
+time: 0.000000
+random: 0
+repeat: 0
+single: 1
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:AC_DC/Highway to Hell/ACDC - 01 - Highway to Hell.flac
+1:AC_DC/Back in Black/ACDC - 01 - Hells Bells.flac
+2:AC_DC/Back in Black/ACDC - 02 - Shoot to Thrill.flac
+3:AC_DC/Back in Black/ACDC - 03 - What Do You Do for Money Honey.flac
+4:AC_DC/Back in Black/ACDC - 04 - Givin the Dog a Bone.flac
+5:AC_DC/Back in Black/ACDC - 05 - Let Me Put My Love into You.flac
+6:AC_DC/Back in Black/ACDC - 06 - Back in Black.flac
+7:AC_DC/Back in Black/ACDC - 07 - You Shook Me All Night Long.flac
+8:AC_DC/Back in Black/ACDC - 08 - Have a Drink on Me.flac
+9:AC_DC/Back in Black/ACDC - 09 - Shake a Leg.flac
+10:AC_DC/Back in Black/ACDC - 10 - Rock and Roll Ain't Noise Pollution.flac
+playlist_end
