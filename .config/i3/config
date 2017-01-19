@@ -13,6 +13,7 @@ exec --no-startup-id  compton -GCb
 exec --no-startup-id ~/.scripts/BitDay.sh
 #exec sleep 2 && xhost +local:
 exec --no-startup-id mpd
+exec --no-startup-id setxkbmap -option caps:swapescape
 
 ### Variables
 #
