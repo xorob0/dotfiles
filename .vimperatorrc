@@ -1,0 +1,61 @@
+:colorscheme darkness
+:set gui=none,tabs
+:set complete=sl
+:map = zZ
+:map j <DOWN>
+:map k <UP>
+:nnoremap h <C-p>
+:nnoremap l <C-n>
+:set hlsearch
+:map <c-LEFT> <c-x>
+:map <c-RIGHT> <c-a>
+:map <c-h> <c-x>
+:map <c-l> <c-a>
+:map <BS> H
+:noremap <C-BS> L
+:map <c-r> :restart
+:map <c-b> :sidebar bookmarks<CR>
+:set defsearch=ql
+:command! -nargs=0 -description="Read now with readability" readnow open javascript:(%0A%28function%28%29%7Bwindow.baseUrl%3D%27//www.readability.com%27%3Bwindow.readabilityToken%3D%27%27%3Bvar%20s%3Ddocument.createElement%28%27script%27%29%3Bs.setAttribute%28%27type%27%2C%27text/javascript%27%29%3Bs.setAttribute%28%27charset%27%2C%27UTF-8%27%29%3Bs.setAttribute%28%27src%27%2CbaseUrl%2B%27/bookmarklet/read.js%27%29%3Bdocument.documentElement.appendChild%28s%29%3B%7D%29%28%29)
+comm! yt 'exe "!" + eval("plugins.mpvytdl.mpvytdl()")'
+:set hintchars=fdgretshzyqjauikolpmxwcvbn
+:noremap ! '
+:noremap <C-DOWN> zI
+:noremap <C-UP> zO
+:noremap ^ 0
+:noremap J <C-d>
+:noremap K <C-u>
+:noremap ² :tabnext 0<CR>
+:noremap & :tabnext 1<CR>
+:noremap é :tabnext 2<CR>
+:noremap '"' :tabnext 3<CR>
+:noremap "'" :tabnext 4<CR>
+:noremap ( :tabnext 5<CR>
+:noremap "-" :tabnext 6<CR>
+:noremap è :tabnext 7<CR>
+:noremap _ :tabnext 8<CR>
+:noremap ç :tabnext 9<CR>
+:noremap à :tabnext 10<CR>
+:noremap ) :tabnext 11<CR>
+
+:noremap <C-²> :tabmove 0<CR>
+:noremap <C-&> :tabmove 1<CR>
+:noremap <C-é> :tabmove 2<CR>
+:noremap <C-'"'> :tabmove 3<CR>
+:noremap <C-"'"> :tabmove 4<CR>
+:noremap <C-(> :tabmove 5<CR>
+:noremap <C--> :tabmove 6<CR>
+:noremap <C-è> :tabmove 7<CR>
+:noremap <C-_> :tabmove 8<CR>
+:noremap <C-ç> :tabmove 9<CR>
+:noremap <C-à> :tabmove 10<CR>
+:noremap <C-)> :tabmove 11<CR>
+:noremap <C-=> :tabmove 12<CR>
+
+:noremap <C-q> :wqall<CR>
+:set focuscontent=true
+
+
+
+
+
