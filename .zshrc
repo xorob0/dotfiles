@@ -12,9 +12,7 @@ if ! zgen saved; then
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
 
-  # Send = git add, git commit and git push
-  zgen load robertzk/send.zsh
-
+  # Send = git add, git commit and git push zgen load robertzk/send.zsh
   # Colors in the terminal
   zgen load chrissicool/zsh-256color
 
@@ -44,92 +42,162 @@ POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='254'
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='031'
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='254'
 
+
 ### Custom ZSH options
 
-# Why would you type 'cd dir' if you could just type 'dir'?
+# No need to type cd, just type the directory name
 setopt AUTO_CD
 
-# Spell check commands!  (Sometimes annoying)
+# Spell check commands (Sometimes annoying)
 setopt CORRECT
 
-# beeps are annoying
+# Disable beeps
 setopt NO_BEEP
 
-# hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
-# setopt RC_EXPAND_PARAM
+# Compete aliases too
+setopt COMPLETE_ALIASES
 
-# Setting aliases
+### Setting aliases
 
+# Colorized, list and dotfile with ls
 alias ls='ls -hAl --color=always'
+
+# Automatic sudo for pacman
 alias pacman='sudo pacman'
 
-# Faster! (?)
-#zstyle ':completion::complete:*' use-cache 1
+# Some alias for backward directory
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 
-# Have the newer files last so I see them first
-#zstyle ':completion:*' file-sort modification reverse
+### Completion things
 
-# color code completion!!!!  Wohoo!
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Launch comletion module
+autoload -Uz compinit
+
+# Always put the cursor at the end
+setopt ALWAYS_TO_END
+
+# Immediatelly inset first match
+setopt MENU_COMPLETE
+
+# Use cache for faster zsh
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Color completion
+zstyle ':completion:*' list-colors ''
+
+# Menu selection for completion
+zstyle ':completion:*:*:*:*:*' menu select
+
+# Complete PID with kill command with colors
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+# Complete killall command
+zstyle ':completion:*:processes-names' command "ps -eo cmd= | sed 's:\([^ ]*\).*:\1:;s:\(/[^ ]*/\)::;/^\[/d'"
+
+# Fuzzy match mistyped completions.
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+# Increase the number of errors based on the length of the typed word.
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 
 
+# Don't complete uninteresting users...
+zstyle ':completion:*:*:*:users' ignored-patterns \
+  adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
+  dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
+  hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
+  mailman mailnull mldonkey mysql nagios \
+  named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
+  operator pcap postfix postgres privoxy pulse pvm quagga radvd \
+rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
 
-#{{{ History Stuff
+# Better nvim completion
+zstyle ':completion:*:*:(nvim|vim|rview|vimdiff|xxd):*:*files' \
+  ignored-patterns '*~|*.(old|bak|zwc|viminfo|rxvt-*|zcompdump)|pm_to_blib|cover_db|blib' \
+  file-sort modification
+zstyle ':completion:*:*:(nvim|vim|rview|vimdiff|xxd):*' \
+  file-sort modification
+zstyle ':completion:*:*:(nvim|vim|rview|vimdiff|xxd):*' \
+  tag-order files
+zstyle ':completion:*:nvim:*:directories' ignored-patterns \*
+
+# Better cd completion
+zstyle ':completion:*:*:(cd):*:*files' ignored-patterns '*~' file-sort access
+zstyle ':completion:*:*:(cd):*'        file-sort access
+zstyle ':completion:*:*:(cd):*'        menu select
+zstyle ':completion:*:*:(cd):*'        completer _history
+
+# Defining reash
+_force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1  # Because we didn't really complete anything
+}
+
+# Some more completion magic
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' completer _expand _force_rehash _complete _approximate _ignored
+# Generate description
+zstyle ':completion:*' auto-description 'specify: %d'
+
+## Separate man page sections
+zstyle ':completion:*:manuals' separate-sections true
+
+
+### History Stuff
 
 # Where it gets saved
 HISTFILE=~/.history
 
 # Remember about a years worth of history (AWESOME)
-SAVEHIST=1000
-HISTSIZE=1000
+SAVEHIST=10000
+HISTSIZE=10000
 
-setopt append_history
+# Save beginning and end of history
 setopt extended_history
-setopt hist_expire_dups_first
+
+# Delete older line if command is duplicate in history
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_verify
+
+# Append to histry as soon as the comand is executed
 setopt inc_append_history
+
+# Share history between terminals
 setopt share_history
 
+# Ignore some command in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 
+### Keybindigs
 
-setopt always_to_end
-setopt auto_menu
-setopt complete_in_word
+# Make special keys work with my setup
+source ~/.zkbd/termite-:0
+	[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+	[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+	[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
+	[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+	[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+	[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
+	[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+	[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+	# Search in history frome current line command
+	[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" history-beginning-search-backward
+	[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" history-beginning-search-forward
+  autoload zkbd
 
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+### Exporting variables
 
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-
-zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
-
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
-
-bindkey '^r' history-incremental-search-backward
-
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
-
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-#autoload -U promptinit
-#promptinit
-
-# Set ls colors
-#LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
-
-# Exporting variables
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export PAGER=most
-export TERM='xterm-256color'
+
