@@ -22,7 +22,7 @@ while read -r line ; do
       else
         date="${sys_arr[1]} ${sys_arr[2]}"
       fi
-      date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_clock}%{F- T1} ${date}"
+       date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_clock}%{F- T1} ${date}"
       # time
       time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${sys_arr[3]} %{F- B-}"
       # cpu
@@ -71,6 +71,16 @@ while read -r line ; do
       # Volume
       vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${line#???}"
       ;;
+     BAT*)
+       # Battery
+       battery="${line#???}"
+       if [ "${battery}" -ge "15" ]; then
+         battery_cback=${color_battery}; battery_cicon=${color_back}; battery_cfore=${color_back}
+       else
+         battery_cback=${color_sec_b1}; battery_cicon=${color_icon}; battery_cfore=${color_fore}
+       fi
+       battery="%{F${battery_cback}}${sep_left}%{F${battery_cicon} B${battery_cback}} %{T2}${icon_battery}%{F${battery_cfore} T1} ${battery}"
+       ;;
     # GMA*)
     #   # Gmail
     #   gmail="${line#???}"
@@ -129,6 +139,6 @@ while read -r line ; do
   esac
 
   # And finally, output
-  printf "%s\n" "%{l}${wsp}${title} %{r}${mpd}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${diskh}${stab}${wland}${stab}${wlanu}${stab}${ethd}${stab}${ethu}${stab}${vol}${stab}${date}${stab}${time}"
+  printf "%s\n" "%{l}${wsp}${title} %{r}${mpd}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${diskh}${stab}${wland}${stab}${wlanu}${stab}${ethd}${stab}${ethu}${stab}${vol}${stab}${battery}${stab}${date}${stab}${time}"
   #printf "%s\n" "%{l}${wsp}${title}"
 done

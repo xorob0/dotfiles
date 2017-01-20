@@ -33,6 +33,7 @@ conky -c $(dirname $0)/i3_lemonbar_conky > "${panel_fifo}" &
 ### UPDATE INTERVAL METERS
 cnt_vol=${upd_vol}
 cnt_mail=${upd_mail}
+cnt_battery=${upd_battery}
 cnt_mpd=${upd_mpd}
 
 while :; do
@@ -51,6 +52,12 @@ while :; do
   #   cnt_mail=0
   # fi
 
+   # BATTERY, "BAT"
+   if [ $((cnt_battery++)) -ge ${upd_battery} ]; then
+     printf "%s%s\n" "BAT" "$(~/.scripts/battery.sh)" > "${panel_fifo}"
+     cnt_battery=0
+   fi
+
   # MPD
   if [ $((cnt_mpd++)) -ge ${upd_mpd} ]; then
     #printf "%s%s\n" "MPD" "$(ncmpcpp --now-playing '{%a - %t}|{%f}' | head -c 60)" > "${panel_fifo}"
@@ -66,7 +73,5 @@ done &
 
 #### LOOP FIFO
 
-cat "${panel_fifo}" | $(dirname $0)/i3_lemonbar_parser.sh \
-  | lemonbar -b -p -f "${font}" -f "${iconfont}" -g "${geometry}" -B "${color_back}" -F "${color_fore}" &
-
+cat "${panel_fifo}" | $(dirname $0)/i3_lemonbar_parser.sh | lemonbar -b -p -f "${font}" -f "${iconfont}" -g "${geometry}" -B "${color_back}" -F "${color_fore}" &
 wait
