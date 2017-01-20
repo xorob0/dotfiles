@@ -1,26 +1,66 @@
-#!\bin\bash
-# i3 panel config. Powerline style.
+#!/bin/bash
+
+## i3 panel config. Powerline style.
+## Based on Electro7's work
+## Modded by demure
 
 panel_fifo="/tmp/i3_lemonbar_${USER}"
 geometry="x14"
+res_w=$(xrandr | awk '/current/ {print $8a}')
+
+## Will limit the char length of music, adjust down for smaller screens.
+music_limit=70
+
+## This format needs a fork of lemonbar, which supports xft fonts.
+## The font should have powerline support, if you want the fancy separators.
 font="-xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1"
-# iconfont="-xos4-terminusicons2mono-medium-r-normal--12-120-72-72-m-60-iso8859-1"
-#iconfont="-bitstream-hack-medium-i-normal--0-0-0-0-m-0-iso8859-12"
+
+## I recommend font awesome for the iconfont, it has the best icon support
+## I have even of any symbol font. It also has the most symbols.
 iconfont="FontAwesome:size=10"
-res_w=$(xrandr | grep "current" | awk '{print $8a}')
-snd_cha=$(pactl list sinks | sed '/Sink #0/,/Formats/d' | grep "Volume: front" | awk '{print " %s: PLayback", $5}')
 
-# Alarm settings
-cpu_alert=75                        # % cpu use
-net_alert=5                         # K net use
+## This is for the Screenshot IP Scrubber
+## You could set this to "" to reduce bar length while toggled.
+scrub_ip="---.---.---.---"
 
-# update setting, in seconds (conky update in i3_lemonbar_conky
-upd_vol=3                           # Volume update
-upd_mail=300                        # Mail check update
-upd_battery=5                        # Mail check update
-upd_mpd=5                           # MPD song update
+### Temperature ### {{{
+## Temperature value can either be C or F.
+temp_format="C"
+if [ ${temp_format} = "C" ]; then
+	temp_format=""
+  else
+	if [ ${temp_format} = "F" ]; then
+		temp_format="f"
+	fi
+fi
+### End Temperature ### }}}
 
-# color definitions
+### Alarm Settings ### {{{
+cpu_alert=75                        ## % cpu use
+net_alert=50                        ## K net use
+temp_alert=160                      ## F heat use
+
+## Battery
+## Note: levels higher than 'high' will not be highlighted.
+bat_alert_low=10
+bat_alert_mid=20
+bat_alert_high=60
+### End Alarm ### }}}
+
+### Update Settings ### {{{
+# update setting, in seconds (conky update in i3_lemonbar_conky)
+upd_vol=3                           ## Volume update
+upd_bri=3                           ## Screen brightness update
+upd_mail=120                        ## Mail check update
+upd_mmpd=5                          ## Multi Music Player Display
+upd_ext_ip=600                      ## External IP update
+upd_gpg=300                         ## GPG update
+upd_tmb=60                          ## Thinkpad Multi Battery update
+upd_temp=3                          ## Temperature update
+upd_net=3                           ## Network update
+### End Update ### }}}
+
+### Color ### {{{
 color_back="#FF202020"        		# Default background
 color_fore="#FFC5C8C6"              # Default foreground
 color_head="#FFC5C8C6"              # Background for first element
@@ -29,39 +69,87 @@ color_sec_b2="#FF454545"            # Background for section 2
 color_sec_b3="#FF353535"            # Background for section 3
 color_icon="#FF979997"              # For icons
 color_mail="#FFCE935F"              # Background color for mail alert
-color_battery="#FFCE935F"              # Background color for mail alert
 color_chat="#FFCC6666"              # Background color for chat alert
 color_cpu="#FFBE0000"               # Background color for cpu alert
 color_net="#FF00BEB9"               # Background color for net alert
 color_disable="#FF1D1F21"           # Foreground for disable elements
 color_wsp="#FF0088CC"               # Background for selected workspace
+color_bat_low="#ffdc322f"           ## Background for low bat threshold
+color_bat_mid="#ffcb4b16"           ## Background for mid bat threshold
+color_bat_high="#ffb58900"          ## Icon for high bat threshold
+color_bat_plug="#ff859900"          ## Forground for 70-100 battery icon
+color_temp="#ffdc322f"              ## Backgroud for high temp
 
-#default space between sections
-if [ ${res_w} -gt 1024 ]; then
-  stab='  '
-else
-  stab=' '
-fi
+	### Solarized ### {{{
+	## For reference purposes
+	#$base03:    #002b36;
+	#$base02:    #073642;
+	#$base01:    #586e75;
+	#$base00:    #657b83;
+	#$base0:     #839496;
+	#$base1:     #93a1a1;
+	#$base2:     #eee8d5;
+	#$base3:     #fdf6e3;
+	#$yellow:    #b58900;
+	#$orange:    #cb4b16;
+	#$red:       #dc322f;
+	#$magenta:   #d33682;
+	#$violet:    #6c71c4;
+	#$blue:      #268bd2;
+	#$cyan:      #2aa198;
+	#$green:     #859900;
+	### End Solarized ### }}}
+### End Color ### }}}
 
+### Spacing ### {{{
+##default space between sections
+#if [ ${res_w} -gt 1366 ]; then
+  #stab=' '
+#else
+  #stab=''
+#fi
+
+## I like to be compact...
+stab=''
+### End Spacing ### }}}
+
+### Icons ### {{{
 # Char glyps for powerline fonts
-sep_left=""                        # Powerline separator left
-sep_right=""                       # Powerline separator right
-sep_l_left=""                      # Powerline light separator left
-sep_l_right=""                     # Powerline light sepatator right
+sep_left=" "                        ## Powerline separator left
+sep_right=""                       ## Powerline separator right
+sep_l_left=" "                      ## Powerline light separator left
+sep_l_right=""                     ## Powerline light sepatator right
 
-# Icon glyphs from Terminusicons2
-icon_clock='\uf244'                      # Clock icon
-icon_cpu="Ï"                        # CPU icon
-icon_mem="Þ"                        # MEM icon
-icon_dl="Ð"                         # Download icon
-icon_ul="Ñ"                         # Upload icon
-icon_vol="Ô"                        # Volume icon
-icon_hd="À"                         # HD / icon
-icon_home="Æ"                       # HD /home icon
-icon_mail="Ó"                       # Mail icon
-icon_battery="Ó"                       # Mail icon
-icon_chat="Ò"                       # IRC/Chat icon
-icon_music="Î"                      # Music icon
-icon_prog="Â"                       # Window icon
-icon_contact="Á"                    # Contact icon
-icon_wsp="É"                        # Workspace icon
+# Icon glyphs from Font Awesome
+icon_clock=""                      ## Clock icon
+icon_cpu=""                        ## CPU icon
+icon_mem=""                        ## MEM icon
+icon_dl=""                         ## Download icon
+icon_ul=""                         ## Upload icon
+icon_vol=""                        ## Volume icon
+icon_bri=""                        ## Brightness icon
+icon_hd=""                         ## HD / icon
+icon_home=""                       ## HD /home icon
+icon_mail=""                       ## Mail icon
+icon_chat=""                       ## IRC/Chat icon
+icon_music=""                      ## Music icon
+icon_prog=""                       ## Window icon
+icon_contact=""                    ## Contact icon
+icon_wsp=""                        ## Workspace icon
+icon_bat_plug=""                   ## Battery icon, may add level indicator? and plugged in?
+icon_bat0=""                       ## Battery icon
+icon_bat1=""                       ## Battery icon
+icon_bat2=""                       ## Battery icon
+icon_bat3=""                       ## Battery icon
+icon_bat4=""                       ## Battery icon
+icon_bat_time=""                   ## Battery time icon
+icon_temp=""                       ## Temperature icon
+icon_wifi=""                       ## Wifi percent icon
+icon_local_eth=""                  ## Local IP eth icon
+icon_local_wifi=""                 ## Local IP wifi icon
+icon_local_out=""                  ## Local IP out icon
+icon_ext_ip=""                     ## External IP
+icon_gpg=""                        ## GPG icon
+icon_gpg_locked=""                 ## GPG locked icon
+icon_gpg_unlocked=""               ## GPG unlocked icon
+### End Icons ### }}}
