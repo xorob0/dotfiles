@@ -77,13 +77,13 @@ alias -g ......='../../../../..'
 autoload -Uz compinit
 
 # Always put the cursor at the end
-setopt ALWAYS_TO_END
+#setopt ALWAYS_TO_END
 
 # Immediatelly inset first match
 setopt MENU_COMPLETE
 
 # Use cache for faster zsh
-zstyle ':completion:*' accept-exact '*(N)'
+#zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 

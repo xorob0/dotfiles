@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module fritzingVersion="0.7.12b.02.13.6882" moduleId="AnalogDevices_SSM2212RZ_subpart1" referenceFile="SSM2212.AnalogDevices_SSM2212RZ.fzp">
+    <version>4</version>
+    <date>Tue Feb 26 2013</date>
+    <author>Analog Devices</author>
+    <description/>
+    <title>SSM2212 - Audio Dual Matched NPN Transistor</title>
+    <url>http://www.analog.com/ssm2212</url>
+    <spice>
+        <line>X{instanceTitle} {net connector1} {net connector2} {net connector3} {net connector6} {net connector7} {net connector8} SSM2212</line>
+    </spice>
+    <tags/>
+    <properties>
+        <property name="family">ADI-Transistor</property>
+        <property name="part number">SSM2212</property>
+    </properties>
+    <label>1</label>
+    <views>
+        <breadboardView>
+            <layers image="schematic/SSM2212_subpart1.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </breadboardView>
+        <pcbView>
+            <layers image="schematic/SSM2212_subpart1.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </pcbView>
+        <iconView>
+            <layers image="schematic/SSM2212_subpart1.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </iconView>
+        <schematicView>
+            <layers image="schematic/SSM2212_subpart1.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </schematicView>
+    </views>
+    <connectors>
+        <connector name="C1" type="male" id="connector1">
+            <description>C1</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector1pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector1terminal" svgId="connector1pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector1pad"/>
+                </pcbView>
+            </views>
+        </connector>
+        <connector name="B1" type="male" id="connector2">
+            <description>B1</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector2pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector2terminal" svgId="connector2pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector2pad"/>
+                </pcbView>
+            </views>
+        </connector>
+        <connector name="E1" type="male" id="connector3">
+            <description>E1</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector3pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector3terminal" svgId="connector3pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector3pad"/>
+                </pcbView>
+            </views>
+        </connector>
+    </connectors>
+    <buses/>
+</module>

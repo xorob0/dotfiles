@@ -89,7 +89,6 @@ while read -r line ; do
 			net_arr_signal=$(echo ${line#???} | cut -f3 -d\ )
 			## Local IP
 			if [ ${net_arr_ip} != "none" ]; then
-				echo ${net_arr_inter} > test
 				if [[ ${net_arr_inter} =~ eno1 ]]; then
 					net_icon="${icon_local_eth}";
 				  else
@@ -133,7 +132,7 @@ while read -r line ; do
 		VOL*)
 			## Volume
 			vol_arr="${line#???}"
-			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${vol_arr}"
+			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${vol_arr}%"
 			;;
 		### End Volume Case ### }}}
 

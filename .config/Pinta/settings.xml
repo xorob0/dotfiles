@@ -1,0 +1,15 @@
+﻿<settings>
+  <setting name="new-image-width" type="System.Int32">1376</setting>
+  <setting name="new-image-height" type="System.Int32">413</setting>
+  <setting name="new-image-bg" type="Pinta.NewImageDialog+BackgroundType">White</setting>
+  <setting name="jpg-quality" type="System.Int32">85</setting>
+  <setting name="default-image-type" type="System.String">jpg</setting>
+  <setting name="window-size-width" type="System.Int32">1600</setting>
+  <setting name="window-size-height" type="System.Int32">900</setting>
+  <setting name="ruler-metric" type="System.Int32">0</setting>
+  <setting name="window-maximized" type="System.Boolean">False</setting>
+  <setting name="ruler-shown" type="System.Boolean">False</setting>
+  <setting name="toolbar-shown" type="System.Boolean">True</setting>
+  <setting name="pixel-grid-shown" type="System.Boolean">False</setting>
+  <setting name="last-dialog-directory" type="System.String">/home/xorob0/Document/Ecole/Télécommunications_et_Réseaux/Résumé</setting>
+</settings>

@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module fritzingVersion="0.7.12b.02.13.6882" moduleId="AnalogDevices_ADTL082ARZ_subpart2" referenceFile="ADI_ADTL082.AnalogDevices_ADTL082ARZ.fzp">
+    <version>4</version>
+    <date>Tue Feb 26 2013</date>
+    <author>Analog Devices</author>
+    <description/>
+    <title>ADTL082 - Dual JFET Input Op Amps</title>
+    <url>http://www.analog.com/ADTL082</url>
+    <spice>
+        <line>X{instanceTitle}A {net connector3} {net connector2} {net connector8} {net connector4} {net connector1} ADTL082</line>
+        <line>X{instanceTitle}B {net connector5} {net connector6} {net connector8} {net connector4} {net connector7} ADTL082</line>
+    </spice>
+    <tags/>
+    <properties>
+        <property name="family">ADI-OpAmp-Dual</property>
+        <property name="part number">ADTL082</property>
+    </properties>
+    <label>2</label>
+    <views>
+        <breadboardView>
+            <layers image="schematic/ADTL082_subpart2.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </breadboardView>
+        <pcbView>
+            <layers image="schematic/ADTL082_subpart2.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </pcbView>
+        <iconView>
+            <layers image="schematic/ADTL082_subpart2.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </iconView>
+        <schematicView>
+            <layers image="schematic/ADTL082_subpart2.svg">
+                <layer layerId="schematic"/>
+            </layers>
+        </schematicView>
+    </views>
+    <connectors>
+        <connector name="+INB" type="male" id="connector5">
+            <description>+INB</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector5pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector5terminal" svgId="connector5pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector5pad"/>
+                </pcbView>
+            </views>
+        </connector>
+        <connector name="-INB" type="male" id="connector6">
+            <description>-INB</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector6pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector6terminal" svgId="connector6pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector6pad"/>
+                </pcbView>
+            </views>
+        </connector>
+        <connector name="OUTB" type="male" id="connector7">
+            <description>OUTB</description>
+            <views>
+                <breadboardView>
+                    <p layer="schematic" svgId="connector7pin"/>
+                </breadboardView>
+                <schematicView>
+                    <p layer="schematic" terminalId="connector7terminal" svgId="connector7pin"/>
+                </schematicView>
+                <pcbView>
+                    <p layer="schematic" svgId="connector7pad"/>
+                </pcbView>
+            </views>
+        </connector>
+    </connectors>
+    <buses/>
+</module>

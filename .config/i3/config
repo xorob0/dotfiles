@@ -1,4 +1,3 @@
-# test
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -14,7 +13,8 @@ exec --no-startup-id ~/.scripts/BitDay.sh
 #exec sleep 2 && xhost +local:
 exec --no-startup-id mpd
 exec --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
-# exec --no-startup-id xset r rate 200 30
+exec --no-startup-id xset r rate 200 30
+exec --no-startup-id pactl set-sink-volume 0 20%
 
 ### Variables
 #
@@ -135,7 +135,7 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 	 set $W07 7
 	 set $W08 8
 	 set $W09 9
-	 set $W10 10
+	 set $W10 10:
 	 set $WM M
 	 # Set fonction key for workspace
 	 set $K01 0x26
@@ -197,23 +197,24 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 	 # move focus to the parent container
 	 bindsym $mod+a focus parent
 #
-# Brightness
+# Brightness control
 #
-	bindsym 0x1008ff02 exec light -A 10
-	bindsym 0x1008ff03 exec light -U 10
+	bindsym 0x1008ff02 exec xbacklight -inc 10 && sh /home/xorob0/.config/i3/lemonbar/brighnessUpdater.sh
+	bindsym 0x1008ff03 exec xbacklight -dec 10 && sh /home/xorob0/.config/i3/lemonbar/brighnessUpdater.sh
+
 #
 # Sound control
 #
-	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 1 false && pactl set-sink-volume 1 -5% && killall -SIGUSR1 i3status
-	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 1 toggle && killall -SIGUSR1 i3status
-	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 1 false && pactl set-sink-volume 1 +5% && killall -SIGUSR1 i3status
+	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -5% && printf "%s%s\n" "VOL" "$(pamixer --get-volume)" "%" > /tmp/i3_lemonbar_xorob0 #&& set-sink-mute 1 false && pactl set-sink-volume 1 -5%
+	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle && printf "%s%s\n" "VOL" "$(pamixer --get-volume)" "%" > /tmp/i3_lemonbar_xorob0  #&& pactl set-sink-mute 1 toggle
+	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +5% && printf "%s%s\n" "VOL" "$(pamixer --get-volume)" "%" > /tmp/i3_lemonbar_xorob0 #&& pactl set-sink-mute 1 false && pactl set-sink-volume 1 +5%
 
 #
 # MPD control
 #
-	bindsym XF86AudioPrev exec sh /home/xorob0/.scripts/mpcPrev.sh$
-	bindsym XF86AudioPlay exec mpc toggle
-	bindsym XF86AudioNext exec mpc next
+	bindsym XF86AudioPrev exec sh /home/xorob0/.scripts/mpcPrev.sh && sh /home/xorob0/.config/i3/lemonbar/mpdUpdater.sh
+	bindsym XF86AudioPlay exec mpc toggle && sh /home/xorob0/.config/i3/lemonbar/mpdUpdater.sh
+	bindsym XF86AudioNext exec mpc next && sh /home/xorob0/.config/i3/lemonbar/mpdUpdater.sh
 
 #
 # Wifi
@@ -248,14 +249,13 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 
 # Power
 
-set $mode_system (o) turn screen off, (l) logout, (s) suspend, (h) hibernate, (H) hybrid, (r) reboot, (Shift+s) shutdown, (w) reboot to Windows
+set $mode_system (o) turn screen off, (l) logout, (s) suspend, (h) hibernate, (H) hybrid, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend , mode "default"
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym H exec --no-startup-id systemctl hybrid-sleep, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-	bindsym w exec --no-startup-id sudo grub-reboot "Windows 10" && systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym o exec --no-startup-id xset dpms force off, mode "default"
     # back to normal: Enter or Escape
@@ -273,7 +273,7 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize grow left 10 px or 10 ppt
-        bindsym j resize grow down 10 px or 10 ppt
+        bindsym j resize  grow down 10 px or 10 ppt
         bindsym k resize grow up 10 px or 10 ppt
         bindsym l resize grow right 10 px or 10 ppt
 
@@ -294,6 +294,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Screenshots
+
+set $mode_screenshot (a) all screen, (f) focused window, (s) select rectangle
+mode "$mode_screenshot" {
+    bindsym a exec --no-startup-id scrot '%F_%T.png' -e 'mv $f ~/Pictures/HDD/Screenshots/', mode "default"
+    bindsym f exec --no-startup-id scrot -u '%F_%T.png' -e 'mv $f ~/Pictures/HDD/Screenshots/', mode "default"
+    bindsym s exec --no-startup-id scrot -s '%F_%T.png' -e 'mv $f ~/Pictures/HDD/Screenshots/', mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym control+F4 mode "$mode_screenshot"
+
+bindsym control+F1 exec scrot -s '%F_%T.png' -e 'mv $f ~/Pictures/HDD/Screenshots/'
 
 #
 # Status Bar:
@@ -307,7 +321,7 @@ client.focused          #0088CC #0088CC #ffffff #dddddd
 #client.focused_inactive #0C2D3C #0C2D3C #888888 #484e50 # I don't like it that way
 #client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused        #333333 #333333 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
+#client.urgent           #2f343a #900000 #ffffff #900000
 
 
 # Read sway-bar(5) for more information about this section.
@@ -319,3 +333,7 @@ client.urgent           #2f343a #900000 #ffffff #900000
 # Protip:
 #
 #include ~/.config/sway/`hostname`/*
+
+#
+# Programs to launch at start
+#

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="font" mtime="1484907866" type="string">
+		<stringvalue>DroidSansMonoForPowerline Nerd Font 22</stringvalue>
+	</entry>
+	<entry name="height" mtime="1484908601" type="int" value="898"/>
+	<entry name="width" mtime="1484908601" type="int" value="1598"/>
+	<entry name="last_char" mtime="1484907957" type="string">
+		<stringvalue>U+1BC0</stringvalue>
+	</entry>
+</gconf>

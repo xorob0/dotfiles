@@ -17,7 +17,7 @@ font="-xos4-terminesspowerline-medium-r-normal--12-120-72-72-c-60-iso10646-1"
 
 ## I recommend font awesome for the iconfont, it has the best icon support
 ## I have even of any symbol font. It also has the most symbols.
-iconfont="FontAwesome:size=10"
+ iconfont="FontAwesome:size=10"
 
 ## This is for the Screenshot IP Scrubber
 ## You could set this to "" to reduce bar length while toggled.
@@ -38,23 +38,23 @@ fi
 ### Alarm Settings ### {{{
 cpu_alert=75                        ## % cpu use
 net_alert=50                        ## K net use
-temp_alert=160                      ## F heat use
+temp_alert=80
 
 ## Battery
 ## Note: levels higher than 'high' will not be highlighted.
 bat_alert_low=10
 bat_alert_mid=20
-bat_alert_high=60
+bat_alert_high=40
 ### End Alarm ### }}}
 
 ### Update Settings ### {{{
 # update setting, in seconds (conky update in i3_lemonbar_conky)
 upd_vol=3                           ## Volume update
 upd_bri=3                           ## Screen brightness update
-upd_mail=120                        ## Mail check update
+upd_mail=99999                      ## Mail check update
 upd_mmpd=5                          ## Multi Music Player Display
-upd_ext_ip=600                      ## External IP update
-upd_gpg=300                         ## GPG update
+upd_ext_ip=60                       ## External IP update
+upd_gpg=999999                      ## GPG update
 upd_tmb=60                          ## Thinkpad Multi Battery update
 upd_temp=3                          ## Temperature update
 upd_net=3                           ## Network update
@@ -71,7 +71,7 @@ color_icon="#FF979997"              # For icons
 color_mail="#FFCE935F"              # Background color for mail alert
 color_chat="#FFCC6666"              # Background color for chat alert
 color_cpu="#FFBE0000"               # Background color for cpu alert
-color_net="#FF00BEB9"               # Background color for net alert
+color_net="#FFE1A122"               # Background color for net alert
 color_disable="#FF1D1F21"           # Foreground for disable elements
 color_wsp="#FF0088CC"               # Background for selected workspace
 color_bat_low="#ffdc322f"           ## Background for low bat threshold
@@ -123,7 +123,7 @@ sep_l_right=""                     ## Powerline light sepatator right
 # Icon glyphs from Font Awesome
 icon_clock=""                      ## Clock icon
 icon_cpu=""                        ## CPU icon
-icon_mem=""                        ## MEM icon
+icon_mem=""                        ## MEM icon
 icon_dl=""                         ## Download icon
 icon_ul=""                         ## Upload icon
 icon_vol=""                        ## Volume icon
@@ -135,7 +135,7 @@ icon_chat=""                       ## IRC/Chat icon
 icon_music=""                      ## Music icon
 icon_prog=""                       ## Window icon
 icon_contact=""                    ## Contact icon
-icon_wsp=""                        ## Workspace icon
+icon_wsp=" "                        ## Workspace icon
 icon_bat_plug=""                   ## Battery icon, may add level indicator? and plugged in?
 icon_bat0=""                       ## Battery icon
 icon_bat1=""                       ## Battery icon
