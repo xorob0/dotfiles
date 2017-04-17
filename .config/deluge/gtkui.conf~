@@ -26,7 +26,7 @@
     10.0, 
     30.0, 
     80.0, 
-    1000.0
+    10000.0
   ], 
   "show_connection_manager_on_start": true, 
   "lock_tray": false, 

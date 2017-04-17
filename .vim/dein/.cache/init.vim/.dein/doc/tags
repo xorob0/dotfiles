@@ -186,7 +186,6 @@
 'g:syntastic_perl_lib_path'	syntastic-checkers.txt	/*'g:syntastic_perl_lib_path'*
 'g:syntastic_perl_perlcritic_thres'	syntastic-checkers.txt	/*'g:syntastic_perl_perlcritic_thres'*
 'g:syntastic_python_python_use_codec'	syntastic-checkers.txt	/*'g:syntastic_python_python_use_codec'*
-'g:syntastic_r_lint_styles'	syntastic-checkers.txt	/*'g:syntastic_r_lint_styles'*
 'g:syntastic_r_lintr_cache'	syntastic-checkers.txt	/*'g:syntastic_r_lintr_cache'*
 'g:syntastic_r_lintr_linters'	syntastic-checkers.txt	/*'g:syntastic_r_lintr_linters'*
 'g:syntastic_rst_sphinx_config_dir'	syntastic-checkers.txt	/*'g:syntastic_rst_sphinx_config_dir'*
@@ -500,7 +499,9 @@ airline-tabline	airline.txt	/*airline-tabline*
 airline-taboo	airline.txt	/*airline-taboo*
 airline-tagbar	airline.txt	/*airline-tagbar*
 airline-theme-base16	airline-themes.txt	/*airline-theme-base16*
+airline-theme-base16-shell	airline-themes.txt	/*airline-theme-base16-shell*
 airline-theme-contents	airline-themes.txt	/*airline-theme-contents*
+airline-theme-onedark	airline-themes.txt	/*airline-theme-onedark*
 airline-theme-solarized	airline-themes.txt	/*airline-theme-solarized*
 airline-themes	airline.txt	/*airline-themes*
 airline-themes-configuration	airline-themes.txt	/*airline-themes-configuration*
@@ -511,11 +512,13 @@ airline-themes-list	airline-themes.txt	/*airline-themes-list*
 airline-themes.txt	airline-themes.txt	/*airline-themes.txt*
 airline-tmuxline	airline.txt	/*airline-tmuxline*
 airline-troubleshooting	airline.txt	/*airline-troubleshooting*
+airline-vimagit	airline.txt	/*airline-vimagit*
 airline-virtualenv	airline.txt	/*airline-virtualenv*
 airline-whitespace	airline.txt	/*airline-whitespace*
 airline-windowswap	airline.txt	/*airline-windowswap*
 airline-wordcount	airline.txt	/*airline-wordcount*
 airline-writing-extensions	airline.txt	/*airline-writing-extensions*
+airline-xkblayout	airline.txt	/*airline-xkblayout*
 airline-ycm	airline.txt	/*airline-ycm*
 airline.txt	airline.txt	/*airline.txt*
 b:SuperTabContextTextMemberPatterns	supertab.txt	/*b:SuperTabContextTextMemberPatterns*
@@ -722,6 +725,7 @@ dein-options-on_if	dein.txt	/*dein-options-on_if*
 dein-options-on_map	dein.txt	/*dein-options-on_map*
 dein-options-on_path	dein.txt	/*dein-options-on_path*
 dein-options-on_source	dein.txt	/*dein-options-on_source*
+dein-options-path	dein.txt	/*dein-options-path*
 dein-options-rev	dein.txt	/*dein-options-rev*
 dein-options-rtp	dein.txt	/*dein-options-rtp*
 dein-options-script_type	dein.txt	/*dein-options-script_type*
@@ -832,6 +836,7 @@ deoplete-source-attribute-gather_candidates	deoplete.txt	/*deoplete-source-attri
 deoplete-source-attribute-get_complete_position	deoplete.txt	/*deoplete-source-attribute-get_complete_position*
 deoplete-source-attribute-input_pattern	deoplete.txt	/*deoplete-source-attribute-input_pattern*
 deoplete-source-attribute-is_bytepos	deoplete.txt	/*deoplete-source-attribute-is_bytepos*
+deoplete-source-attribute-is_volatile	deoplete.txt	/*deoplete-source-attribute-is_volatile*
 deoplete-source-attribute-matchers	deoplete.txt	/*deoplete-source-attribute-matchers*
 deoplete-source-attribute-max_abbr_width	deoplete.txt	/*deoplete-source-attribute-max_abbr_width*
 deoplete-source-attribute-max_menu_width	deoplete.txt	/*deoplete-source-attribute-max_menu_width*
@@ -1006,6 +1011,8 @@ g:UltiSnipsListSnippets	UltiSnips.txt	/*g:UltiSnipsListSnippets*
 g:UltiSnipsSnippetDirectories	UltiSnips.txt	/*g:UltiSnipsSnippetDirectories*
 g:UltiSnipsSnippetsDir	UltiSnips.txt	/*g:UltiSnipsSnippetsDir*
 g:airline_base16_improved_contrast	airline-themes.txt	/*g:airline_base16_improved_contrast*
+g:airline_base16_oceanicnext	airline-themes.txt	/*g:airline_base16_oceanicnext*
+g:airline_base16_solarized	airline-themes.txt	/*g:airline_base16_solarized*
 g:airline_solarized_dark_inactive_border	airline-themes.txt	/*g:airline_solarized_dark_inactive_border*
 g:airline_solarized_normal_green	airline-themes.txt	/*g:airline_solarized_normal_green*
 g:airline_theme	airline-themes.txt	/*g:airline_theme*
@@ -1030,6 +1037,7 @@ g:deoplete#auto_complete_delay	deoplete.txt	/*g:deoplete#auto_complete_delay*
 g:deoplete#auto_complete_start_length	deoplete.txt	/*g:deoplete#auto_complete_start_length*
 g:deoplete#auto_refresh_delay	deoplete.txt	/*g:deoplete#auto_refresh_delay*
 g:deoplete#buffer#require_same_filetype	deoplete.txt	/*g:deoplete#buffer#require_same_filetype*
+g:deoplete#complete_method	deoplete.txt	/*g:deoplete#complete_method*
 g:deoplete#delimiters	deoplete.txt	/*g:deoplete#delimiters*
 g:deoplete#disable_auto_complete	deoplete.txt	/*g:deoplete#disable_auto_complete*
 g:deoplete#enable_at_startup	deoplete.txt	/*g:deoplete#enable_at_startup*
@@ -1064,6 +1072,7 @@ g:multi_cursor_start_key	multiple_cursors.txt	/*g:multi_cursor_start_key*
 g:multi_cursor_start_word_key	multiple_cursors.txt	/*g:multi_cursor_start_word_key*
 g:multi_cursor_use_default_mapping	multiple_cursors.txt	/*g:multi_cursor_use_default_mapping*
 g:multi_cursor_visual_maps	multiple_cursors.txt	/*g:multi_cursor_visual_maps*
+g:onedark_termcolors	airline-themes.txt	/*g:onedark_termcolors*
 g:solarized_base16	airline-themes.txt	/*g:solarized_base16*
 g:tagbar_autoclose	tagbar.txt	/*g:tagbar_autoclose*
 g:tagbar_autofocus	tagbar.txt	/*g:tagbar_autofocus*
@@ -1095,6 +1104,10 @@ gcc	commentary.txt	/*gcc*
 gcgc	commentary.txt	/*gcgc*
 gcu	commentary.txt	/*gcu*
 gitgutter.txt	gitgutter.txt	/*gitgutter.txt*
+hardmode	hardmode.txt	/*hardmode*
+hardmode-mappings	hardmode.txt	/*hardmode-mappings*
+hardmode-options	hardmode.txt	/*hardmode-options*
+hardmode.txt	hardmode.txt	/*hardmode.txt*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 indent-guides	indent_guides.txt	/*indent-guides*
@@ -1335,11 +1348,13 @@ syntastic-css-stylelint	syntastic-checkers.txt	/*syntastic-css-stylelint*
 syntastic-cucumber-cucumber	syntastic-checkers.txt	/*syntastic-cucumber-cucumber*
 syntastic-cuda-nvcc	syntastic-checkers.txt	/*syntastic-cuda-nvcc*
 syntastic-d-dmd	syntastic-checkers.txt	/*syntastic-d-dmd*
+syntastic-d-dscanner	syntastic-checkers.txt	/*syntastic-d-dscanner*
 syntastic-dart-dartanalyzer	syntastic-checkers.txt	/*syntastic-dart-dartanalyzer*
 syntastic-debug	syntastic.txt	/*syntastic-debug*
 syntastic-docbk-igor	syntastic-checkers.txt	/*syntastic-docbk-igor*
 syntastic-docbk-xmllint	syntastic-checkers.txt	/*syntastic-docbk-xmllint*
 syntastic-dockerfile-dockerfile_lint	syntastic-checkers.txt	/*syntastic-dockerfile-dockerfile_lint*
+syntastic-dockerfile-hadolint	syntastic-checkers.txt	/*syntastic-dockerfile-hadolint*
 syntastic-dustjs-swiffer	syntastic-checkers.txt	/*syntastic-dustjs-swiffer*
 syntastic-easygrep	syntastic.txt	/*syntastic-easygrep*
 syntastic-eclim	syntastic.txt	/*syntastic-eclim*
@@ -1459,7 +1474,6 @@ syntastic-python-pylint	syntastic-checkers.txt	/*syntastic-python-pylint*
 syntastic-python-python	syntastic-checkers.txt	/*syntastic-python-python*
 syntastic-qml-qmllint	syntastic-checkers.txt	/*syntastic-qml-qmllint*
 syntastic-quickstart	syntastic.txt	/*syntastic-quickstart*
-syntastic-r-lint	syntastic-checkers.txt	/*syntastic-r-lint*
 syntastic-r-lintr	syntastic-checkers.txt	/*syntastic-r-lintr*
 syntastic-r-svtools	syntastic-checkers.txt	/*syntastic-r-svtools*
 syntastic-racket-code-ayatollah	syntastic-checkers.txt	/*syntastic-racket-code-ayatollah*
@@ -1500,6 +1514,7 @@ syntastic-slim-slim_lint	syntastic-checkers.txt	/*syntastic-slim-slim_lint*
 syntastic-slim-slimrb	syntastic-checkers.txt	/*syntastic-slim-slimrb*
 syntastic-sml-smlnj	syntastic-checkers.txt	/*syntastic-sml-smlnj*
 syntastic-solidity-solc	syntastic-checkers.txt	/*syntastic-solidity-solc*
+syntastic-solidity-solium	syntastic-checkers.txt	/*syntastic-solidity-solium*
 syntastic-spec-rpmlint	syntastic-checkers.txt	/*syntastic-spec-rpmlint*
 syntastic-sql-sqlint	syntastic-checkers.txt	/*syntastic-sql-sqlint*
 syntastic-statusline-flag	syntastic.txt	/*syntastic-statusline-flag*
@@ -1593,6 +1608,7 @@ undotree_WindowLayout	undotree.txt	/*undotree_WindowLayout*
 vS	surround.txt	/*vS*
 v_gc	commentary.txt	/*v_gc*
 vgS	surround.txt	/*vgS*
+vim-airline	airline.txt	/*vim-airline*
 vim-multiple-cursors	multiple_cursors.txt	/*vim-multiple-cursors*
 vim-multiple-cursors.txt	multiple_cursors.txt	/*vim-multiple-cursors.txt*
 vim-nerdtree-tabs	vim-nerdtree-tabs.txt	/*vim-nerdtree-tabs*

@@ -8,13 +8,14 @@
 # Startup programs
 #
 #exec-always --no-startup-id pulseaudio -D
-exec --no-startup-id  compton -GCb
+exec --no-startup-id  compton --config ~/.config/compton.conf -GCb
 exec --no-startup-id ~/.scripts/BitDay.sh
 #exec sleep 2 && xhost +local:
 exec --no-startup-id mpd
-exec --no-startup-id /usr/bin/setxkbmap -option "caps:swapescape"
+exec --no-startup-id /usr/bin/setxkbmap -layout fr -option "caps:swapescape"
 exec --no-startup-id xset r rate 200 30
 exec --no-startup-id pactl set-sink-volume 0 20%
+exec --no-startup-id numlockx
 
 ### Variables
 #
@@ -24,7 +25,7 @@ set $modn 64
 # Your preferred terminal emulator
 set $term termite
 # Your preferred application launcher
-set $menu sh /home/xorob0/.scripts/rofi.sh
+set $menu sh ~/.scripts/rofi.sh
 # Browser
 set $browser firefox
 
@@ -252,11 +253,11 @@ bindsym Shift+0xffbe input "2:7:SynPS/2_Synaptics_TouchPad" events enabled
 set $mode_system (o) turn screen off, (l) logout, (s) suspend, (h) hibernate, (H) hybrid, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend , mode "default"
-    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-    bindsym H exec --no-startup-id systemctl hybrid-sleep, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym s exec --no-startup-id sudo systemctl suspend , mode "default"
+    bindsym h exec --no-startup-id sudo systemctl hibernate, mode "default"
+    bindsym H exec --no-startup-id sudo systemctl hybrid-sleep, mode "default"
+    bindsym r exec --no-startup-id sudo systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id sudo systemctl poweroff, mode "default"
     bindsym o exec --no-startup-id xset dpms force off, mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -313,7 +314,7 @@ bindsym control+F1 exec scrot -s '%F_%T.png' -e 'mv $f ~/Pictures/HDD/Screenshot
 # Status Bar:
 #
 bar {
-	 i3bar_command /home/xorob0/.config/i3/lemonbar/i3_lemonbar.sh
+	 i3bar_command  ~/.config/i3/lemonbar/i3_lemonbar.sh
 }
 
 # class                 border  backgr. text    indicator

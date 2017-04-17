@@ -26,9 +26,6 @@ function! dein#util#_is_mac() abort
       \ && (has('mac') || has('macunix') || has('gui_macvim') ||
       \   (!isdirectory('/proc') && executable('sw_vers')))
 endfunction
-function! dein#util#_is_cygwin() abort
-  return has('win32unix')
-endfunction
 
 function! dein#util#_is_sudo() abort
   return $SUDO_USER !=# '' && $USER !=# $SUDO_USER
@@ -68,9 +65,10 @@ function! dein#util#_get_vimrcs(vimrcs) abort
         \ dein#util#_convert2list(a:vimrcs) : [dein#util#_get_myvimrc()]
 endfunction
 function! dein#util#_get_myvimrc() abort
-  return $MYVIMRC !=# '' ? $MYVIMRC :
+  let vimrc = $MYVIMRC !=# '' ? $MYVIMRC :
         \ matchstr(split(dein#util#_redir('scriptnames'), '\n')[0],
         \  '^\s*\d\+:\s\zs.*')
+  return dein#util#_substitute_path(vimrc)
 endfunction
 
 function! dein#util#_error(msg) abort
@@ -167,7 +165,9 @@ endfunction
 function! dein#util#_check_lazy_plugins() abort
   return map(filter(dein#util#_get_lazy_plugins(),
         \   "isdirectory(v:val.rtp)
+        \    && !get(v:val, 'local', 0)
         \    && get(v:val, 'hook_source', '') ==# ''
+        \    && get(v:val, 'hook_add', '') ==# ''
         \    && !isdirectory(v:val.rtp . '/plugin')
         \    && !isdirectory(v:val.rtp . '/after/plugin')"),
         \   'v:val.name')
@@ -253,16 +253,6 @@ function! dein#util#_save_merged_plugins(plugins) abort
   call writefile([g:dein#_cache_version,
         \ string(sort(a:plugins))],
         \ dein#util#_get_cache_path() . '/merged')
-endfunction
-function! dein#util#_load_remote_plugins() abort
-  let path = dein#util#_get_cache_path() . '/remote'
-  if !filereadable(path)
-    return []
-  endif
-  return readfile(path)
-endfunction
-function! dein#util#_save_remote_plugins(paths) abort
-  call writefile(a:paths, dein#util#_get_cache_path() . '/remote')
 endfunction
 
 function! dein#util#_save_state(is_starting) abort
@@ -390,9 +380,9 @@ function! dein#util#_begin(path, vimrcs) abort
     call dein#util#_error('Invalid runtimepath.')
     return 1
   endif
-  let &runtimepath = dein#util#_join_rtp(
-        \ add(insert(rtps, g:dein#_runtime_path, idx - 1),
-        \     g:dein#_runtime_path.'/after'),
+  call insert(rtps, g:dein#_runtime_path, idx - 1)
+  call dein#util#_add_after(rtps, g:dein#_runtime_path.'/after')
+  let &runtimepath = dein#util#_join_rtp(rtps,
         \ &runtimepath, g:dein#_runtime_path)
 endfunction
 function! dein#util#_end() abort
@@ -422,7 +412,7 @@ function! dein#util#_end() abort
     if !plugin.merged
       call insert(rtps, plugin.rtp, index)
       if isdirectory(plugin.rtp.'/after')
-        call add(rtps, plugin.rtp.'/after')
+        call dein#util#_add_after(rtps, plugin.rtp.'/after')
       endif
     endif
 
@@ -478,22 +468,13 @@ function! dein#util#_config(arg, dict) abort
 endfunction
 
 function! dein#util#_call_hook(hook_name, ...) abort
-  let prefix = '#User#dein#'.a:hook_name.'#'
   let hook = 'hook_' . a:hook_name
   let plugins = filter(dein#util#_get_plugins((a:0 ? a:1 : [])),
-        \ 'v:val.sourced && (exists(prefix . v:val.name)
-        \  || has_key(v:val, hook)) && isdirectory(v:val.path)')
+        \ 'v:val.sourced && has_key(v:val, hook) && isdirectory(v:val.path)')
 
-  for plugin in dein#util#_tsort(plugins)
-    let autocmd = 'dein#' . a:hook_name . '#' . plugin.name
-    if exists('#User#'.autocmd)
-      call dein#util#_error('#User#'.autocmd . ' is deprecated.')
-      call dein#util#_error('Please use new hook feature instead.')
-      execute 'doautocmd <nomodeline> User' autocmd
-    endif
-    if has_key(plugin, hook)
-      call dein#util#_execute_hook(plugin, plugin[hook])
-    endif
+  for plugin in filter(dein#util#_tsort(plugins),
+        \ 'has_key(v:val, hook)')
+    call dein#util#_execute_hook(plugin, plugin[hook])
   endfor
 endfunction
 function! dein#util#_execute_hook(plugin, hook) abort
@@ -501,12 +482,7 @@ function! dein#util#_execute_hook(plugin, hook) abort
     let g:dein#plugin = a:plugin
 
     if type(a:hook) == type('')
-      let dummy = '_dein_dummy_' .
-            \ substitute(reltimestr(reltime()), '\W', '_', 'g')
-      execute 'function! '.dummy."() abort\n"
-            \ . a:hook . "\nendfunction"
-      call {dummy}()
-      execute 'delfunction' dummy
+      call s:execute(a:hook)
     else
       call call(a:hook, [])
     endif
@@ -559,6 +535,11 @@ function! dein#util#_join_rtp(list, runtimepath, rtp) abort
         \ join(a:list, ',') : join(map(copy(a:list), 's:escape(v:val)'), ',')
 endfunction
 
+function! dein#util#_add_after(rtps, path) abort
+  let idx = index(a:rtps, $VIMRUNTIME)
+  call insert(a:rtps, a:path, (idx <= 0 ? -1 : idx + 1))
+endfunction
+
 function! dein#util#_expand(path) abort
   let path = (a:path =~# '^\~') ? fnamemodify(a:path, ':p') :
         \ (a:path =~# '^\$\h\w*') ? substitute(a:path,
@@ -568,7 +549,8 @@ function! dein#util#_expand(path) abort
         \ dein#util#_substitute_path(path) : path
 endfunction
 function! dein#util#_substitute_path(path) abort
-  return (s:is_windows && a:path =~# '\\') ? tr(a:path, '\', '/') : a:path
+  return ((s:is_windows || has('win32unix')) && a:path =~# '\\') ?
+        \ tr(a:path, '\', '/') : a:path
 endfunction
 function! dein#util#_globlist(path) abort
   return split(glob(a:path), '\n')
@@ -670,6 +652,17 @@ function! s:tsort_impl(target, mark, sorted) abort
   call add(a:sorted, a:target)
 endfunction
 
+function! dein#util#_check_install(plugins) abort
+  let plugins = filter(empty(a:plugins) ? values(dein#get()) :
+        \ filter(map(dein#util#_convert2list(a:plugins),
+        \ 'dein#get(v:val)'), '!empty(v:val)'),
+        \     '!isdirectory(v:val.path)')
+  if empty(plugins) | return 0 | endif
+  call dein#util#_notify('Not installed plugins: ' .
+        \ string(map(plugins, 'v:val.name')))
+  return 1
+endfunction
+
 function! s:msg2list(expr) abort
   return type(a:expr) ==# type([]) ? a:expr : split(a:expr, '\n')
 endfunction
@@ -691,4 +684,21 @@ function! s:sort(list, expr) abort
 endfunction
 function! s:_compare(a, b) abort
   return eval(s:expr)
+endfunction
+
+function! s:execute(expr) abort
+  if has('nvim') && s:neovim_version() >= 0.2.0
+    return execute(split(a:expr, '\n'))
+  endif
+
+  let dummy = '_dein_dummy_' .
+        \ substitute(reltimestr(reltime()), '\W', '_', 'g')
+  execute 'function! '.dummy."() abort\n"
+        \ . a:expr . "\nendfunction"
+  call {dummy}()
+  execute 'delfunction' dummy
+endfunction
+
+function! s:neovim_version() abort
+  return str2float(matchstr(execute('version'), 'NVIM v\zs\d\.\d\.\d'))
 endfunction

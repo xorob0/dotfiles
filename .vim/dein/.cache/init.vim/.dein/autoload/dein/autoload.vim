@@ -284,16 +284,16 @@ function! s:source_plugin(rtps, index, plugin, sourced) abort
   if !a:plugin.merged || get(a:plugin, 'local', 0)
     call insert(a:rtps, a:plugin.rtp, a:index)
     if isdirectory(a:plugin.rtp.'/after')
-      call add(a:rtps, a:plugin.rtp.'/after')
+      call dein#util#_add_after(a:rtps, a:plugin.rtp.'/after')
     endif
   endif
 endfunction
 function! s:reset_ftplugin() abort
+  let filetype_state = dein#util#_redir('filetype')
+
   if exists('b:did_indent') || exists('b:did_ftplugin')
     filetype plugin indent off
   endif
-
-  let filetype_state = dein#util#_redir('filetype')
 
   if filetype_state =~# 'plugin:ON'
     silent! filetype plugin on
@@ -328,8 +328,7 @@ function! s:get_input() abort
 endfunction
 
 function! s:is_reset_ftplugin(plugins) abort
-  if &filetype ==# '' ||
-        \ (!exists('b:did_indent') && !exists('b:did_ftplugin'))
+  if &filetype ==# ''
     return 0
   endif
 

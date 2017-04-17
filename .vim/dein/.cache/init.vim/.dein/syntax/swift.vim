@@ -172,6 +172,7 @@ syntax keyword swiftKeywords
       \ willSet
 
 syntax match swiftMultiwordKeywords "indirect case"
+syntax match swiftMultiwordKeywords "indirect enum"
 " }}}
 
 " Names surrounded by backticks. This aren't limited to keywords because 1)
@@ -242,7 +243,7 @@ syntax keyword swiftPreprocessor
 syntax match swiftComment "\v\/\/.*$"
       \ contains=swiftTodos,swiftDocString,swiftMarker,@Spell oneline
 syntax region swiftComment start="/\*" end="\*/"
-      \ contains=swiftTodos,swiftDocString,swiftMarker,swiftComment,@Spell fold
+      \ contains=swiftTodos,swiftDocString,swiftMarker,@Spell fold
 
 
 " Set highlights

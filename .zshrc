@@ -33,7 +33,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
 POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='242'
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='254'
-POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND='233'
+POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND='160'
 POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND='254'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='031'
 POWERLEVEL9K_DIR_HOME_FOREGROUND='254'
@@ -102,7 +102,7 @@ zstyle ':completion:*:processes-names' command "ps -eo cmd= | sed 's:\([^ ]*\).*
 
 # Fuzzy match mistyped completions.
 zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:match:*' original
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # Increase the number of errors based on the length of the typed word.
@@ -181,7 +181,7 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 ### Keybindigs
 
 # Make special keys work with my setup
-source ~/.zkbd/termite-:0
+source ~/.zkbd/xterm-termite-:0
 	[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 	[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
 	[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
@@ -194,6 +194,8 @@ source ~/.zkbd/termite-:0
 	[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" history-beginning-search-backward
 	[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" history-beginning-search-forward
   autoload zkbd
+
+bindkey '^[[Z' reverse-menu-complete
 
 ### Exporting variables
 

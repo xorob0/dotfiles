@@ -6,12 +6,11 @@
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
   source ~/.config/nvim/local_bundles.vim
 endif
-
 " Required:
 filetype plugin indent on
 
 set nocompatible
-set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim " path to dein.vim
+set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/ " path to dein.vim
 
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
 call dein#add('Shougo/dein.vim')
@@ -33,6 +32,9 @@ call dein#add('sheerun/vim-polyglot')
 call dein#add('vim-scripts/CSApprox')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('Raimondi/delimitMate')
+"call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('wikitopian/hardmode')
+" call dein#add('jiangmiao/auto-pairs')
 call dein#add('majutsushi/tagbar')
 call dein#add('scrooloose/syntastic')
 if v:version >= 704
@@ -40,6 +42,8 @@ if v:version >= 704
 	call dein#add('SirVer/ultisnips')
 	call dein#add('FelikZ/ctrlp-py-matcher')
 	call dein#add('honza/vim-snippets')
+	" call dein#add('MarcWeber/vim-addon-mw-utils')
+	" call dein#add('garbas/vim-snipmate')
 endif
 "
 "
@@ -52,8 +56,9 @@ call dein#add('nathanaelkane/vim-indent-guides')
 "
 
 call dein#add('tpope/vim-eunuch')
-call dein#add('alerque/vim-surround')
+call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-fugitive')
+call dein#add('othree/html5.vim')
 "call dein#add('tommcdo/vim-fugitive-blame-ext')
 "call dein#add('tpope/vim-markdown', { 'for': ['markdown'] })
 "call dein#add('tpope/vim-abolish')
@@ -473,6 +478,7 @@ noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 
+
 "" Close buffer
 noremap <leader>c :bd<CR>
 
@@ -575,3 +581,10 @@ endif
 
 " Enable transparency
 hi Normal guibg=NONE ctermbg=NONE
+
+" Inverse tab in completion
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Visual Studio like braces
+let b:delimitMate_expand_space = 1
+let b:delimitMate_expand_cr = 1

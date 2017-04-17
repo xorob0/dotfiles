@@ -6,16 +6,21 @@
 
 function! deoplete#mapping#_init() abort
   inoremap <silent> <Plug>_
-        \ <C-r>=deoplete#mapping#_do_complete(g:deoplete#_context)<CR>
+        \ <C-r>=deoplete#mapping#_complete()<CR>
   inoremap <silent> <Plug>(deoplete_auto_refresh)
         \ <C-r>=deoplete#refresh()<CR>
 endfunction
 
-function! deoplete#mapping#_do_complete(context) abort
-  if b:changedtick == get(a:context, 'changedtick', -1)
-        \ && mode() ==# 'i'
-    call complete(a:context.complete_position + 1, a:context.candidates)
+function! deoplete#mapping#_completefunc(findstart, base) abort
+  if a:findstart
+    return g:deoplete#_context.complete_position
+  else
+    return g:deoplete#_context.candidates
   endif
+endfunction
+function! deoplete#mapping#_complete() abort
+  call complete(g:deoplete#_context.complete_position + 1,
+        \ g:deoplete#_context.candidates)
 
   return ''
 endfunction

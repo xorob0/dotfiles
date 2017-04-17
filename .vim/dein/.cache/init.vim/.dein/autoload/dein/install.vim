@@ -24,6 +24,11 @@ let g:dein#install_log_filename =
       \ get(g:, 'dein#install_log_filename', '')
 
 function! dein#install#_update(plugins, update_type, async) abort
+  if dein#util#_is_sudo()
+    call s:error('update/install is disabled in sudo session.')
+    return
+  endif
+
   let plugins = dein#util#_get_plugins(a:plugins)
 
   if a:update_type ==# 'install'
@@ -97,7 +102,7 @@ function! dein#install#_reinstall(plugins) abort
     if plugin.type ==# 'none'
           \ || get(plugin, 'local', 0)
           \ || (plugin.sourced &&
-          \     index(['dein', 'vimproc'], plugin.normalized_name) >= 0)
+          \     index(['dein'], plugin.normalized_name) >= 0)
       call dein#util#_error(
             \ printf('|%s| Cannot reinstall the plugin!', plugin.name))
       continue
@@ -169,7 +174,7 @@ endfunction
 
 function! dein#install#_recache_runtimepath() abort
   if dein#util#_is_sudo()
-    call s:error('"sudo vim" is detected. This feature is disabled.')
+    call s:error('recache_runtimepath() is disabled in sudo session.')
     return
   endif
 
@@ -386,13 +391,6 @@ function! dein#install#_remote_plugins() abort
   " Load not loaded neovim remote plugins
   let remote_plugins = filter(values(dein#get()),
         \ "isdirectory(v:val.rtp . '/rplugin')")
-  let remote_paths = sort(map(copy(remote_plugins), 'v:val.path'))
-
-  if remote_paths ==# dein#util#_load_remote_plugins()
-    return
-  endif
-
-  call dein#util#_save_remote_plugins(remote_paths)
 
   call dein#autoload#_source(remote_plugins)
 
@@ -616,7 +614,7 @@ function! dein#install#_cd(path) abort
   endif
 
   try
-    execute (haslocaldir() ? 'lcd' : 'cd') fnameescape(a:path)
+    noautocmd execute (haslocaldir() ? 'lcd' : 'cd') fnameescape(a:path)
   catch
     call s:error('Error cd to: ' . a:path)
     call s:error('Current directory: ' . getcwd())

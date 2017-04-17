@@ -1,50 +1,6 @@
-search zsh
-find git
-mkdir makfile
-shell vim makefile
-touch  makefile
-mkdir .config
-mkdir ranger
-mkdir nvim
-mkdir sway
-find con
-find zsh
-rename BitDay.sh
-find font
-open_with :su
-find fonts
-mkdir Musics
-rename .config
-rename .scripts
-rename .vimperatorrc_
-find 
-rename .Xresources
-rename .zprofile
-rename .zshrc
-find sc
-w
-mkdir Lettre_Timothée
-find zbr
-mkdir Thanh
-find scri
-qa!
-rename Shrek 1.mp4
-rename Shreque 2.mp4
-rename Shrek 2.mp4
-find vimp
-rename .vimperatorrc
-wq
-find fire
-find ratio
-find med
-mkdir NFS
-
-shell 
-open_with 1
-find doc
-open_with nvi
-open_with
 open_with nvim
-delete
-open_with n
 su
+shell 
+rename CV2
+delete
+wq

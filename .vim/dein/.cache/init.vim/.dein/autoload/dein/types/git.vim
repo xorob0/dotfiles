@@ -34,7 +34,7 @@ function! s:type.init(repo, options) abort
   if a:repo =~# '^/\|^\a:[/\\]' && s:is_git_dir(a:repo.'/.git')
     " Local repository.
     return { 'type': 'git', 'local': 1 }
-  elseif isdirectory(a:repo) || a:repo =~#
+  elseif a:repo =~#
         \ '//\%(raw\|gist\)\.githubusercontent\.com/\|/archive/[^/]\+\.zip$'
     return {}
   endif
@@ -52,8 +52,8 @@ function! s:type.init(repo, options) abort
         \  'path': dein#util#_get_base_path().'/repos/'.directory }
 endfunction
 function! s:type.get_uri(repo, options) abort
-  if a:repo =~# '^/\|^\a:[/\\]' && s:is_git_dir(a:repo.'/.git')
-    return a:repo
+  if a:repo =~# '^/\|^\a:[/\\]'
+    return s:is_git_dir(a:repo.'/.git') ? a:repo : ''
   endif
 
   if a:repo =~# '^git@'
@@ -93,7 +93,8 @@ function! s:type.get_uri(repo, options) abort
           \ protocol . '://github.com/vim-scripts/'
     let uri .= name
   else
-    let uri = (protocol ==# 'ssh') ?
+    let uri = (protocol ==# 'ssh' &&
+          \    (host ==# 'github.com' || host ==# 'bitbucket.com')) ?
           \ 'git@' . host . ':' . name :
           \ protocol . '://' . host . '/' . name
   endif
@@ -107,28 +108,33 @@ function! s:type.get_uri(repo, options) abort
 endfunction
 
 function! s:type.get_sync_command(plugin) abort
-  let git = self.command
-
   if !isdirectory(a:plugin.path)
-    let cmd = 'clone'
-    let cmd .= ' --recursive'
+    let commands = []
+
+    call add(commands, self.command)
+    call add(commands, 'clone')
+    call add(commands, '--recursive')
 
     let depth = get(a:plugin, 'type__depth',
           \ g:dein#types#git#clone_depth)
     if depth > 0 && get(a:plugin, 'rev', '') ==# ''
           \ && self.get_uri(a:plugin.repo, a:plugin) !~# '^git@'
-      let cmd .= ' --depth=' . depth
+      call add(commands, '--depth=' . depth)
     endif
 
-    let cmd .= printf(' %s "%s"',
-          \ self.get_uri(a:plugin.repo, a:plugin), a:plugin.path)
+    call add(commands, self.get_uri(a:plugin.repo, a:plugin))
+    call add(commands, a:plugin.path)
+
+    return commands
   else
+    let git = self.command
+
     let cmd = g:dein#types#git#pull_command
     let and = dein#util#_is_fish() ? '; and ' : ' && '
     let cmd .= and . git . ' submodule update --init --recursive'
-  endif
 
-  return git . ' ' . cmd
+    return git . ' ' . cmd
+  endif
 endfunction
 
 function! s:type.get_revision_number_command(plugin) abort

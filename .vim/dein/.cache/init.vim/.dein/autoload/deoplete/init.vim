@@ -40,6 +40,14 @@ function! deoplete#init#_channel() abort
     return 1
   endif
 
+  if !has('timers')
+    call deoplete#util#print_error(
+          \ 'deoplete.nvim does not work with this version.')
+    call deoplete#util#print_error(
+          \ 'It requires Neovim with timers support("+timers").')
+    return 1
+  endif
+
   try
     if !exists('g:loaded_remote_plugins')
       runtime! plugin/rplugin.vim
@@ -105,15 +113,17 @@ function! deoplete#init#_variables() abort
   call deoplete#util#set_default(
         \ 'g:deoplete#enable_profile', 0)
   call deoplete#util#set_default(
-        \ 'g:deoplete#auto_complete_delay', 150)
+        \ 'g:deoplete#auto_complete_delay', 50)
   call deoplete#util#set_default(
-        \ 'g:deoplete#auto_refresh_delay', 50)
+        \ 'g:deoplete#auto_refresh_delay', 500)
   call deoplete#util#set_default(
         \ 'g:deoplete#max_abbr_width', 80)
   call deoplete#util#set_default(
         \ 'g:deoplete#max_menu_width', 40)
   call deoplete#util#set_default(
         \ 'g:deoplete#skip_chars', [])
+  call deoplete#util#set_default(
+        \ 'g:deoplete#complete_method', 'complete')
 
   call deoplete#util#set_default(
         \ 'g:deoplete#keyword_patterns', {})
@@ -148,7 +158,6 @@ function! deoplete#init#_variables() abort
   call deoplete#util#set_pattern(
         \ g:deoplete#_omni_patterns,
         \ 'html,xhtml,xml,markdown,mkd', ['<', '<[^>]*\s[[:alnum:]-]*'])
-
 endfunction
 
 function! deoplete#init#_context(event, sources) abort
@@ -222,7 +231,6 @@ function! deoplete#init#_context(event, sources) abort
         \ 'bufname': bufname,
         \ 'bufpath': bufpath,
         \ 'cwd': getcwd(),
-        \ 'start_complete': "\<Plug>_",
         \ 'vars': filter(copy(g:), "stridx(v:key, 'deoplete#') == 0"),
         \ 'bufvars': filter(copy(b:), "stridx(v:key, 'deoplete_') == 0"),
         \ 'custom': deoplete#custom#get(),

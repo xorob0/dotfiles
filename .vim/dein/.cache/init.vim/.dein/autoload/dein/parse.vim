@@ -38,11 +38,12 @@ function! dein#parse#_init(repo, options) abort
   if empty(plugin)
     let plugin = s:check_type(repo, a:options)
   endif
+  call extend(plugin, a:options)
   let plugin.repo = repo
   if !empty(a:options)
     let plugin.orig_opts = deepcopy(a:options)
   endif
-  return extend(plugin, a:options, 'keep')
+  return plugin
 endfunction
 function! dein#parse#_dict(plugin) abort
   let plugin = {
@@ -368,9 +369,11 @@ function! s:check_type(repo, options) abort
       break
     endif
   endfor
+
   if empty(plugin)
     let plugin.type = 'none'
     let plugin.local = 1
+    let plugin.path = isdirectory(a:repo) ? a:repo : ''
   endif
 
   return plugin
