@@ -13,71 +13,104 @@ set nocompatible
 set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/ " path to dein.vim
 
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
+" Plugin installer
 call dein#add('Shougo/dein.vim')
+" Enable multiple curors with <C-n>
 call dein#add('terryma/vim-multiple-cursors')
+" Start drawing with <leader-d>
 call dein#add('vim-scripts/DrawIt')
+" Autocompletion
 call dein#add('Shougo/deoplete.nvim')
+" Autocompletion for C like
 call dein#add('zchee/deoplete-clang')
+" Complete with tab
 call dein#add('ervandew/supertab')
+" See undo tree with F5 
 call dein#add('mbbill/undotree')
+" Colorize parentheses
 call dein#add('luochen1990/rainbow')
-call dein#add('caio/querycommandcomplete.vim')
+"call dein#add('caio/querycommandcomplete.vim')
+" Navigate with F3
 call dein#add('scrooloose/nerdtree')
 call dein#add('jistr/vim-nerdtree-tabs')
+" Comment with <gcc>
 call dein#add('tpope/vim-commentary')
 call dein#add('vim-airline/vim-airline')
+" Nice looking vim !
 call dein#add('vim-airline/vim-airline-themes')
+" Add git status
 call dein#add('airblade/vim-gitgutter')
+" Syntax colorization for almost all languages
 call dein#add('sheerun/vim-polyglot')
-call dein#add('vim-scripts/CSApprox')
+" Use Gvim color scheme in vim
+"call dein#add('vim-scripts/CSApprox')
+" Red space for python
 call dein#add('ntpeters/vim-better-whitespace')
+" Automatic opening and closing of parentheses
 call dein#add('Raimondi/delimitMate')
+" Fuzzy search
 "call dein#add('ctrlpvim/ctrlp.vim')
+" Learn to use vim correctly
 call dein#add('wikitopian/hardmode')
-" call dein#add('jiangmiao/auto-pairs')
-call dein#add('majutsushi/tagbar')
+" Automatic opening and closing of parentheses
+"call dein#add('jiangmiao/auto-pairs')
+" See tags in a sidebar (exempel : class)
+"call dein#add('majutsushi/tagbar')
+" Synatx checking
 call dein#add('scrooloose/syntastic')
 if v:version >= 704
 	"" Snippets
 	call dein#add('SirVer/ultisnips')
 	call dein#add('FelikZ/ctrlp-py-matcher')
 	call dein#add('honza/vim-snippets')
-	" call dein#add('MarcWeber/vim-addon-mw-utils')
-	" call dein#add('garbas/vim-snipmate')
+	call dein#add('MarcWeber/vim-addon-mw-utils')
+	call dein#add('garbas/vim-snipmate')
 endif
 "
 "
-""" Color
-call dein#add('tomasr/molokai')
+" Help with autocompletion of c
 call dein#add('vim-scripts/c.vim')
+""" Color
+" Nice looking color scheme
+call dein#add('tomasr/molokai')
+" Show indent level
 call dein#add('nathanaelkane/vim-indent-guides')
 
 " and a lot more plugins.....
 "
 
+" Add functions like Delete, Move, SudoWrite,...
 call dein#add('tpope/vim-eunuch')
+" Surround with cs"'
 call dein#add('tpope/vim-surround')
+" Git wrapper
 call dein#add('tpope/vim-fugitive')
+call dein#add('tommcdo/vim-fugitive-blame-ext')
+" Add HTML5 support
 call dein#add('othree/html5.vim')
-"call dein#add('tommcdo/vim-fugitive-blame-ext')
-"call dein#add('tpope/vim-markdown', { 'for': ['markdown'] })
-"call dein#add('tpope/vim-abolish')
-"call dein#add('tpope/vim-speeddating')
+" Add markdown support
+call dein#add('tpope/vim-markdown', { 'for': ['markdown'] })
+" Abolish an often mistyped word, rename easily with in all scenario, and
+" change coercion
+call dein#add('tpope/vim-abolish')
+" Change date with <C-A> and <C-X>
+call dein#add('tpope/vim-speeddating')
+" Add optons to ga
 "call dein#add('tpope/vim-characterize')
-"call dein#add('gcmt/wildfire.vim')
-"call dein#add('ntpeters/vim-better-whitespace')
+" Easy select inside parentheses when inside multiple parentheses
+call dein#add('gcmt/wildfire.vim')
+" Indentation according to most used guideline by languages
 "call dein#add('sdanielf/vim-stdtabs')
-"call dein#add('vim-airline/vim-airline')
-"call dein#add('airblade/vim-gitgutter')
+" comment with <Leader>cc
 "call dein#add('scrooloose/nerdcommenter')
-"call dein#add('scrooloose/syntastic')
+" Move by tag in second buffer
 "call dein#add( 'vim-scripts/taglist.vim')
-"call dein#add( 'jcf/vim-latex')
+" Add latex support
+call dein#add( 'jcf/vim-latex')
 "call dein#add( 'git://git.code.sf.net/p/atp-vim/code')
 "call dein#add('christoomey/vim-tmux-navigator')
 "call dein#add('justinmk/vim-sneak')
 "call dein#add('wesQ3/vim-windowswap')
-"call dein#add('sheerun/vim-polyglot')
 "call dein#add('lordm/vim-browser-reload-linux')
 "call dein#add('junegunn/goyo.vim')
 "call dein#add('junegunn/limelight.vim')
@@ -101,14 +134,15 @@ call dein#add('othree/html5.vim')
 "call dein#add('reedes/vim-textobj-quote')
 "call dein#add('alerque/vim-sile', { 'for': 'sile' })
 "call dein#add('severin-lemaignan/vim-minimap')
-call dein#add('vim-scripts/vim-auto-save')
+"call dein#add('vim-scripts/vim-auto-save')
 "call dein#add('lervag/vimtex', { 'for': 'tex' })
 "call dein#add('gisraptor/vim-lilypond-integrator', { 'for': 'lilypond' })
 "call dein#add('trusktr/seti.vim')
-"call dein#add('vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] })
-"call dein#add('vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] })
-"call dein#add('vim-pandoc/vim-markdownfootnotes', { 'for': 'pandoc' })
-"call dein#add('vim-pandoc/vim-criticmarkup', { 'for': ['markdown', 'pandoc'] })
+" Add support for Markdown
+call dein#add('vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] })
+call dein#add('vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] })
+call dein#add('vim-pandoc/vim-markdownfootnotes', { 'for': 'pandoc' })
+call dein#add('vim-pandoc/vim-criticmarkup', { 'for': ['markdown', 'pandoc'] })
 "call dein#add('benekastah/neomake')
 "call dein#add('junegunn/vim-easy-align')
 "call dein#add('neovimhaskell/haskell-vim', { 'for': 'haskell' })
@@ -588,3 +622,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Visual Studio like braces
 let b:delimitMate_expand_space = 1
 let b:delimitMate_expand_cr = 1
+
+" See undo tree with F5
+nnoremap <F5> :UndotreeToggle<cr>

@@ -1,6 +1,14 @@
-open_with nvim
-su
-shell 
 rename CV2
-delete
 wq
+shell 
+shell u
+su
+rename media
+find sys
+mkdir systemd
+mkdir user
+open_with nvim
+mkdir Intro
+mkdir Module 2
+delete
+shell q

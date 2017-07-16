@@ -1,0 +1,10 @@
+[Unit]
+Description=handle automounting
+
+[Service]
+ExecStart=/usr/bin/udiskie -anT2
+Restart=always
+
+[Install]
+WantedBy=default.target
+

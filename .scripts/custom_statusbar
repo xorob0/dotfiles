@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+while((1)); do
+	printf "test"
+    printf "\n"
+    sleep 1
+done

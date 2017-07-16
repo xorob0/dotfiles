@@ -1,0 +1,62 @@
+!!Fonts
+URxvt.font: xft:InconsolataForPowerline Nerd Font:size=12
+!Adjustable font size
+!URxvt.perl-ext-common:  ...,resize-font,...
+ URxvt.resize-font.smaller: C-Down
+ URxvt.resize-font.bigger: C-Up
+
+!!Color Scheme
+! special
+*.foreground:   #d7d0c7
+*.background:   #151515
+*.cursorColor:  #d7d0c7
+
+! black
+*.color0:       #101010
+*.color8:       #404040
+
+! red
+*.color1:       #e84f4f
+*.color9:       #d23d3d
+
+! green
+*.color2:       #9bde38
+*.color10:      #8bd81e
+
+! yellow
+*.color3:       #e59f3c
+*.color11:      #f39d21
+
+! blue
+*.color4:       #7dc1cf
+*.color12:      #4e9fb1
+
+! magenta
+*.color5:       #9b64fb
+*.color13:      #8542ff
+
+! cyan
+*.color6:       #6d878d
+*.color14:      #42717b
+
+! white
+*.color7:       #dddddd
+*.color15:      #dddddd
+
+!!Misc
+!Clickable URLs
+URxvt.perl-ext-common: default,matcher,resize-font
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+!Set Url launcher
+URxvt*urlLauncher:	firefox-nightly
+
+!Disable Scrollbar
+URxvt*scrollBar:	false
+
+!Set terminal name
+urxvt*termName:		rxvt
+
+
+

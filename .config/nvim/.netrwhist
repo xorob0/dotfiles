@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/xorob0/.config/i3'
-let g:netrw_dirhist_2='/home/xorob0/.config'
-let g:netrw_dirhist_3='/home/xorob0/.config/i3'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/toum/.config/sway'
+let g:netrw_dirhist_2='/home/toum/.config/termite'
+let g:netrw_dirhist_3='/home/toum/.config'
+let g:netrw_dirhist_4='/home/toum/.config/termite'
+let g:netrw_dirhist_5='/home/toum/.config/sway'
+let g:netrw_dirhist_6='/home/toum/.dotfiles/.config/i3'

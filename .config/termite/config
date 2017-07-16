@@ -36,7 +36,7 @@
     #word_chars = -A-Za-z0-9,./?%&#:_=+@~
 
 [options]
-font = Hack 10
+font = InconsolataForPowerline Nerd Font 12
 
 [colors]
 foreground = #E1E1E1

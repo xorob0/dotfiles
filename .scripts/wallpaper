@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+import glob
+import random
+walls = glob.glob("/home/toum/Pictures/Wallpapers/*")
+print(random.choice(walls))

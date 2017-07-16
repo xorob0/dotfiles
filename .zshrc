@@ -1,3 +1,10 @@
+### Exporting variables
+
+export EDITOR="nvim"
+export LANG="en_US.UTF-8"
+export PAGER=most
+export TERM="xterm-256color"
+xrdb ${HOME}/.Xresources
 
 ### Plugin install
 
@@ -196,10 +203,4 @@ source ~/.zkbd/xterm-termite-:0
   autoload zkbd
 
 bindkey '^[[Z' reverse-menu-complete
-
-### Exporting variables
-
-export EDITOR="nvim"
-export LANG="en_US.UTF-8"
-export PAGER=most
 

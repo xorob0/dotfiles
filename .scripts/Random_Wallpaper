@@ -1,0 +1,4 @@
+#!/bin/bash
+wp_path=~/Pictures/Wallpapers/
+image=$(ls $wp_path | grep -E '(jpg|png)$' | sort -R | tail -1)
+swaymsg output * gb $wp_path/$image fill
