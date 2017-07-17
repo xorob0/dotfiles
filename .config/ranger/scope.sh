@@ -58,21 +58,25 @@ if [ "$preview_images" = "True" ]; then
         image/*)
             exit 7;;
         # Image preview for video, disabled by default.:
-        ###video/*)
-        ###    ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
+        video/*)
+            ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
     esac
 fi
 
 case "$extension" in
     # Archive extensions:
-    7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
+    a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
     rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
         try als "$path" && { dump | trim; exit 0; }
         try acat "$path" && { dump | trim; exit 3; }
         try bsdtar -lf "$path" && { dump | trim; exit 0; }
         exit 1;;
     rar)
+        # avoid password prompt by providing empty password
         try unrar -p- lt "$path" && { dump | trim; exit 0; } || exit 1;;
+    7z)
+        # avoid password prompt by providing empty password
+        try 7z -p l "$path" && { dump | trim; exit 0; } || exit 1;;
     # PDF documents:
     pdf)
         try pdftotext -l 10 -nopgbrk -q "$path" - && \
@@ -80,6 +84,9 @@ case "$extension" in
     # BitTorrent Files
     torrent)
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
+    # ODT Files
+    odt|ods|odp|sxw)
+        try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
         try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
@@ -91,17 +98,21 @@ esac
 case "$mimetype" in
     # Syntax highlight for text files:
     text/* | */xml)
-        try safepipe highlight --out-format=ansi "$path" && { dump | trim; exit 5; }
-        try safepipe pygmentize "$path" && { dump | trim; exit 5; }
+        if [ "$(tput colors)" -ge 256 ]; then
+            pygmentize_format=terminal256
+            highlight_format=xterm256
+        else
+            pygmentize_format=terminal
+            highlight_format=ansi
+        fi
+        try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
+        try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
         exit 2;;
     # Ascii-previews of images:
-    #image/*)
-    #    img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
-    video/*)
-            ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
+    image/*)
+        img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
     # Display information about media files:
-#    video/* | audio/*)
-        audio/*)
+    video/* | audio/*)
         exiftool "$path" && exit 5
         # Use sed to remove spaces so the output fits into the narrow window
         try mediainfo "$path" && { dump | trim | sed 's/  \+:/: /;';  exit 5; } || exit 1;;

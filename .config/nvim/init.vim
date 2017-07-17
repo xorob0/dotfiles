@@ -25,7 +25,7 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('zchee/deoplete-clang')
 " Complete with tab
 call dein#add('ervandew/supertab')
-" See undo tree with F5 
+" See undo tree with F5
 call dein#add('mbbill/undotree')
 " Colorize parentheses
 call dein#add('luochen1990/rainbow')
@@ -45,7 +45,7 @@ call dein#add('sheerun/vim-polyglot')
 " Use Gvim color scheme in vim
 "call dein#add('vim-scripts/CSApprox')
 " Red space for python
-call dein#add('ntpeters/vim-better-whitespace')
+"call dein#add('ntpeters/vim-better-whitespace')
 " Automatic opening and closing of parentheses
 call dein#add('Raimondi/delimitMate')
 " Fuzzy search
@@ -106,7 +106,7 @@ call dein#add('gcmt/wildfire.vim')
 " Move by tag in second buffer
 "call dein#add( 'vim-scripts/taglist.vim')
 " Add latex support
-call dein#add( 'jcf/vim-latex')
+"call dein#add( 'jcf/vim-latex')
 "call dein#add( 'git://git.code.sf.net/p/atp-vim/code')
 "call dein#add('christoomey/vim-tmux-navigator')
 "call dein#add('justinmk/vim-sneak')
@@ -139,10 +139,10 @@ call dein#add( 'jcf/vim-latex')
 "call dein#add('gisraptor/vim-lilypond-integrator', { 'for': 'lilypond' })
 "call dein#add('trusktr/seti.vim')
 " Add support for Markdown
-call dein#add('vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] })
-call dein#add('vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] })
-call dein#add('vim-pandoc/vim-markdownfootnotes', { 'for': 'pandoc' })
-call dein#add('vim-pandoc/vim-criticmarkup', { 'for': ['markdown', 'pandoc'] })
+"call dein#add('vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] })
+"call dein#add('vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] })
+"call dein#add('vim-pandoc/vim-markdownfootnotes', { 'for': 'pandoc' })
+"call dein#add('vim-pandoc/vim-criticmarkup', { 'for': ['markdown', 'pandoc'] })
 "call dein#add('benekastah/neomake')
 "call dein#add('junegunn/vim-easy-align')
 "call dein#add('neovimhaskell/haskell-vim', { 'for': 'haskell' })

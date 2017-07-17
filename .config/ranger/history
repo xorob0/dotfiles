@@ -1,14 +1,4 @@
-rename CV2
-wq
-shell 
-shell u
-su
-rename media
-find sys
-mkdir systemd
-mkdir user
-open_with nvim
-mkdir Intro
-mkdir Module 2
-delete
-shell q
+rename 2017-06-19_02:38:48.png
+mkdir
+open_with 
+delete 

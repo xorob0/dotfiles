@@ -1,5 +1,4 @@
 ### Exporting variables
-
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export PAGER=most
@@ -71,6 +70,9 @@ alias ls='ls -hAl --color=always'
 
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
+
+# Synchronize path with ranger
+#alias ranger='ranger-cd'
 
 # Some alias for backward directory
 alias -g ...='../..'
