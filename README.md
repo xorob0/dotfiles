@@ -23,9 +23,7 @@ cp -r ~/.Dotfiles/* ~
 #### Required dependencies
 - i3pystatus
 
-
-####Optional dependencies
-
+#### Optional dependencies
 - rxvt-unicode
 - j4-dmenu-desktop
 - firefox-nightly
