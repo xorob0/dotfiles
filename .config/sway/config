@@ -1,87 +1,117 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
+# Using Alt as main modifier
 set $mod Mod1
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# Using rxvt-unicode as main terminal emulator
 set $term urxvt
-# Your preferred application launcher
+
+# Using rofi to launch programs
 #set $menu rofi
+# Using j4-dmenu to launch programs
 set $menu j4-dmenu-desktop
-# Yout preffered browser
+
+# Using firefox nightly as main browser
 set $browser firefox-nightly
 
+## Workspaces:
+# Workspace keys on azerty
+#set $Key1 ampersand
+#set $Key2 eacute
+#set $Key3 quotedbl
+#set $Key4 apostrophe
+#set $Key5 parenleft
+#set $Key6 minus
+#set $Key7 egrave
+#set $Key8 underscore
+#set $Key9 ccedilla
+#set $Key10 agrave
+
+# Workspace keys on qwerty
+set $Key1 1
+set $Key2 2
+set $Key3 3
+set $Key4 4
+set $Key5 5
+set $Key6 6
+set $Key7 7
+set $Key8 8
+set $Key9 9
+set $Key10 0
+
+# Workspace names
+set $WS1 1:www
+set $WS2 2
+set $WS3 3
+set $WS4 4
+set $WS5 5
+set $WS6 6
+set $WS7 7
+set $WS8 8:dl
+set $WS9 9:chat
+set $WS10 10:music
+
+### Settings
 #
-# Settings
-#
+# Window border at 1px
 default_border pixel 1
 
+# Hide borders when using only one program
 hide_edge_borders both
 
+# Gaps settings
 smart_gaps on
 gaps inner 5
 gaps outer 5
 
+# Allow back and forth
 workspace_auto_back_and_forth yes
-
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/sway/)
-output * bg `/home/toum/.scripts/wallpaper` fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+# Wallpaper
+#output * bg `/home/toum/.scripts/wallpaper` fill
 
 ### Input configuration
 #
-# Example configuration:
-#
-input "2:7:SynPS/2_Synaptics_TouchPad" {
+# Touchpad config (on Nymeria)
+input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	dwt enabled
 	tap enabled
 	natural_scroll enabled
 	middle_emulation enabled
 	scroll_method two_finger
 }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
 # Basics:
 #
-    # start a terminal
+    # Start a terminal
     bindsym Mod4+Return exec $term
     bindsym Mod4+s exec $term
 
-	# start a terminal with ranger
-	bindsym Mod4+f exec $term -e "ranger"
+	# Start a terminal with ranger
+	bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
 
-    # kill focused window
+    # Kill focused window
     bindsym $mod+Shift+q kill
-    bindsym Mod4+q  kill
+    bindsym Mod4+q kill
 	bindsym $mod+escape exec xkill
 
-    # start your launcher
+    # Start your launcher
     bindsym Mod4+d exec $menu
     bindsym Mod4+space exec $menu
 
-    # start the browser
+    # Start the browser
     bindsym Mod4+w exec $browser, workspace_auto_back_and_forth no, workspace 1:www, workspace_auto_back_and_forth yes
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -91,18 +121,18 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # reload the configuration file
+    # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your wayland session)
+    # Exit sway (logs you out of your wayland session)
     bindsym $mod+Shift+e exit
 
 #
-# Personal
+# Custom:
 #
-
 	# Launch calculator
 	bindsym Mod4+c exec speedcrunch
+	#TODO Add more
 
 #
 # Moving around:
@@ -128,30 +158,6 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-set $Key1 ampersand
-set $Key2 eacute
-set $Key3 quotedbl
-set $Key4 apostrophe
-set $Key5 parenleft
-set $Key6 minus
-set $Key7 egrave
-set $Key8 underscore
-set $Key9 ccedilla
-set $Key10 agrave
-
-set $WS1 1:www
-set $WS2 2
-set $WS3 3
-set $WS4 4
-set $WS5 5
-set $WS6 6
-set $WS7 7
-set $WS8 8
-set $WS9 9:chat
-set $WS10 10:music
 
 
     # switch to workspace
@@ -165,7 +171,6 @@ set $WS10 10:music
     bindsym $mod+$Key8 workspace $WS8
     bindsym $mod+$Key9 workspace $WS9
     bindsym $mod+$Key10 workspace $WS10
-    bindsym $mod+space workspace 10
     # move focused container to workspace
     bindsym $mod+Shift+$Key1 move container to workspace $WS1
     bindsym $mod+Shift+$Key2 move container to workspace $WS2
@@ -177,34 +182,6 @@ set $WS10 10:music
     bindsym $mod+Shift+$Key8 move container to workspace $WS8
     bindsym $mod+Shift+$Key9 move container to workspace $WS9
     bindsym $mod+Shift+$Key10 move container to workspace $WS10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-
-
-
-set $GR Control
-    # switch to workspace
-    bindsym $GR+$Key1 workspace $WS1
-    bindsym $GR+$Key2 workspace $WS2
-    bindsym $GR+$Key3 workspace $WS3
-    bindsym $GR+$Key4 workspace $WS4
-    bindsym $GR+$Key5 workspace $WS5
-    bindsym $GR+$Key6 workspace $WS6
-    bindsym $GR+$Key7 workspace $WS7
-    bindsym $GR+$Key8 workspace $WS8
-    bindsym $GR+$Key9 workspace $WS9
-    bindsym $GR+$Key10 workspace $WS10
-    # move focused container to workspace
-    bindsym $GR+Shift+$Key1 move container to workspace $WS1
-    bindsym $GR+Shift+$Key2 move container to workspace $WS2
-    bindsym $GR+Shift+$Key3 move container to workspace $WS3
-    bindsym $GR+Shift+$Key4 move container to workspace $WS4
-    bindsym $GR+Shift+$Key5 move container to workspace $WS5
-    bindsym $GR+Shift+$Key6 move container to workspace $WS6
-    bindsym $GR+Shift+$Key7 move container to workspace $WS7
-    bindsym $GR+Shift+$Key8 move container to workspace $WS8
-    bindsym $GR+Shift+$Key9 move container to workspace $WS9
-    bindsym $GR+Shift+$Key10 move container to workspace $WS10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
@@ -222,12 +199,12 @@ set $GR Control
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
-	# Using ,;:!
+	# Using ,./;\
 	bindsym $mod+comma layout stacking
-	bindsym $mod+semicolon layout tabbed
-	bindsym $mod+collon layout toggle split
-	bindsym $mod+0x21 layout auto next
-	bindsym $mod+ugrave auto_left
+	bindsym $mod+period layout tabbed
+	bindsym $mod+slash toggle split
+	bindsym $mod+semicolon layout auto next
+	bindsym $mod+backslash auto_left
 
 
     # Make the current focus fullscreen
@@ -239,8 +216,15 @@ set $GR Control
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    # move focus to the parent container
+    # Move focus to the parent container
     bindsym $mod+a focus parent
+
+	# Toggle border styles
+	bindsym $mod+Shift+b border toggle
+
+	# Stick window
+	bindsym $mod+w sticky toggle
+
 #
 # Scratchpad:
 #
@@ -254,131 +238,129 @@ set $GR Control
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+t scratchpad show
 
-	# Border
-	bindsym $mod+Shift+b border toggle
 #
-# Resizing interface
+# Media Keys
 #
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $down resize grow height 10 px or 10 ppt
-    bindsym $up resize shrink height 10 px or 10 ppt
-    bindsym $right resize grow width 10 px or 10 ppt
+	# Brightness control
+	bindsym 0x1008ff02 exec brightnessctl set 10%+
+	bindsym 0x1008ff03 exec brightnessctl set 10%-
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
-#
-# Brightness control
-#
-	bindsym 0x1008ff02 exec xbacklight -inc 10
-	bindsym 0x1008ff03 exec xbacklight -dec 10
-
-#
-# Sound control
-#
+	# Sound control
 	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2%
 	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle
 	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2%
 
-#
-# MPD control
-#
+	# MPD control
 	bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
 	bindsym XF86AudioPlay exec mpc toggle
 	bindsym XF86AudioNext exec mpc next
 
-#
-# Wifi
-#
+	# Wifi
 	bindsym Mod4+equal exec sudo netmenu
+
+#
+# Resizing interface
+#
+	mode "resize" {
+	    # left will shrink the containers width
+	    # right will grow the containers width
+	    # up will shrink the containers height
+	    # down will grow the containers height
+	    bindsym $left resize shrink width 10 px or 10 ppt
+	    bindsym $down resize grow height 10 px or 10 ppt
+	    bindsym $up resize shrink height 10 px or 10 ppt
+	    bindsym $right resize grow width 10 px or 10 ppt
+	
+	    # ditto, with arrow keys
+	    bindsym Left resize shrink width 10 px or 10 ppt
+	    bindsym Down resize grow height 10 px or 10 ppt
+	    bindsym Up resize shrink height 10 px or 10 ppt
+	    bindsym Right resize grow width 10 px or 10 ppt
+	
+	    # return to default mode
+	    bindsym Return mode "default"
+	    bindsym Escape mode "default"
+	}
+	bindsym $mod+r mode "resize"
+
 #
 # Power interface
 #
-set $Locker swayblock
-set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown"
-mode $mode_power {
-	bindsym l exec $Locker, mode "default"
-	bindsym e exec swaymsg exit, mode "default"
-	bindsym s exec $Locker && systemctl suspend, mode "default"
-	bindsym r exec systemctl reboot, mode "default"
-	bindsym Shift+s exec systemctl poweroff -i, mode "default"
-
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+p mode $mode_power
+	set $Locker swayblock
+	set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown"
+	mode $mode_power {
+		bindsym l exec $Locker, mode "default"
+		bindsym e exec swaymsg exit, mode "default"
+		bindsym s exec $Locker && systemctl suspend, mode "default"
+		bindsym r exec systemctl reboot, mode "default"
+		bindsym Shift+s exec systemctl poweroff -i, mode "default"
+	
+	    # return to default mode
+	    bindsym Return mode "default"
+	    bindsym Escape mode "default"
+	}
+	bindsym $mod+p mode $mode_power
 
 #
 # Power interface
 #
-set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
-mode $mode_screenshot {
-	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-	bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
-
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Print mode $mode_screenshot
-
+	set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
+	mode $mode_screenshot {
+		bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+		bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+		bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
+	
+	    # return to default mode
+	    bindsym Return mode "default"
+	    bindsym Escape mode "default"
+	}
+	bindsym $mod+Print mode $mode_screenshot
 
 #
 # Status Bar:
 #
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position bottom
-    colors {
-        statusline #ffffff
-        background #282828
-        active_workspace #333333 #0F9DE8 #ffffff
-        urgent_workspace #333333 #CC0000 #ffffff
-        inactive_workspace #333333 #555555 #ffffff
-    }
-	mode hide
-	hidden_state hide
-	modifier $mod
-	separator_symbol ">"
-	wrap_sroll no
-	strip_workspace_numbers yes
-}
+	# Read `man 5 sway-bar` for more information about this section.
+	bar {
+	    position bottom
+	    colors {
+	        statusline #ffffff
+	        background #282828
+	        active_workspace #333333 #0F9DE8 #ffffff
+	        urgent_workspace #333333 #CC0000 #ffffff
+	        inactive_workspace #333333 #555555 #ffffff
+	    }
 
-include /etc/sway/config.d/*
+		separator_symbol "|"
 
+		# Hidden bar and show with $mod
+		mode hide
+		hidden_state hide
+		modifier $mod
+
+
+		# 10:music -> music
+		strip_workspace_numbers yes
+
+		# status_command i3status
+		status_command  i3pystatus -c /home/toum/.config/i3py.py
+	}
 
 #
 # Startup programs
 #
-workspace 2
-exec dunst&
+	# Move to second workspace
+	workspace 2
+
+	# Launch dunst
+	exec dunst&
+
+	# Activate gestures for the trackpad
+	exec libinput-gestures-setup start &> /dev/null
+
+	# Enable rxvt-unicode theme
+	exec xrdb /home/toum/.Xresources  
+
 #
 # Assignments
 #
-assign [class="Firefox"] $WS1
-assign [class="spotify"] $WS10
-
-
-#TODO Power
-#TODO swaygrab
-#TODO keybinfing
-#TODO bar
-#
-#
-bindsym $mod+w sticky toggle
+	assign [class="Firefox"] $WS1

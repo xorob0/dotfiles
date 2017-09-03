@@ -20,6 +20,20 @@ cp -r ~/.Dotfiles/* ~
 ## Programs
 
 ### Sway
+#### Required dependencies
+- i3pystatus
+####Optional dependencies
+- rxvt-unicode
+- j4-dmenu-desktop
+- firefox-nightly
+- speedcrunch
+- brightnessctl
+- dunst
+- libinput-gestures-setup
 
+#### Install
+Just place the config file in `~/.config/sway/`
+
+### i3pystatus
 
 
