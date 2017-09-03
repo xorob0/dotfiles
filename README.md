@@ -35,6 +35,10 @@ cp -r ~/.Dotfiles/* ~
 #### Install
 Just place the config file in `~/.config/sway/`
 
-### i3pystatus
+### Mopidy
+#### Optional dependencies
+- ncmpcpp
 
+#### Usage
+Use `mopidy local clear` and `mopidy local scan` to refresh the database.
 
