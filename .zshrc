@@ -3,7 +3,6 @@ export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export PAGER=most
 export TERM="xterm-256color"
-xrdb ${HOME}/.Xresources
 
 ### Plugin install
 
@@ -190,19 +189,19 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 ### Keybindigs
 
 # Make special keys work with my setup
-source ~/.zkbd/xterm-termite-:0
-	[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
-	[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
-	[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
-	[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
-	[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
-	[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
-	[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
-	[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
-	# Search in history frome current line command
-	[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" history-beginning-search-backward
-	[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" history-beginning-search-forward
-  autoload zkbd
+#source ~/.zkbd/xterm-termite-:0
+#	[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+#	[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+#	[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
+#	[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+#	[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+#	[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
+#	[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+#	[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+#	# Search in history frome current line command
+#	[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" history-beginning-search-backward
+#	[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" history-beginning-search-forward
+#  autoload zkbd
 
 bindkey '^[[Z' reverse-menu-complete
 

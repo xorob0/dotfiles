@@ -1,0 +1,5 @@
+[Icon Theme]
+	Name = Ardoise x100
+	Comment = Simple, flat, and dark cursor theme by obnosim v3.0
+	Example=default
+	Inherits=core
