@@ -1,4 +1,9 @@
-rename 2017-06-19_02:38:48.png
-mkdir
+mkdir Bulletin
+
+rename bulletin.c
+open_with sixv
 open_with 
+open_with 1
+wq
 delete 
+find rsyn

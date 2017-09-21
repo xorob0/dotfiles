@@ -251,12 +251,12 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2%
 
 	# MPD control
-	bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
-	bindsym XF86AudioPlay exec mpc toggle
-	bindsym XF86AudioNext exec mpc next
+	#bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
+	#bindsym XF86AudioPlay exec mpc toggle
+	#bindsym XF86AudioNext exec mpc next
 
 	# Wifi
-	bindsym Mod4+equal exec sudo netmenu
+	#bindsym Mod4+equal exec sudo netmenu
 
 #
 # Resizing interface

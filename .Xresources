@@ -58,7 +58,7 @@ URxvt*scrollBar:	false
 !Set terminal name
 urxvt*termName:		rxvt
 
-#Cursor
+!Cursor
 Xcursor.theme: Ardoise x87
 
 

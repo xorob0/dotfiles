@@ -70,6 +70,9 @@ alias ls='ls -hAl --color=always'
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
 
+# Cool gtypist
+alias gtypist='gtypist -b -i'
+
 # Synchronize path with ranger
 #alias ranger='ranger-cd'
 
