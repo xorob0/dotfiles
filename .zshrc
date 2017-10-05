@@ -73,6 +73,11 @@ alias pacman='sudo pacman'
 # Cool gtypist
 alias gtypist='gtypist -b -i'
 
+# htop is top
+alias top='htop'
+
+# Quick ping Google
+alias gping='ping 8.8.8.8'
 # Synchronize path with ranger
 #alias ranger='ranger-cd'
 
@@ -207,4 +212,10 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 #  autoload zkbd
 
 bindkey '^[[Z' reverse-menu-complete
+
+ # search with up down                                                                     
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[OA' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+bindkey '^[OB' history-beginning-search-forward
 
