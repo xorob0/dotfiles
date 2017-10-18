@@ -76,8 +76,14 @@ alias gtypist='gtypist -b -i'
 # htop is top
 alias top='htop'
 
-# Quick ping Google
-alias gping='ping 8.8.8.8'
+# Graphical ping
+alias ping='gping'
+alias ping_old='/bin/ping'
+
+# Graphical top
+alias top_old='/bin/top'
+alias top='gtop'
+
 # Synchronize path with ranger
 #alias ranger='ranger-cd'
 
@@ -210,6 +216,9 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 #	[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" history-beginning-search-backward
 #	[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" history-beginning-search-forward
 #  autoload zkbd
+
+bindkey    "^[[3~"          delete-char
+bindkey    "^[3;5~"         delete-char
 
 bindkey '^[[Z' reverse-menu-complete
 
