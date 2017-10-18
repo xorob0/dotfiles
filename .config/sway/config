@@ -78,7 +78,11 @@ workspace_auto_back_and_forth yes
 ### Output configuration
 #
 # Wallpaper
-#output * bg `/home/toum/.scripts/wallpaper` fill
+output "*" background /home/toum/Pictures/Wallpapers/background.png fill
+
+# HDMI Out configuration
+output HDMI-A-1 pos 1920,0 res 1920x1080
+output eDP-1 pos 1920,0 res 1920x1080
 
 ### Input configuration
 #
@@ -246,9 +250,10 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	bindsym 0x1008ff03 exec brightnessctl set 10%-
 
 	# Sound control
-	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2%
-	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle
-	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2%
+	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2% || pactl set-sink-volume 1 -2%
+	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle || pactl set-sink-mute 1 toggle
+	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2% || pactl set-sink-volume 1 +2%
+
 
 	# MPD control
 	#bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
@@ -287,13 +292,14 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 # Power interface
 #
 	set $Locker swayblock
-	set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown"
+	set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) Windows"
 	mode $mode_power {
 		bindsym l exec $Locker, mode "default"
 		bindsym e exec swaymsg exit, mode "default"
 		bindsym s exec $Locker && systemctl suspend, mode "default"
 		bindsym r exec systemctl reboot, mode "default"
 		bindsym Shift+s exec systemctl poweroff -i, mode "default"
+		bindsym w exec sudo grub-reboot 'Windaube' && systemctl reboot, mode "default"
 	
 	    # return to default mode
 	    bindsym Return mode "default"
@@ -355,7 +361,7 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	exec dunst&
 
 	# Activate gestures for the trackpad
-	exec libinput-gestures-setup start &> /dev/null
+	# exec libinput-gestures-setup start &> /dev/null
 
 	# Enable rxvt-unicode theme
 	exec xrdb /home/toum/.Xresources  
@@ -364,3 +370,4 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 # Assignments
 #
 	assign [class="Firefox"] $WS1
+	assign [class="Riot"] $WS9
