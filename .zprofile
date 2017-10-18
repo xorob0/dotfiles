@@ -9,4 +9,6 @@ export QT_IM_MODULE=cedilla
 export QT_QPA_PLATFORM=eglfs
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
-sway
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  exec sway
+fi
