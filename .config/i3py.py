@@ -88,19 +88,19 @@ status.register("disk",
 #    format_disabled='',
 #    color='#61AEEE')
 
-status.register("mpd",
-    host='localhost',
-    port='6600',
-    format="{status}",
-    on_leftclick="switch_playpause",
-    on_rightclick=["mpd_command", "stop"],
-    on_middleclick=["mpd_command", "shuffle"],
-    on_upscroll=["mpd_command", "next_song"],
-    on_downscroll=["mpd_command", "previous_song"],
-    status={
-        "pause": " ",
-        "play": " ",
-        "stop": " ",
-    },)
+# status.register("mpd",
+#     host='localhost',
+#     port='6600',
+#     format="{status}",
+#     on_leftclick="switch_playpause",
+#     on_rightclick=["mpd_command", "stop"],
+#     on_middleclick=["mpd_command", "shuffle"],
+#     on_upscroll=["mpd_command", "next_song"],
+#     on_downscroll=["mpd_command", "previous_song"],
+#     status={
+#         "pause": " ",
+#         "play": " ",
+#         "stop": " ",
+#     },)
 
 status.run()
