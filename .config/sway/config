@@ -361,7 +361,7 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	exec dunst&
 
 	# Activate gestures for the trackpad
-	# exec libinput-gestures-setup start &> /dev/null
+	exec libinput-gestures-setup start &> /dev/null
 
 	# Enable rxvt-unicode theme
 	exec xrdb /home/toum/.Xresources  
