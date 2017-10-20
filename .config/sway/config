@@ -16,8 +16,8 @@ set $term urxvt
 
 # Using rofi to launch programs
 #set $menu rofi
-# Using j4-dmenu to launch programs
-set $menu j4-dmenu-desktop
+# Using rofi to launch programs
+set $menu rofi -show run
 
 # Using firefox nightly as main browser
 set $browser firefox-nightly
@@ -361,7 +361,7 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	exec dunst&
 
 	# Activate gestures for the trackpad
-	exec libinput-gestures-setup start &> /dev/null
+	# exec libinput-gestures-setup start &> /dev/null
 
 	# Enable rxvt-unicode theme
 	exec xrdb /home/toum/.Xresources  
