@@ -22,6 +22,9 @@ set $menu j4-dmenu-desktop
 # Using firefox nightly as main browser
 set $browser firefox-nightly
 
+# Using i3lock-fancy as lockscreen
+set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab
+
 ## Workspaces:
 # Workspace keys on azerty
 #set $Key1 ampersand
@@ -117,6 +120,10 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 
     # Start the browser
     bindsym Mod4+w exec $browser, workspace_auto_back_and_forth no, workspace 1:www, workspace_auto_back_and_forth yes
+
+
+	# Open password-store manager
+	bindsym Mod4+slash exec passmenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -291,12 +298,11 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 #
 # Power interface
 #
-	set $Locker swayblock
 	set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) Windows"
 	mode $mode_power {
-		bindsym l exec $Locker, mode "default"
+		bindsym l exec $locker, mode "default"
 		bindsym e exec swaymsg exit, mode "default"
-		bindsym s exec $Locker && systemctl suspend, mode "default"
+		bindsym s exec $locker && systemctl suspend, mode "default"
 		bindsym r exec systemctl reboot, mode "default"
 		bindsym Shift+s exec systemctl poweroff -i, mode "default"
 		bindsym w exec sudo grub-reboot 'Windaube' && systemctl reboot, mode "default"
@@ -358,13 +364,16 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	workspace 2
 
 	# Launch dunst
-	exec dunst&
+	exec dunst
 
 	# Activate gestures for the trackpad
-	exec libinput-gestures-setup start &> /dev/null
+	# exec libinput-gestures-setup start &> /dev/null
 
 	# Enable rxvt-unicode theme
 	exec xrdb /home/toum/.Xresources  
+
+	# Lock screen on boot
+	exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab'
 
 #
 # Assignments
