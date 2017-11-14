@@ -1,9 +1,0 @@
-mkdir Bulletin
-
-rename bulletin.c
-open_with sixv
-open_with 
-open_with 1
-wq
-delete 
-find rsyn
