@@ -1,23 +1,23 @@
 ### Exporting variables
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
-export PAGER=most
+export PAGER=less
 export TERM="xterm-256color"
 
-### Plugin install
+# Add Anaconda to the Path
+# export PATH="/home/toum/Documents/A.I._Mons_Meet-up/anaconda/bin:$PATH"
 
+### Plugin install
 source "${HOME}/.zgen/zgen.zsh"
 
-# If the init scipt doesn't exist
+# If the init script doesn't exist
 if ! zgen saved; then
-
-  # Calculator inside the commandline
+  # Calculator inside the command line
   zgen load arzzen/calc.plugin.zsh
 
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
 
-  # Send = git add, git commit and git push zgen load robertzk/send.zsh
   # Colors in the terminal
   zgen load chrissicool/zsh-256color
 
@@ -27,6 +27,9 @@ if ! zgen saved; then
   # Generate the init script from plugins above
   zgen save
 fi
+
+# Fish like autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ### Configure plugins
 
@@ -77,12 +80,22 @@ alias gtypist='gtypist -b -i'
 alias top='htop'
 
 # Graphical ping
-alias ping='gping'
 alias ping_old='/bin/ping'
+alias ping='gping'
 
 # Graphical top
 alias top_old='/bin/top'
 alias top='gtop'
+
+# Convert document to pdf
+alias doc2pdf="libreoffice --headless --convert-to pdf *.docx"
+alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
+
+# Canto
+alias canto="canto-curses"
+
+# Tomato
+alias poatao="cleat && potato"
 
 # Synchronize path with ranger
 #alias ranger='ranger-cd'
@@ -174,6 +187,10 @@ zstyle ':completion:*' auto-description 'specify: %d'
 ## Separate man page sections
 zstyle ':completion:*:manuals' separate-sections true
 
+# Set autosuggestions colors
+eval "`dircolors -b ~/.dircolors`"
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=34}:${(s.:.)LS_COLORS}")';
+
 
 ### History Stuff
 
@@ -227,4 +244,3 @@ bindkey '^[[A' history-beginning-search-backward
 bindkey '^[OA' history-beginning-search-backward
 bindkey '^[[B' history-beginning-search-forward
 bindkey '^[OB' history-beginning-search-forward
-
