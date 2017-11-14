@@ -68,7 +68,12 @@ setopt COMPLETE_ALIASES
 ### Setting aliases
 
 # Colorized, list and dotfile with ls
-alias ls='ls -hAl --color=always'
+alias ll='ls -lhF --color=auto'
+alias llt='ls -lht --color=auto'
+alias lla='ls -alF --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
+alias ls="ls --color=auto"
 
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
