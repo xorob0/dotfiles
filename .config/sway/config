@@ -364,16 +364,23 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	workspace 2
 
 	# Launch dunst
-	exec dunst
+	exec dunst &
 
 	# Activate gestures for the trackpad
 	# exec libinput-gestures-setup start &> /dev/null
 
 	# Enable rxvt-unicode theme
-	exec xrdb /home/toum/.Xresources  
+	exec xrdb /home/toum/.Xresources &
 
+
+	# launching urxvt deamon
+	exec --no-startup-id urxvtd --quiet --opendisplay --fork &
+
+	# Launch apps
+	# exec $browser
+	# exec riot-desktop
 	# Lock screen on boot
-	exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab'
+	exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
 
 #
 # Assignments
