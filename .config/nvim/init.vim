@@ -52,6 +52,8 @@ call dein#add('Raimondi/delimitMate')
 "call dein#add('ctrlpvim/ctrlp.vim')
 " Learn to use vim correctly
 call dein#add('wikitopian/hardmode')
+" Personal wiki in vim
+call dein#add('vimwiki/vimwiki')
 " Automatic opening and closing of parentheses
 "call dein#add('jiangmiao/auto-pairs')
 " See tags in a sidebar (exempel : class)
@@ -207,7 +209,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-autocmd BufWritePre * StripWhitespace
+" Causing error on exit
+"autocmd BufWritePre * StripWhitespace
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -625,3 +628,8 @@ let b:delimitMate_expand_cr = 1
 
 " See undo tree with F5
 nnoremap <F5> :UndotreeToggle<cr>
+
+" Setting settings for my personnal wiki
+let g:vimwiki_list = [{'path': '~/Documents/VimWiki/personal.wiki',
+                    \ 'path_html': '~/Documents/VimWiki/personal.wiki_html'}
+                    \ ]
