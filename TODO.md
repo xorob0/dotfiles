@@ -1,6 +1,7 @@
 - [x] Rewritte mpv.conf
 - [ ] Rewritte init.vim
 - [ ] Rewritte sway/config
+- [ ] Rewritte .zshrc
+- [ ] Rewritte .Xresources
 - [ ] Take a look at my scripts
 - [ ] Continue README.md
-
