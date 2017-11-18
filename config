@@ -8,7 +8,7 @@
 
 
 # Using Alt as main modifier
-set $mod Mod1 																						
+set $mod Mod1
 
 # Home row direction keys, like vim
 set $left h
@@ -17,19 +17,19 @@ set $up k
 set $right l
 
 # Using rxvt-unicode as main terminal emulator
-set $term urxvt 																					
+set $term urxvt
 
 #s# # Using j4-dmenu to launch programs
 #s# set $menu j4-dmenu-desktop 																			
 #i# # Using rofi to launch programs
-#i# set $menu rofi 																						
+#i# set $menu rofi
 
 # Using firefox nightly as main browser
-set $browser firefox-nightly 																		
+set $browser firefox-nightly
 # # Using firefox as main browser
-# set $browser firefox 		 																		
+# set $browser firefox
 # # Using chromium nightly as main browser
-# set $browser chromium 																				
+# set $browser chromium
 
 #s# # Using i3lock-fancy as lockscreen with swaygrab
 #s# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab 	
@@ -354,7 +354,6 @@ bar {
 	mode hide
 	hidden_state hide
 	modifier $mod
-
 
 	# 10:music -> music
 	strip_workspace_numbers yes
