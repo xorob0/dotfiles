@@ -1,7 +1,8 @@
-# Read `man 5 sway` for a complete reference.
+#############
+# Variables #
+#############
 
-### Variables
-#
+
 # Using Alt as main modifier
 set $mod Mod1
 
@@ -14,18 +15,20 @@ set $right l
 # Using rxvt-unicode as main terminal emulator
 set $term urxvt
 
-# Using rofi to launch programs
-#set $menu rofi
 # Using j4-dmenu to launch programs
 set $menu j4-dmenu-desktop
 
 # Using firefox nightly as main browser
 set $browser firefox-nightly
+# # Using firefox as main browser
+# set $browser firefox
+# # Using chromium nightly as main browser
+# set $browser chromium
+# Using i3lock-fancy as lockscreen with swaygrab
+set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab 	
+# # Using i3lock-fancy as lockscreen with maim
+# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- maim 	
 
-# Using i3lock-fancy as lockscreen
-set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab
-
-## Workspaces:
 # Workspace keys on azerty
 #set $Key1 ampersand
 #set $Key2 eacute
@@ -49,6 +52,7 @@ set $Key7 7
 set $Key8 8
 set $Key9 9
 set $Key10 0
+set $KeyHDMI dead_grave
 
 # Workspace names
 set $WS1 1:www
@@ -61,15 +65,19 @@ set $WS7 7
 set $WS8 8:dl
 set $WS9 9:chat
 set $WS10 10:music
+set $WSHDMI 0:HDMI
 
-### Settings
-#
+
+############
+# Settings #
+############
+
+
 # Window border at 1px
 default_border pixel 1
 
 # Hide borders when using only one program
-hide_edge_borders both
-
+hide_edge_borders both 																			
 # Gaps settings
 smart_gaps on
 gaps inner 5
@@ -78,18 +86,26 @@ gaps outer 5
 # Allow back and forth
 workspace_auto_back_and_forth yes
 
-### Output configuration
-#
+
+########################
+# Output configuration #
+########################
+
+
 # Wallpaper
-output "*" background /home/toum/Pictures/Wallpapers/background.png fill
+output "*" background ~/Pictures/Wallpapers/background.png fill
 
 # HDMI Out configuration
 output HDMI-A-1 pos 1920,0 res 1920x1080
 output eDP-1 pos 1920,0 res 1920x1080
 
-### Input configuration
-#
-# Touchpad config (on Nymeria)
+
+#######################
+# Input configuration #
+#######################
+
+
+# Touchpad config (on Nelya)
 input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	dwt enabled
 	tap enabled
@@ -98,292 +114,263 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	scroll_method two_finger
 }
 
-### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
-    bindsym Mod4+Return exec $term
-    bindsym Mod4+s exec $term
 
-	# Start a terminal with ranger
-	bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
-
-    # Kill focused window
-    bindsym $mod+Shift+q kill
-    bindsym Mod4+q kill
-	bindsym $mod+escape exec xkill
-
-    # Start your launcher
-    bindsym Mod4+d exec $menu
-    bindsym Mod4+space exec $menu
-
-    # Start the browser
-    bindsym Mod4+w exec $browser, workspace_auto_back_and_forth no, workspace 1:www, workspace_auto_back_and_forth yes
+################
+# Key bindings #
+################
 
 
-	# Open password-store manager
-	bindsym Mod4+slash exec passmenu
+# Start a terminal
+bindsym Mod4+Return exec $term
+bindsym Mod4+s exec $term
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# Start a terminal with ranger
+bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+# Kill focused window
+bindsym $mod+Shift+q kill
+bindsym Mod4+q kill
+# Force kill focused window
+bindsym $mod+escape exec xkill
 
-    # Exit sway (logs you out of your wayland session)
-    bindsym $mod+Shift+e exit
+# Start your launcher
+bindsym Mod4+d exec $menu
+bindsym Mod4+space exec $menu
 
-#
-# Custom:
-#
-	# Launch calculator
-	bindsym Mod4+c exec speedcrunch
-	#TODO Add more
+# Start the browser
+bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser, workspace_auto_back_and_forth yes
 
-#
-# Moving around:
-#
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Open password-store manager
+bindsym Mod4+slash exec passmenu
 
-    # _move_ the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
+floating_modifier $mod normal
 
+# Reload the configuration file
+bindsym $mod+Shift+c reload
 
-    # switch to workspace
-    bindsym $mod+$Key1 workspace $WS1
-    bindsym $mod+$Key2 workspace $WS2
-    bindsym $mod+$Key3 workspace $WS3
-    bindsym $mod+$Key4 workspace $WS4
-    bindsym $mod+$Key5 workspace $WS5
-    bindsym $mod+$Key6 workspace $WS6
-    bindsym $mod+$Key7 workspace $WS7
-    bindsym $mod+$Key8 workspace $WS8
-    bindsym $mod+$Key9 workspace $WS9
-    bindsym $mod+$Key10 workspace $WS10
-    # move focused container to workspace
-    bindsym $mod+Shift+$Key1 move container to workspace $WS1
-    bindsym $mod+Shift+$Key2 move container to workspace $WS2
-    bindsym $mod+Shift+$Key3 move container to workspace $WS3
-    bindsym $mod+Shift+$Key4 move container to workspace $WS4
-    bindsym $mod+Shift+$Key5 move container to workspace $WS5
-    bindsym $mod+Shift+$Key6 move container to workspace $WS6
-    bindsym $mod+Shift+$Key7 move container to workspace $WS7
-    bindsym $mod+Shift+$Key8 move container to workspace $WS8
-    bindsym $mod+Shift+$Key9 move container to workspace $WS9
-    bindsym $mod+Shift+$Key10 move container to workspace $WS10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+# Exit sway (logs you out of your wayland session)
+bindsym $mod+Shift+e exit
 
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# Launch calculator
+bindsym Mod4+c exec speedcrunch
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+## Moving around
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-	# Using ,./;\
-	bindsym $mod+comma layout stacking
-	bindsym $mod+period layout tabbed
-	bindsym $mod+slash toggle split
-	bindsym $mod+semicolon layout auto next
-	bindsym $mod+backslash auto_left
+# _move_ the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
+# switch to workspace
+bindsym $mod+$Key1 workspace $WS1
+bindsym $mod+$Key2 workspace $WS2
+bindsym $mod+$Key3 workspace $WS3
+bindsym $mod+$Key4 workspace $WS4
+bindsym $mod+$Key5 workspace $WS5
+bindsym $mod+$Key6 workspace $WS6
+bindsym $mod+$Key7 workspace $WS7
+bindsym $mod+$Key8 workspace $WS8
+bindsym $mod+$Key9 workspace $WS9
+bindsym $mod+$Key10 workspace $WS10
+bindsym $mod+$KeyHDMI workspace $WSHDMI
+# move focused container to workspace
+bindsym $mod+Shift+$Key1 move container to workspace $WS1
+bindsym $mod+Shift+$Key2 move container to workspace $WS2
+bindsym $mod+Shift+$Key3 move container to workspace $WS3
+bindsym $mod+Shift+$Key4 move container to workspace $WS4
+bindsym $mod+Shift+$Key5 move container to workspace $WS5
+bindsym $mod+Shift+$Key6 move container to workspace $WS6
+bindsym $mod+Shift+$Key7 move container to workspace $WS7
+bindsym $mod+Shift+$Key8 move container to workspace $WS8
+bindsym $mod+Shift+$Key9 move container to workspace $WS9
+bindsym $mod+Shift+$Key10 move container to workspace $WS10
+bindsym $mod+Shift+$KeyHDMI move container to workspace $WSHDMI
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+## Layout stuff
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Using ,./;\
+bindsym $mod+comma layout stacking
+bindsym $mod+period layout tabbed
+bindsym $mod+slash toggle split
+bindsym $mod+semicolon layout auto next
+bindsym $mod+backslash auto_left
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
 
-	# Toggle border styles
-	bindsym $mod+Shift+b border toggle
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
 
-	# Stick window
-	bindsym $mod+w sticky toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
 
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Move focus to the parent container
+bindsym $mod+a focus parent
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+t move scratchpad
+# Toggle border styles
+bindsym $mod+Shift+b border toggle
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+t scratchpad show
+# Stick window
+bindsym $mod+w sticky toggle
 
-#
-# Media Keys
-#
-	# Brightness control
-	bindsym 0x1008ff02 exec brightnessctl set 10%+
-	bindsym 0x1008ff03 exec brightnessctl set 10%-
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+t move scratchpad
 
-	# Sound control
-	bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2% || pactl set-sink-volume 1 -2%
-	bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle || pactl set-sink-mute 1 toggle
-	bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2% || pactl set-sink-volume 1 +2%
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+t scratchpad show
 
+## Media Keys
+# Brightness control
+bindsym 0x1008ff02 exec brightnessctl set 10%+
+bindsym 0x1008ff03 exec brightnessctl set 10%-
 
-	# MPD control
-	#bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
-	#bindsym XF86AudioPlay exec mpc toggle
-	#bindsym XF86AudioNext exec mpc next
+# Sound control
+bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2% || pactl set-sink-volume 1 -2%
+bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle || pactl set-sink-mute 1 toggle
+bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2% || pactl set-sink-volume 1 +2%
 
-	# Wifi
-	#bindsym Mod4+equal exec sudo netmenu
+# # MPD control
+# bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
+# bindsym XF86AudioPlay exec mpc toggle
+# bindsym XF86AudioNext exec mpc next
 
-#
+# Wifi
+# TODO Own dmnu for netctl
+bindsym Mod4+f exec $term -e "wifi-menu"
+
 # Resizing interface
-#
-	mode "resize" {
-	    # left will shrink the containers width
-	    # right will grow the containers width
-	    # up will shrink the containers height
-	    # down will grow the containers height
-	    bindsym $left resize shrink width 10 px or 10 ppt
-	    bindsym $down resize grow height 10 px or 10 ppt
-	    bindsym $up resize shrink height 10 px or 10 ppt
-	    bindsym $right resize grow width 10 px or 10 ppt
-	
-	    # ditto, with arrow keys
-	    bindsym Left resize shrink width 10 px or 10 ppt
-	    bindsym Down resize grow height 10 px or 10 ppt
-	    bindsym Up resize shrink height 10 px or 10 ppt
-	    bindsym Right resize grow width 10 px or 10 ppt
-	
-	    # return to default mode
-	    bindsym Return mode "default"
-	    bindsym Escape mode "default"
-	}
-	bindsym $mod+r mode "resize"
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
 
-#
+    # ditto, with arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
 # Power interface
-#
-	set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) Windows"
-	mode $mode_power {
-		bindsym l exec $locker, mode "default"
-		bindsym e exec swaymsg exit, mode "default"
-		bindsym s exec $locker && systemctl suspend, mode "default"
-		bindsym r exec systemctl reboot, mode "default"
-		bindsym Shift+s exec systemctl poweroff -i, mode "default"
-		bindsym w exec sudo grub-reboot 'Windaube' && systemctl reboot, mode "default"
-	
-	    # return to default mode
-	    bindsym Return mode "default"
-	    bindsym Escape mode "default"
-	}
-	bindsym $mod+p mode $mode_power
+set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
+mode $mode_power {
+	bindsym l exec $locker, mode "default"
+	bindsym e exec swaymsg exit, mode "default"
+	bindsym s exec $locker && systemctl suspend, mode "default"
+	bindsym r exec systemctl reboot, mode "default"
+	bindsym Shift+s exec systemctl poweroff -i, mode "default"
+	bindsym w exec rm /tmp/xorgon, exit, mode "default"
+	bindsym x exec touch /tmp/xorgon, exit, mode "default"
+	bindsym Shift+w exec sudo grub-reboot 'Windaube' && systemctl reboot, mode "default"
 
-#
-# Power interface
-#
-	set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
-	mode $mode_screenshot {
-		bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-		bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-		bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
-	
-	    # return to default mode
-	    bindsym Return mode "default"
-	    bindsym Escape mode "default"
-	}
-	bindsym $mod+Print mode $mode_screenshot
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+p mode $mode_power
 
-#
-# Status Bar:
-#
-	# Read `man 5 sway-bar` for more information about this section.
-	bar {
-	    position bottom
-	    colors {
-	        statusline #ffffff
-	        background #282828
-	        active_workspace #333333 #0F9DE8 #ffffff
-	        urgent_workspace #333333 #CC0000 #ffffff
-	        inactive_workspace #333333 #555555 #ffffff
-	    }
+# Screenshots interface
+set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
+mode $mode_screenshot {
+	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+	bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
+ 
+	# return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Print mode $mode_screenshot
 
-		separator_symbol "|"
+# Status Bar
+bar {
+    position bottom
+    colors {
+        statusline #ffffff
+        background #282828
+        active_workspace #333333 #0F9DE8 #ffffff
+        urgent_workspace #333333 #CC0000 #ffffff
+        inactive_workspace #333333 #555555 #ffffff
+    }
 
-		# Hidden bar and show with $mod
-		mode hide
-		hidden_state hide
-		modifier $mod
+	separator_symbol "|"
 
+	# Hidden bar and show with $mod
+	mode hide
+	hidden_state hide
+	modifier $mod
 
-		# 10:music -> music
-		strip_workspace_numbers yes
+	# 10:music -> music
+	strip_workspace_numbers yes
 
-		# status_command i3status
-		status_command  i3pystatus -c /home/toum/.config/i3py.py
-	}
+	# status_command i3status
+	status_command  i3pystatus -c /home/toum/.config/i3py.py
+}
 
-#
-# Startup programs
-#
-	# Move to second workspace
-	workspace 2
+## Startup programs
+# Move to second workspace
+workspace 2
 
-	# Launch dunst
-	exec dunst &
+# Launch dunst
+exec dunst &
 
-	# Activate gestures for the trackpad
-	# exec libinput-gestures-setup start &> /dev/null
+# Activate gestures for the trackpad
+exec libinput-gestures-setup start &> /dev/null
 
-	# Enable rxvt-unicode theme
-	exec xrdb /home/toum/.Xresources &
+# Enable rxvt-unicode theme
+exec xrdb /home/toum/.Xresources &
 
+# launching urxvt deamon
+exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 
-	# launching urxvt deamon
-	exec --no-startup-id urxvtd --quiet --opendisplay --fork &
+# Launch apps
+exec $browser
+exec riot-desktop
+exec urxvt
+# # Lock screen on boot
+# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
 
-	# Launch apps
-	# exec $browser
-	# exec riot-desktop
-	# Lock screen on boot
-	exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
-
-#
 # Assignments
-#
-	assign [class="Firefox"] $WS1
-	assign [class="Riot"] $WS9
+assign [class="Firefox"] → $WS1
+assign [class="Riot"] → $WS9
+workspace "0:HDMI" output HDMI-A-1 
