@@ -166,9 +166,6 @@ bindsym Mod4+slash exec passmenu
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-# Exit sway (logs you out of your wayland session)
-bindsym $mod+Shift+e exit
-
 # Launch calculator
 bindsym Mod4+c exec speedcrunch
 
@@ -307,10 +304,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Power interface
-set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
+set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
 mode $mode_power {
 	bindsym l exec $locker, mode "default"
-	bindsym e exec swaymsg exit, mode "default"
 	bindsym s exec $locker && systemctl suspend, mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff -i, mode "default"
