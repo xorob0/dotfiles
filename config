@@ -81,13 +81,15 @@ set $WSHDMI 0:HDMI
 # Settings #
 ############
 
+#i# # Setting fonts
+#i# font pango:Terminus 10
 
 # Window border at 1px
 #s# default_border pixel 1
 #i# new_window pixel
 
 # Hide borders when using only one program
-#s# hide_edge_borders both 																			
+hide_edge_borders both 																			
 
 # Gaps settings
 smart_gaps on
@@ -104,7 +106,7 @@ gaps outer 5
 
 # Wallpaper
 #s# output "*" background ~/Pictures/Wallpapers/background.png fill
-#i# feh --bg-scale ~/Pictures/Wallpapers/background.png
+#i# exec feh --bg-scale ~/Pictures/Wallpapers/background.png
 
 #s# # HDMI Out configuration
 #s# output HDMI-A-1 pos 1920,0 res 1920x1080
@@ -155,11 +157,11 @@ bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser,
 # Open password-store manager
 bindsym Mod4+slash exec passmenu
 
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
-floating_modifier $mod normal
+#s# # Drag floating windows by holding down $mod and left mouse button.
+#s# # Resize them with right mouse button + $mod.
+#s# # Despite the name, also works for non-floating windows.
+#s# # Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
+#s# floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -252,7 +254,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+b border toggle
 
 # Stick window
-bindsym $mod+w sticky toggle
+bindsym $mod+z sticky toggle
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+t move scratchpad
@@ -279,7 +281,7 @@ bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set
 
 # Wifi
 # TODO Own dmnu for netctl
-bindsym Mod4+f exec $term -e "wifi-menu"
+bindsym Mod4+equal exec $term -e "wifi-menu"
 
 # Resizing interface
 mode "resize" {
@@ -372,20 +374,22 @@ exec dunst &
 # Activate gestures for the trackpad
 exec libinput-gestures-setup start &> /dev/null
 
-# Enable rxvt-unicode theme
-exec xrdb /home/toum/.Xresources &
+# # Enable rxvt-unicode theme
+# # See end of file
+# exec xrdb ~/.Xresources &
 
 # launching urxvt deamon
 exec --no-startup-id urxvtd --quiet --opendisplay --fork &
-
-# Launch apps
-exec $browser
-exec riot-desktop
-exec urxvt
-# # Lock screen on boot
-# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
 
 # Assignments
 assign [class="Firefox"] → $WS1
 assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
+
+# Launch apps
+exec $browser
+exec riot-desktop
+exec urxvt
+exec xrdb ~/.Xresources && urxvt
+# # Lock screen on boot
+# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
