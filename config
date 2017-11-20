@@ -22,7 +22,7 @@ set $term urxvt
 #s# # Using j4-dmenu to launch programs
 #s# set $menu j4-dmenu-desktop 																			
 #i# # Using rofi to launch programs
-#i# set $menu rofi
+#i# set $menu rofi -show combi
 
 # Using firefox nightly as main browser
 set $browser firefox-nightly
@@ -139,7 +139,7 @@ bindsym Mod4+Return exec $term
 bindsym Mod4+s exec $term
 
 # Start a terminal with ranger
-bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
+bindsym Mod4+f exec $term -e "zsh" "~/.scripts/ranger.sh"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -357,7 +357,7 @@ bar {
 	strip_workspace_numbers yes
 
 	# status_command i3status
-	status_command  i3pystatus -c /home/toum/.config/i3py.py
+	status_command  i3pystatus -c ~/.config/i3py.py
 }
 
 ## Startup programs
@@ -388,4 +388,4 @@ exec riot-desktop
 exec urxvt
 exec xrdb ~/.Xresources && urxvt
 # # Lock screen on boot
-# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
+# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp ~/Pictures/Wallpapers/background.png' &
