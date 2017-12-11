@@ -24,10 +24,10 @@ set $term urxvt
 #i# # Using rofi to launch programs
 #i# set $menu rofi -show combi
 
-# Using firefox nightly as main browser
-set $browser firefox-nightly
-# # Using firefox as main browser
-# set $browser firefox
+# # Using firefox nightly as main browser
+# set $browser firefox-nightly
+# Using firefox as main browser
+set $browser firefox
 # # Using chromium nightly as main browser
 # set $browser chromium
 
@@ -36,7 +36,9 @@ set $browser firefox-nightly
 #i# # Using i3lock-fancy as lockscreen with scrot
 #i# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- scrot 	
 # # Using i3lock-fancy as lockscreen with maim
-# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- maim 	
+# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- maim 
+# Using pavanjadhaw/betterlockscreen 
+set $locker lock --lock 	
 
 # Workspace keys on azerty
 #set $Key1 ampersand
@@ -81,8 +83,9 @@ set $WSHDMI 0:HDMI
 # Settings #
 ############
 
-#i# # Setting fonts
-#i# font pango:Terminus 10
+# Setting fonts
+#font pango:Terminus 10
+font pango: InconsolataLGC Nerd Font 9
 
 # Window border at 1px
 #s# default_border pixel 1
@@ -96,7 +99,7 @@ smart_gaps on
 gaps inner 5
 gaps outer 5
 
-# Allow back and forth
+#s# # Allow back and forth
 #s# workspace_auto_back_and_forth yes 																
 
 ########################
@@ -383,9 +386,8 @@ assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
 
 # Launch apps
-exec $browser
+exec firefox
 exec riot-desktop
-exec urxvt
 exec xrdb ~/.Xresources && urxvt
 # # Lock screen on boot
 # exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp ~/Pictures/Wallpapers/background.png' &
