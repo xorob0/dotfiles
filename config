@@ -349,7 +349,8 @@ bar {
         inactive_workspace #333333 #555555 #ffffff
     }
 
-	separator_symbol "|"
+	separator_symbol " | "
+
 
 	# Hidden bar and show with $mod
 	mode hide
