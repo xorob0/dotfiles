@@ -1,5 +1,7 @@
 export GTK_IM_MODULE=cedilla 
 export QT_IM_MODULE=cedilla
+export ANDROID_HOME=/opt/android-sdk
+export XDG_DESKTOP_DIR=/dev/null
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 	if [[ ! -a /tmp/xorgon ]]; then
