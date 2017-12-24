@@ -13,7 +13,7 @@ source "${HOME}/.zgen/zgen.zsh"
 # If the init script doesn't exist
 if ! zgen saved; then
   # Calculator inside the command line
-  zgen load arzzen/calc.plugin.zsh
+  #zgen load arzzen/calc.plugin.zsh
 
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
@@ -23,6 +23,10 @@ if ! zgen saved; then
 
   # Highlight syntax
   zgen load zsh-users/zsh-syntax-highlighting
+
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/vi-mode
+  zgen oh-my-zsh plugins/git
 
   # Generate the init script from plugins above
   zgen save
@@ -34,9 +38,16 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### Configure plugins
 
 # Personnal theme for PowerLevel9k
+POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_INSTALLATION_PATH=/home/xorob0/.zgen/bhilburn/powerlevel9k-master/powerlevel9k.zsh-theme
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time vi_mode)
+# POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+# POWERLEVEL9K_VI_INSERT_MODE_STRING='M'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='034'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='254'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='031'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='254'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs context dir_writable dir)
 #POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='242'
@@ -81,9 +92,6 @@ alias pacman='sudo pacman'
 # Cool gtypist
 alias gtypist='gtypist -b -i'
 
-# htop is top
-alias top='htop'
-
 # Graphical ping
 alias ping_old='/bin/ping'
 alias ping='gping'
@@ -100,7 +108,11 @@ alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
 alias canto="canto-curses"
 
 # Tomato
-alias poatao="cleat && potato"
+alias poatao="clear && potato"
+
+# Enable the trash
+alias rm='echo "This is not the command you are looking for"; false'
+alias /rm="rm"
 
 # Synchronize path with ranger
 #alias ranger='ranger-cd'
