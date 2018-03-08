@@ -11,14 +11,12 @@ source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
   # Calculator inside the command line
   #zgen load arzzen/calc.plugin.zsh
-<<<<<<< HEAD
 
   # oh-my-zsh
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/pass
   zgen oh-my-zsh plugins/systemd
 =======
->>>>>>> a78dcec7c8bea2d0611ce4992f20049fa9a31d34
 
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
