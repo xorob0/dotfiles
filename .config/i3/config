@@ -1,3 +1,6 @@
+# The line commented with " are to be uncommented when using i3
+
+
 #############
 # Variables #
 #############
@@ -16,12 +19,12 @@ set $right l
 set $term urxvt
 
 # Using rofi to launch programs
-set $menu rofi
+set $menu rofi -show combi
 
-# Using firefox nightly as main browser
-set $browser firefox-nightly
-# # Using firefox as main browser
-# set $browser firefox
+# # Using firefox nightly as main browser
+# set $browser firefox-nightly
+# Using firefox as main browser
+set $browser firefox
 # # Using chromium nightly as main browser
 # set $browser chromium
 
@@ -73,17 +76,22 @@ set $WSHDMI 0:HDMI
 # Settings #
 ############
 
+# Setting fonts
+#font pango:Terminus 10
+font pango:Lucida Grande 10
 
 # Window border at 1px
 new_window pixel
 
 # Hide borders when using only one program
+hide_edge_borders both 																			
 
 # Gaps settings
 smart_gaps on
 gaps inner 5
 gaps outer 5
 
+# Allow back and forth
 
 ########################
 # Output configuration #
@@ -91,8 +99,17 @@ gaps outer 5
 
 
 # Wallpaper
-feh --bg-scale ~/Pictures/Wallpapers/background.png
+exec feh --bg-scale ~/Pictures/Wallpapers/background.png
 
+
+
+#######################
+# Input configuration #
+#######################
+
+
+# Alternatively on i3 copy this config on /etc/X11/xorg.conf.d/30-touchpad.conf
+# TODO
 
 ################
 # Key bindings #
@@ -104,7 +121,7 @@ bindsym Mod4+Return exec $term
 bindsym Mod4+s exec $term
 
 # Start a terminal with ranger
-bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
+bindsym Mod4+f exec $term -e "zsh" "~/.scripts/ranger.sh"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -117,22 +134,14 @@ bindsym Mod4+d exec $menu
 bindsym Mod4+space exec $menu
 
 # Start the browser
-bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser, workspace_auto_back_and_forth yes
+#bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser, workspace_auto_back_and_forth yes
 
 # Open password-store manager
 bindsym Mod4+slash exec passmenu
 
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
-floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
-
-# Exit sway (logs you out of your wayland session)
-bindsym $mod+Shift+e exit
 
 # Launch calculator
 bindsym Mod4+c exec speedcrunch
@@ -219,7 +228,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+b border toggle
 
 # Stick window
-bindsym $mod+w sticky toggle
+bindsym $mod+z sticky toggle
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+t move scratchpad
@@ -246,7 +255,7 @@ bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set
 
 # Wifi
 # TODO Own dmnu for netctl
-bindsym Mod4+f exec $term -e "wifi-menu"
+bindsym Mod4+equal exec $term -e "wifi-menu"
 
 # Resizing interface
 mode "resize" {
@@ -272,10 +281,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Power interface
-set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
+set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
 mode $mode_power {
 	bindsym l exec $locker, mode "default"
-	bindsym e exec swaymsg exit, mode "default"
 	bindsym s exec $locker && systemctl suspend, mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff -i, mode "default"
@@ -323,12 +331,12 @@ bar {
 	strip_workspace_numbers yes
 
 	# status_command i3status
-	status_command  i3pystatus -c /home/toum/.config/i3py.py
+	status_command  i3pystatus -c ~/.config/i3py.py
 }
 
 ## Startup programs
 # Move to second workspace
-workspace 2
+# :workspace 2
 
 # Launch dunst
 exec dunst &
@@ -336,20 +344,22 @@ exec dunst &
 # Activate gestures for the trackpad
 exec libinput-gestures-setup start &> /dev/null
 
-# Enable rxvt-unicode theme
-exec xrdb /home/toum/.Xresources &
+# # Enable rxvt-unicode theme
+# # See end of file
+# exec xrdb ~/.Xresources &
 
 # launching urxvt deamon
 exec --no-startup-id urxvtd --quiet --opendisplay --fork &
-
-# Launch apps
-exec $browser
-exec riot-desktop
-exec urxvt
-# # Lock screen on boot
-# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
 
 # Assignments
 assign [class="Firefox"] → $WS1
 assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
+
+# Launch apps
+exec $browser
+exec riot-desktop
+exec urxvt
+exec xrdb ~/.Xresources && urxvt
+# # Lock screen on boot
+# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp ~/Pictures/Wallpapers/background.png' &
