@@ -1,5 +1,9 @@
 export GTK_IM_MODULE=cedilla 
 export QT_IM_MODULE=cedilla
+export ANDROID_HOME=/opt/android-sdk
+export XDG_DESKTOP_DIR=/dev/null
+export PATH=/usr/local/bin:$PATH
+export PASSWORD_STORE_GENERATED_LENGTH=40
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 	if [[ ! -a /tmp/xorgon ]]; then

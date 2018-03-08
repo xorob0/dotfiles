@@ -16,9 +16,9 @@ call dein#begin(expand('~/.vim/dein')) " plugins' root path
 " Plugin installer
 call dein#add('Shougo/dein.vim')
 " Enable multiple curors with <C-n>
-call dein#add('terryma/vim-multiple-cursors')
+"call dein#add('terryma/vim-multiple-cursors')
 " Start drawing with <leader-d>
-call dein#add('vim-scripts/DrawIt')
+"call dein#add('vim-scripts/DrawIt')
 " Autocompletion
 call dein#add('Shougo/deoplete.nvim')
 " Autocompletion for C like
@@ -31,8 +31,8 @@ call dein#add('mbbill/undotree')
 call dein#add('luochen1990/rainbow')
 "call dein#add('caio/querycommandcomplete.vim')
 " Navigate with F3
-call dein#add('scrooloose/nerdtree')
-call dein#add('jistr/vim-nerdtree-tabs')
+"call dein#add('scrooloose/nerdtree')
+"call dein#add('jistr/vim-nerdtree-tabs')
 " Comment with <gcc>
 call dein#add('tpope/vim-commentary')
 call dein#add('vim-airline/vim-airline')
@@ -59,14 +59,14 @@ call dein#add('vimwiki/vimwiki')
 " See tags in a sidebar (exempel : class)
 "call dein#add('majutsushi/tagbar')
 " Synatx checking
-call dein#add('scrooloose/syntastic')
+"call dein#add('scrooloose/syntastic')
 if v:version >= 704
 	"" Snippets
-	call dein#add('SirVer/ultisnips')
+"	call dein#add('SirVer/ultisnips')
 	call dein#add('FelikZ/ctrlp-py-matcher')
 	call dein#add('honza/vim-snippets')
 	call dein#add('MarcWeber/vim-addon-mw-utils')
-	call dein#add('garbas/vim-snipmate')
+""	call dein#add('garbas/vim-snipmate')
 endif
 "
 "

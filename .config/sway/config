@@ -1,3 +1,7 @@
+# The line commented with " are to be uncommented when using Sway
+
+font pango: InconsolataLGC Nerd Font 9
+
 #############
 # Variables #
 #############
@@ -13,21 +17,26 @@ set $up k
 set $right l
 
 # Using rxvt-unicode as main terminal emulator
-set $term urxvt
+set $term urxvtc
 
 # Using j4-dmenu to launch programs
-set $menu j4-dmenu-desktop
+set $menu j4-dmenu-desktop 																			
 
-# Using firefox nightly as main browser
-set $browser firefox-nightly
-# # Using firefox as main browser
-# set $browser firefox
+# # Using firefox nightly as main browser
+# set $browser firefox-nightly
+# Using firefox as main browser
+set $browser firefox
 # # Using chromium nightly as main browser
 # set $browser chromium
-# Using i3lock-fancy as lockscreen with swaygrab
-set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab 	
+
+# # Using i3lock-fancy as lockscreen with swaygrab
+# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab 	
 # # Using i3lock-fancy as lockscreen with maim
 # set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- maim 	
+# # Using pavanjadhaw/betterlockscreen 
+# set $locker lock --lock 	
+# Using swaylock to lock the screen the right way
+set $locker swaylock -i /tmp/lock/blur.png
 
 # Workspace keys on azerty
 #set $Key1 ampersand
@@ -78,14 +87,14 @@ default_border pixel 1
 
 # Hide borders when using only one program
 hide_edge_borders both 																			
+
 # Gaps settings
 smart_gaps on
 gaps inner 5
 gaps outer 5
 
 # Allow back and forth
-workspace_auto_back_and_forth yes
-
+workspace_auto_back_and_forth yes 																
 
 ########################
 # Output configuration #
@@ -97,6 +106,7 @@ output "*" background ~/Pictures/Wallpapers/background.png fill
 
 # HDMI Out configuration
 output HDMI-A-1 pos 1920,0 res 1920x1080
+output DP-3 pos 0,-300 res 1920x1080
 output eDP-1 pos 1920,0 res 1920x1080
 
 
@@ -114,6 +124,16 @@ input "1739:31251:DLL07BE:01_06CB:7A13_To" {
 	scroll_method two_finger
 }
 
+input "1:1:AT_Translated_Set_2_keyboard" { 
+    events enabled
+}
+
+input "13:0:ANNE_KB_L0_7156" { 
+    events enabled
+}
+
+# Alternatively on i3 copy this config on /etc/X11/xorg.conf.d/30-touchpad.conf
+# TODO
 
 ################
 # Key bindings #
@@ -125,7 +145,7 @@ bindsym Mod4+Return exec $term
 bindsym Mod4+s exec $term
 
 # Start a terminal with ranger
-bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
+bindsym Mod4+f exec $term -e sh -c "~/.scripts/ranger.sh"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -151,9 +171,6 @@ floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
-
-# Exit sway (logs you out of your wayland session)
-bindsym $mod+Shift+e exit
 
 # Launch calculator
 bindsym Mod4+c exec speedcrunch
@@ -240,7 +257,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+b border toggle
 
 # Stick window
-bindsym $mod+w sticky toggle
+bindsym $mod+z sticky toggle
 
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+t move scratchpad
@@ -248,6 +265,18 @@ bindsym $mod+Shift+t move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+t scratchpad show
+
+# Vim anywhere
+bindsym Mod4+t exec ~/.vim-anywhere/bin/run
+
+# Profile chooser with dmenu
+bindsym Mod4+p exec ~/.scripts/ProfileDmenu.sh
+
+# Use OTP with a Yubikey
+bindsym Mod4+y exec ~/.scripts/dmenuYubi.sh
+
+# VPN chooser with dmenu
+bindsym Mod4+v exec ~/.scripts/VPNdmenu.sh
 
 ## Media Keys
 # Brightness control
@@ -259,6 +288,7 @@ bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set
 bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle || pactl set-sink-mute 1 toggle
 bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2% || pactl set-sink-volume 1 +2%
 
+
 # # MPD control
 # bindsym XF86AudioPrev exec sh ~/.scripts/mpcPrev.sh
 # bindsym XF86AudioPlay exec mpc toggle
@@ -266,7 +296,7 @@ bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set
 
 # Wifi
 # TODO Own dmnu for netctl
-bindsym Mod4+f exec $term -e "wifi-menu"
+bindsym Mod4+equal exec $term -e "wifi-menu"
 
 # Resizing interface
 mode "resize" {
@@ -292,10 +322,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Power interface
-set $mode_power "System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
+set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
 mode $mode_power {
 	bindsym l exec $locker, mode "default"
-	bindsym e exec swaymsg exit, mode "default"
 	bindsym s exec $locker && systemctl suspend, mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff -i, mode "default"
@@ -333,7 +362,7 @@ bar {
         inactive_workspace #333333 #555555 #ffffff
     }
 
-	separator_symbol "|"
+	separator_symbol " | "
 
 	# Hidden bar and show with $mod
 	mode hide
@@ -344,7 +373,7 @@ bar {
 	strip_workspace_numbers yes
 
 	# status_command i3status
-	status_command  i3pystatus -c /home/toum/.config/i3py.py
+	status_command  i3pystatus -c ~/.config/i3py.py
 }
 
 ## Startup programs
@@ -357,20 +386,26 @@ exec dunst &
 # Activate gestures for the trackpad
 exec libinput-gestures-setup start &> /dev/null
 
-# Enable rxvt-unicode theme
-exec xrdb /home/toum/.Xresources &
+# # Enable rxvt-unicode theme
+# # See end of file
+# exec xrdb ~/.Xresources &
 
 # launching urxvt deamon
 exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 
-# Launch apps
-exec $browser
-exec riot-desktop
-exec urxvt
-# # Lock screen on boot
-# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp /home/toum/Pictures/Wallpapers/background.png' &
-
 # Assignments
 assign [class="Firefox"] → $WS1
+assign [class="Firefox Nightly"] → $WS1
 assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
+
+# Launch apps
+exec firefox &
+exec riot-desktop &
+exec xrdb ~/.Xresources && urxvtc &
+exec udiskie -0 -a -n -T -F --no-appindicator &
+exec lock --update /home/toum/Pictures/Wallpapers/background.png &
+# Remember my gpg passphrase for the session
+exec /usr/lib/gnupg/gpg-preset-passphrase --preset 928A8CB7AD871D45FDAB4292D8D0D3BC809A9314 &
+# # Lock screen on boot
+# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp ~/Pictures/Wallpapers/background.png' &

@@ -4,16 +4,18 @@ export LANG="en_US.UTF-8"
 export PAGER=less
 export TERM="xterm-256color"
 
-# Add Anaconda to the Path
-# export PATH="/home/toum/Documents/A.I._Mons_Meet-up/anaconda/bin:$PATH"
-
 ### Plugin install
 source "${HOME}/.zgen/zgen.zsh"
 
 # If the init script doesn't exist
 if ! zgen saved; then
   # Calculator inside the command line
-  zgen load arzzen/calc.plugin.zsh
+  #zgen load arzzen/calc.plugin.zsh
+
+  # oh-my-zsh
+  zgen oh-my-zsh plugins/vi-mode
+  zgen oh-my-zsh plugins/pass
+  zgen oh-my-zsh plugins/systemd
 
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
@@ -23,6 +25,7 @@ if ! zgen saved; then
 
   # Highlight syntax
   zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-completions src
 
   # Generate the init script from plugins above
   zgen save
@@ -34,9 +37,16 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### Configure plugins
 
 # Personnal theme for PowerLevel9k
+POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_INSTALLATION_PATH=/home/xorob0/.zgen/bhilburn/powerlevel9k-master/powerlevel9k.zsh-theme
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time vi_mode)
+# POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+# POWERLEVEL9K_VI_INSERT_MODE_STRING='M'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='034'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='254'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='031'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='254'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs context dir_writable dir)
 #POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_COLOR_SCHEME='light'
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='242'
@@ -66,6 +76,8 @@ setopt NO_BEEP
 setopt COMPLETE_ALIASES
 
 ### Setting aliases
+# The fuck
+eval $(thefuck --alias)
 
 # Colorized, list and dotfile with ls
 alias ll='ls -lhF --color=auto'
@@ -74,15 +86,35 @@ alias lla='ls -alF --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
 alias ls="ls --color=auto"
+alias ldot="ls -ld .* --color=auto"
+
+# Easy .zshrc edit
+alias zshrc="$EDITOR ~/.zshrc"
+
+# History access
+alias h="history"
+
+# Obligatory git aliases
+alias ga="git add"
+alias gc="git commit -m"
+alias gca="git commit -am"
+alias gpl="git pull"
+alias gp="git push"
+alias gl="git log --pretty=format:'%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --date=short"
+alias gs="git status -s"
+
+# End of line aliases
+# alias H="| head"
+# alias T="| tail"
+# alias G="| grep"
+# alias L="| less"
+# alias NUL="> /dev/null 2>&1"
 
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
 
 # Cool gtypist
 alias gtypist='gtypist -b -i'
-
-# htop is top
-alias top='htop'
 
 # Graphical ping
 alias ping_old='/bin/ping'
@@ -100,7 +132,11 @@ alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
 alias canto="canto-curses"
 
 # Tomato
-alias poatao="cleat && potato"
+alias poatao="clear && potato"
+
+# Enable the trash
+alias rm='echo "This is not the command you are looking for"; false'
+alias /rm="rm"
 
 # Synchronize path with ranger
 #alias ranger='ranger-cd'

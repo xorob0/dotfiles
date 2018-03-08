@@ -4,14 +4,17 @@ import subprocess
 import os
 import os.path
 
+import netifaces
+import sensors
+
 from i3pystatus import Status
 from i3pystatus.updates import pacman, cower
 
 
-status = Status()
+status = Status(standalone=True, internet_check=('archlinux.org', 80))
 
 status.register("clock",
-    format=" %H:%M:%S ",
+    format=" %H:%M:%S",
     color='#C678DD',
     interval=1,)
 
@@ -20,29 +23,37 @@ status.register("clock",
     color='#61AEEE',
     interval=60,)
 
-# status.register("pomodoro",
-#     sound="/home/toum/.config/sway/demonstrative.ogg",
-#     interval=1,)
-
 status.register("pulseaudio",
     color_unmuted='#98C379',
     color_muted='#E06C75',
     format_muted=' [muted]',
-    format=" {volume}%",)
+    format=" {volume}% {volume_bar}",)
 
-status.register("network",
-   interface="eth0",
-   color_up="#8AE234",
-   color_down="#EF2929",
-   format_up=" {v4cidr}",
-   format_down="",)
+status.register("external_ip")
 
-status.register("network",
-    interface="wlan0",
-    color_up="#8AE234",
-    color_down="#EF2929",
-    format_up=" {essid}  {kbs} kbs",
-    format_down="",)
+for s in netifaces.interfaces():
+    if s == 'lo' or s.startswith("tun"):
+        pass
+    elif s.startswith('wl'):
+        status.register("network",
+            interface=s,
+            color_up="#8AE234",
+            color_down="#EF2929",
+            format_up=" {essid} {v4cidr}",
+            format_down="",)
+    else:
+        status.register("network",
+           interface=s,
+           color_up="#8AE234",
+           color_down="#EF2929",
+           format_up=" {v4cidr}",
+           format_down="",)
+
+status.register("shell",
+    command="bash /home/toum/.scripts/ovpnIsOn.sh",
+    ignore_empty_stdout=True,
+    error_color="#EF2929",
+    color="#8AE234",)
 
 status.register("backlight",
     interval=5,
@@ -53,7 +64,7 @@ status.register("backlight",
 status.register("battery",
     battery_ident="BAT0",
     interval=5,
-    format="{status}{percentage:.0f}%",
+    format="{status}{percentage:.0f}% {remaining}",
     alert=True,
     alert_percentage=15,
     color="#FFFFFF",
@@ -67,7 +78,10 @@ status.register("battery",
 },)
 
 status.register("temp",
-    color='#78EAF2',)
+                format="{Package_id_0}°C {Core_0_bar}{Core_1_bar}{Core_2_bar}{Core_3_bar}",
+                hints={"markup": "pango"},
+                lm_sensors_enabled=True,
+                dynamic_color=True)
 
 status.register("cpu_usage",
     format=" {usage}%",)
@@ -76,31 +90,17 @@ status.register("mem",
     color="#999999",
     warn_color="#E5E500",
     alert_color="#FF1919",
-    format=" {avail_mem}/{total_mem} GB",
+    format=" {avail_mem}/{total_mem} Go",
     divisor=1073741824,)
 
 status.register("disk",
     color='#56B6C2',
     path="/home",
-    format=" {avail} GB",)
+    format=" {avail} Go",)
 
-#status.register('ping',
-#    format_disabled='',
-#    color='#61AEEE')
-
-# status.register("mpd",
-#     host='localhost',
-#     port='6600',
-#     format="{status}",
-#     on_leftclick="switch_playpause",
-#     on_rightclick=["mpd_command", "stop"],
-#     on_middleclick=["mpd_command", "shuffle"],
-#     on_upscroll=["mpd_command", "next_song"],
-#     on_downscroll=["mpd_command", "previous_song"],
-#     status={
-#         "pause": " ",
-#         "play": " ",
-#         "stop": " ",
-#     },)
+status.register("updates",
+                format = "Updates: {count}",
+                format_no_updates = "No updates",
+                backends = [pacman.Pacman(), cower.Cower()])
 
 status.run()
