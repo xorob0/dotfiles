@@ -1,7 +1,8 @@
 !!Fonts
 /* URxvt.font: xft:InconsolataForPowerline Nerd Font:size=12 */
 /* URxvt.font: xft:Inconsolata for Powerline:size=12 */
-URxvt.font: xft:MesloLGSDZ Nerd Font Mono:size=12
+!!URxvt.font: xft:MesloLGSDZ Nerd Font Mono:size=12
+URxvt.font: xft:InconsolataGo Nerd Font Mono:size=13
 
 !Adjustable font size
 !URxvt.perl-ext-common:  ...,resize-font,...
@@ -73,4 +74,3 @@ rofi.color-window: #393939, #393939, #268bd2
 rofi.color-normal: #393939, #ffffff, #393939, #268bd2, #ffffff
 rofi.color-active: #393939, #268bd2, #393939, #268bd2, #205171
 rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffc39c
-
