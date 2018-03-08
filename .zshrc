@@ -11,11 +11,14 @@ source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
   # Calculator inside the command line
   #zgen load arzzen/calc.plugin.zsh
+<<<<<<< HEAD
 
   # oh-my-zsh
   zgen oh-my-zsh plugins/vi-mode
   zgen oh-my-zsh plugins/pass
   zgen oh-my-zsh plugins/systemd
+=======
+>>>>>>> a78dcec7c8bea2d0611ce4992f20049fa9a31d34
 
   # Magnificent theme
   zgen load bhilburn/powerlevel9k powerlevel9k
@@ -26,6 +29,10 @@ if ! zgen saved; then
   # Highlight syntax
   zgen load zsh-users/zsh-syntax-highlighting
   zgen load zsh-users/zsh-completions src
+
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/vi-mode
+  zgen oh-my-zsh plugins/git
 
   # Generate the init script from plugins above
   zgen save
