@@ -1,0 +1,24 @@
+Connection='wireless'
+Interface=wlan0
+Security='wpa-configsection'
+Description="eduroam network"
+IP='dhcp'
+TimeoutWPA=30
+WPAConfigSection=(
+    'ssid="eduroam"'
+    'proto=WPA2'
+    'key_mgmt=WPA-EAP'
+    # EAP mechanisms
+    # Common combinations are:
+    #   PEAP + auth=MSCHAPV2
+    #   TTLS + auth=MSCHAPV2
+    #   TTLS + autheap=MSCHAPV2
+    #   TTLS + auth=PAP
+    'eap=PEAP'
+    'phase2="auth=MSCHAPV2"'
+    # Server identity
+    #'ca_cert="/etc/ssl/certs/ca-certificates.crt"'
+    # Client identity
+    'identity="identity@heh.be"' # ex: s4234381@tu-dresden.de
+    'password="Password"'
+)

@@ -1,11 +1,6 @@
-# The line commented with "#s#" are to be uncommented when using Sway
-# The line commented with "#i#" are to be uncommented when using i3
-
-
 #############
 # Variables #
 #############
-
 
 # Using Alt as main modifier
 set $mod Mod1
@@ -17,10 +12,8 @@ set $up k
 set $right l
 
 # Using rxvt-unicode as main terminal emulator
-set $term urxvt
+set $term urxvtc
 
-#s# # Using j4-dmenu to launch programs
-#s# set $menu j4-dmenu-desktop 																			
 #i# # Using rofi to launch programs
 #i# set $menu rofi -show combi
 
@@ -31,12 +24,8 @@ set $browser firefox-nightly
 # # Using chromium nightly as main browser
 # set $browser chromium
 
-#s# # Using i3lock-fancy as lockscreen with swaygrab
-#s# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- swaygrab 	
-#i# # Using i3lock-fancy as lockscreen with scrot
-#i# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- scrot 	
-# # Using i3lock-fancy as lockscreen with maim
-# set $locker i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- maim 	
+# Using pavanjadhaw/betterlockscreen 
+set $locker lock --lock
 
 # Workspace keys on azerty
 #set $Key1 ampersand
@@ -76,16 +65,14 @@ set $WS9 9:chat
 set $WS10 10:music
 set $WSHDMI 0:HDMI
 
-
 ############
 # Settings #
 ############
 
-#i# # Setting fonts
-#i# font pango:Terminus 10
+# Setting fonts
+font pango: InconsolataLGC Nerd Font 9
 
 # Window border at 1px
-#s# default_border pixel 1
 #i# new_window pixel
 
 # Hide borders when using only one program
@@ -97,49 +84,26 @@ gaps inner 5
 gaps outer 5
 
 # Allow back and forth
-#s# workspace_auto_back_and_forth yes 																
+workspace_auto_back_and_forth yes 																
 
 ########################
 # Output configuration #
 ########################
 
-
 # Wallpaper
-#s# output "*" background ~/Pictures/Wallpapers/background.png fill
+set wallpaper ~/Pictures/Wallpapers/background.png
 #i# exec feh --bg-scale ~/Pictures/Wallpapers/background.png
-
-#s# # HDMI Out configuration
-#s# output HDMI-A-1 pos 1920,0 res 1920x1080
-#s# output eDP-1 pos 1920,0 res 1920x1080
-
-
-#######################
-# Input configuration #
-#######################
-
-
-#s# # Touchpad config (on Nelya)
-#s# input "1739:31251:DLL07BE:01_06CB:7A13_To" {
-#s# 	dwt enabled
-#s# 	tap enabled
-#s# 	natural_scroll enabled
-#s# 	middle_emulation enabled
-#s# 	scroll_method two_finger
-#s# }
-# Alternatively on i3 copy this config on /etc/X11/xorg.conf.d/30-touchpad.conf
-# TODO
 
 ################
 # Key bindings #
 ################
-
 
 # Start a terminal
 bindsym Mod4+Return exec $term
 bindsym Mod4+s exec $term
 
 # Start a terminal with ranger
-bindsym Mod4+f exec $term -e "zsh" "~/.scripts/ranger.sh"
+bindsym Mod4+f exec $term -e "zsh" "/home/toum/.scripts/ranger.sh"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -157,14 +121,7 @@ bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser,
 # Open password-store manager
 bindsym Mod4+slash exec passmenu
 
-#s# # Drag floating windows by holding down $mod and left mouse button.
-#s# # Resize them with right mouse button + $mod.
-#s# # Despite the name, also works for non-floating windows.
-#s# # Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
-#s# floating_modifier $mod normal
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
+# Reload the configuration file bindsym $mod+Shift+c reload
 
 # Launch calculator
 bindsym Mod4+c exec speedcrunch
@@ -216,6 +173,10 @@ bindsym $mod+Shift+$Key8 move container to workspace $WS8
 bindsym $mod+Shift+$Key9 move container to workspace $WS9
 bindsym $mod+Shift+$Key10 move container to workspace $WS10
 bindsym $mod+Shift+$KeyHDMI move container to workspace $WSHDMI
+
+# Switch workspace with Alt+Tab
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 ## Layout stuff
 # You can "split" the current object of your focus with
@@ -278,7 +239,11 @@ bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set
 
 # Wifi
 # TODO Own dmnu for netctl
-bindsym Mod4+equal exec $term -e "wifi-menu"
+bindsym Mod4+equal exec $term -e "sudo" wifi-menu"
+
+#########
+# Modes #
+#########
 
 # Resizing interface
 mode "resize" {
@@ -323,9 +288,6 @@ bindsym $mod+p mode $mode_power
 # Screenshots interface
 set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
 mode $mode_screenshot {
-#s# 	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-#s# 	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-#s# 	bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
 #i# 	bindsym a exec scrot ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
 #i# 	bindsym f exec scrot -u ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
  
@@ -360,7 +322,10 @@ bar {
 	status_command  i3pystatus -c ~/.config/i3py.py
 }
 
-## Startup programs
+####################
+# Startup programs #
+####################
+
 # Move to second workspace
 workspace 2
 
@@ -383,9 +348,8 @@ assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
 
 # Launch apps
+exec clipmenud
 exec $browser
 exec riot-desktop
 exec urxvt
-exec xrdb ~/.Xresources && urxvt
-# # Lock screen on boot
-# exec --no-startup-id bash -c 'i3lock-fancy -t "If you touch this computer be prepared for the consequences" -- cp ~/Pictures/Wallpapers/background.png' &
+exe xrdb ~/.Xresources && urxvt
