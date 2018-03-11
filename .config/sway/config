@@ -199,10 +199,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Move the focused workspace to laptop screen
-bindsym $mod+Shift+plus move eDP-1
+bindsym $mod+Shift+equal move workspace to output eDP-1
 
 # Move the focused workspace to DisplayPort
-bindsym $mod+Shift+minus move DP-3
+bindsym $mod+Shift+minus move workspace to output DP-3
 
 # switch to workspace
 bindsym $mod+$Key1 workspace $WS1
