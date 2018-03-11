@@ -11,7 +11,7 @@ from i3pystatus import Status
 from i3pystatus.updates import pacman, cower
 
 
-status = Status(standalone=True, internet_check=('archlinux.org', 80))
+status = Status(standalone=True, internet_check=('archlinux.org', 80),logfile='/tmp/i3pystatus.log')
 
 status.register("clock",
     format=" %H:%M:%S",
