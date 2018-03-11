@@ -4,6 +4,7 @@ export ANDROID_HOME=/opt/android-sdk
 export XDG_DESKTOP_DIR=/dev/null
 export PATH=/usr/local/bin:$PATH
 export PASSWORD_STORE_GENERATED_LENGTH=40
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 	if [[ ! -a /tmp/xorgon ]]; then
