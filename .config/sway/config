@@ -404,6 +404,7 @@ assign [class="Firefox"] → $WS1
 assign [class="Firefox Nightly"] → $WS1
 assign [class="Riot"] → $WS9
 workspace "0:HDMI" output HDMI-A-1 
+workspace "0:HDMI" output DP-3
 
 # Launch apps
 exec firefox &
