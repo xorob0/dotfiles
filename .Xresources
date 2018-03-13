@@ -2,12 +2,12 @@
 /* URxvt.font: xft:InconsolataForPowerline Nerd Font:size=12 */
 /* URxvt.font: xft:Inconsolata for Powerline:size=12 */
 !!URxvt.font: xft:MesloLGSDZ Nerd Font Mono:size=12
-URxvt.font: xft:InconsolataGo Nerd Font Mono:size=13
+URxvt.font: xft:InconsolataGo Nerd Font Mono:size=14
 
 !Adjustable font size
 !URxvt.perl-ext-common:  ...,resize-font,...
- URxvt.resize-font.smaller: C-Down
- URxvt.resize-font.bigger: C-Up
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
 
 !!Color Scheme
 ! special
