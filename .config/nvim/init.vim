@@ -144,9 +144,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Surround with cs"'
 	call dein#add('tpope/vim-surround')
 
-	" Automatic {<ENTER>
-	call dein#add('Raimondi/delimitMate')
-
 	" See undo tree with F5
 	call dein#add('mbbill/undotree')
 
@@ -213,6 +210,11 @@ augroup fmt
 	autocmd!
 	autocmd BufWritePre * undojoin | Neoformat
 augroup END
+
+""DelimitMate
+" Visual Studio like braces
+let b:delimitMate_expand_space = 1
+let b:delimitMate_expand_cr = 1
 
 "" Javacomplete2
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
@@ -294,3 +296,7 @@ endif
 noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
+
+" New Java class template
+autocmd BufNewFile *.java
+			\ exe "normal Opublic class " . expand('%:t:r') . " {\<Delete>\<Esc>o\<Esc>o}\<Esc>2Gi\<Tab>"
