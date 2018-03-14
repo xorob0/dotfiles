@@ -7,6 +7,7 @@ set fileencodings=utf-8
 "" Fix backspace indent
 set backspace=indent,eol,start
 
+"" Cursor line in different color
 set cursorline
 
 "" Tabs. May be overriten by autocmd rules
@@ -35,6 +36,10 @@ set noswapfile
 set fileformats=unix,dos,mac
 set showcmd
 set shell=/bin/sh
+
+"" Cool compltetion
+set wildmode=longest,list,full
+set wildmenu
 
 " Session management
 let g:session_directory = "~/.config/nvim/session"
@@ -105,8 +110,13 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Fuzzy finder
 	call dein#add('Shougo/denite.nvim')
 
-	" Completion Framework
-	call dein#add('Shougo/deoplete.nvim')
+	" " Completion Framework
+	" call dein#add('Shougo/deoplete.nvim')
+	call dein#add('roxma/nvim-completion-manager')
+
+	" Snippets
+	call dein#add('Shougo/neosnippet.vim')
+	call dein#add('Shougo/neosnippet-snippets')
 
 	" Change date with <C-A> and <C-X>
 	call dein#add('tpope/vim-speeddating')
@@ -121,10 +131,10 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('sbdchd/neoformat')
 
 	" Java autocomplete
-	call dein#add('artur-shaik/vim-javacomplete2')
+	" call dein#add('artur-shaik/vim-javacomplete2')
 
 	" Complete with tab
-	call dein#add('ervandew/supertab')
+	" call dein#add('ervandew/supertab')
 
 	" Add git status
 	call dein#add('airblade/vim-gitgutter')
@@ -168,8 +178,24 @@ if dein#check_install()
 endif
 
 """ Addons configuration
-"" Deoplete
-let g:deoplete#enable_at_startup = 1
+"" Autocompletion
+" neosnippet configuration
+" Control j to jump
+imap <c-j>     <Plug>(neosnippet_expand_or_jump)
+vmap <c-j>     <Plug>(neosnippet_expand_or_jump)
+" Control u to expand
+inoremap <silent> <c-u> <c-r>=cm#sources#neosnippet#trigger_or_popup("\<Plug>(neosnippet_expand_or_jump)")<cr>
+vmap <c-u>     <Plug>(neosnippet_expand_target)
+" expand parameters
+let g:neosnippet#enable_completed_snippet=1
+
+" NCM
+" Entrer to complete
+imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
+imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
+" Tab go to next
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "" Neoformat
 " Enable alignment
