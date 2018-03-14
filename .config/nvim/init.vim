@@ -103,10 +103,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('/home/toum/.config/nvim//repos/github.com/Shougo/dein.vim')
 
 	" Addons
-	" Snippet manager
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
-
 	" Fuzzy finder
 	call dein#add('Shougo/denite.nvim')
 
@@ -133,9 +129,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Java autocomplete
 	" call dein#add('artur-shaik/vim-javacomplete2')
 
-	" Complete with tab
-	" call dein#add('ervandew/supertab')
-
 	" Add git status
 	call dein#add('airblade/vim-gitgutter')
 
@@ -151,6 +144,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Surround with cs"'
 	call dein#add('tpope/vim-surround')
 
+	" Automatic {<ENTER>
+	call dein#add('Raimondi/delimitMate')
+
 	" See undo tree with F5
 	call dein#add('mbbill/undotree')
 
@@ -159,6 +155,12 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Theme
 	call dein#add('tomasr/molokai')
+
+	" Colorize parentheses
+	call dein#add('luochen1990/rainbow')
+
+	" Show indent level
+	call dein#add('nathanaelkane/vim-indent-guides')
 
 	" Nice looking vim !
 	call dein#add('vim-airline/vim-airline')
@@ -188,6 +190,8 @@ inoremap <silent> <c-u> <c-r>=cm#sources#neosnippet#trigger_or_popup("\<Plug>(ne
 vmap <c-u>     <Plug>(neosnippet_expand_target)
 " expand parameters
 let g:neosnippet#enable_completed_snippet=1
+" personal snippets
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 " NCM
 " Entrer to complete
