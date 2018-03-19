@@ -26,10 +26,12 @@ I am using vim shortcut in the browser so I am limited to either a webkit browse
 - [uBlock origin]{https://addons.mozilla.org/fr/firefox/addon/ublock-origin/}
 - [uMatrix]{https://addons.mozilla.org/fr/firefox/addon/umatrix/}
 
-Most of these addons do not have a equivalent in the webkit world.
+Some of these addons do not have a equivalent in the webkit world.
 
 ## The file manager
 The best terminal based file managing solutions are nnn and ranger. nnn is more lightweight and faster but is really not easy to configure, this is why I use ranger for the moment.
+It also offers a preview for almost all file types including images and videos, altough it is sometimes slow even more with the directory preload enabled and with some special directories like wrongly mounted SSHFS partitions.
+Using [alexanderjeurissen/ranger_devicons]{https://github.com/alexanderjeurissen/ranger_devicons/} I can enable a file type icon.
 
 ## The E-mail client
 For a terminal based solution I can go with neoMutt or aerc. I did not decide yet
