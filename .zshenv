@@ -36,3 +36,13 @@ export WLC_REPEAT_RATE=30
 # dead ' + c = ç
 export GTK_IM_MODULE=cedilla
 export QT_IM_MODULE=cedilla
+
+#########################
+### Defaults programs ###
+#########################
+# NeoVim is the best editor !!!!
+export EDITOR="nvim"
+# Setting up pager
+export PAGER="less"
+# Support for 256 colors in the term
+export TERM="xterm-256color"
