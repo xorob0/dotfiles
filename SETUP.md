@@ -10,6 +10,7 @@ What I need:
 - A video player
 - An office suite
 - A password manager
+- A terminal emulator
 
 ## The window manager
 I prefer tiling WM with text config file for the simplicity. I am using sway which is a port of i3 for wayland, it is very lightweight and it has all the fonctionnalities I need. I still keep i3 with a similar config in case I need to run a program that don't like wayland.
@@ -26,7 +27,7 @@ I am using vim shortcut in the browser so I am limited to either a webkit browse
 - [uBlock origin]{https://addons.mozilla.org/fr/firefox/addon/ublock-origin/}
 - [uMatrix]{https://addons.mozilla.org/fr/firefox/addon/umatrix/}
 
-Some of these addons do not have a equivalent in the webkit world.
+Some of these addons have no equivalent in the webkit world.
 
 ## The file manager
 The best terminal based file managing solutions are nnn and ranger. nnn is more lightweight and faster but is really not easy to configure, this is why I use ranger for the moment.
@@ -47,3 +48,6 @@ Since openoffice is almost unmaintained I am going with libreoffice. It is prett
 
 ## The password manager
 I could have gone with the fast and versatile KeePass, with it's good integration eith most OS and lot of support. But I choosed Pass because it does everything I need and it's code is extremely simple which allow for a lot of customisations.
+
+## The terminal emulator
+I needed something highly customisable that was as light as possible since I will be opening a lot of them at the same time. Termite and urxvt both do the job.
