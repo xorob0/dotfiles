@@ -331,9 +331,7 @@ workspace "1:www" output eDP-1
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null; then swaymsg 'workspace "10:term"; exec urxvt'; fullscreen; fi"
 # Assign mpv to dock's HDMI when connected
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → $WSHDMI'; fi"
-# Focus on the main screen
-workspace $WS1
 # Launch firefox on startup
-exec firefox &
+exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
 # Launch Riot on startup
-exec riot-desktop &
+exec --no-startup-id swaymsg 'workspace "1:www", exec firefox'
