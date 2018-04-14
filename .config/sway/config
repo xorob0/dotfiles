@@ -332,6 +332,8 @@ exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null;
 # Assign mpv to dock's HDMI when connected
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → $WSHDMI'; fi"
 # Launch firefox on startup
-exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
-# Launch Riot on startup
 exec --no-startup-id swaymsg 'workspace "1:www", exec firefox'
+# Launch Riot on startup
+exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
+# Going to the first workspace
+exec --no-startup-id swaymsg 'workspace "1:www"'
