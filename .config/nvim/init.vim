@@ -144,6 +144,8 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Surround with cs"'
 	call dein#add('tpope/vim-surround')
+	" Better pairs tricks
+	call dein#add('wellle/targets.vim')
 
 	" See undo tree with F5
 	call dein#add('mbbill/undotree')
