@@ -318,7 +318,7 @@ exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 # Automounting of usb keys
 exec udiskie -0 -a -n -T -F --no-appindicator &
 # Windows assignments
-assign [class="Firefox"] → $WS1
+assign [class="Firefox"] → $WS1 workspace $WS1
 assign [class="Firefox Nightly"] → $WS1
 assign [class="Riot"] → $WS9
 # Worskpace assignments
@@ -326,14 +326,17 @@ workspace "0:HDMI" output HDMI-A-1
 workspace "0:HDMI" output DP-3
 workspace "10:term" output DP-5
 workspace "1:www" output eDP-1
+workspace "9:chat" output eDP-1
 ## Launch apps
 # Launch term on VGA when connected (fullscreen not working for the moment)
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null; then swaymsg 'workspace "10:term"; exec urxvt'; fullscreen; fi"
 # Assign mpv to dock's HDMI when connected
-exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → $WSHDMI'; fi"
+exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → "0:HDMI"'; fi"
 # Launch firefox on startup
 exec --no-startup-id swaymsg 'workspace "1:www", exec firefox'
 # Launch Riot on startup
 exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
 # Going to the first workspace
 exec --no-startup-id swaymsg 'workspace "1:www"'
+# Preparing the background for the lockscreen
+exec --no-startup-id cp -R /var/cache/lock /tmp/lock
