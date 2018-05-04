@@ -46,3 +46,9 @@ export EDITOR="nvim"
 export PAGER="less"
 # Support for 256 colors in the term
 export TERM="xterm-256color"
+# Default browser depend on the display type
+if [ -n "$DISPLAY" ]; then
+    export BROWSER=qutebrowser
+else 
+    export BROWSER=links
+fi
