@@ -80,6 +80,7 @@ alias l='ls -CF'
 alias ls="colorls"
 alias ls_old="ls --color=auto"
 alias ldot="ls -ld .*"
+alias lg='ls | grep'
 # Easy .zshrc edit
 alias zshrc="$EDITOR ~/.zshrc"
 # History access
@@ -102,6 +103,9 @@ alias ping='gping'
 # Graphical top
 alias top_old='/bin/top'
 alias top='gtop'
+# Top order
+alias cpu='top -o cpu'   # CPU
+alias mem='top -o rsize' # Memory
 # Convert document to pdf
 alias doc2pdf="libreoffice --headless --convert-to pdf *.docx"
 alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
@@ -112,11 +116,29 @@ alias poatao="clear && potato"
 # Enable the trash
 alias rm='echo "This is not the command you are looking for"; false'
 alias /rm="rm"
+alias tp='trash-put'
 # Some alias for backward directory
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+# Easy Grep
+alias -g G='| grep'
+# Easy Sudo
+alias _='sudo'
+# Wifi-menu (obfscated and non-obfuscated passwords)
+alias wm='wifi-menu -o'
+alias wmm='wifi-menu'
+# editor
+alias e='$EDITOR'
+# Python
+alias p='python'
+alias p2='python2'
+alias pi='pip install'
 # For when I forget I'm in normal mode in zsh
 alias nger="ranger"
 
