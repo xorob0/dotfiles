@@ -19,7 +19,7 @@ set $term urxvtc
 # Using j4-dmenu to launch programs
 set $menu j4-dmenu-desktop
 # Using firefox as main browser
-set $browser firefox
+set $browser qutebrowser
 # Using pavanjadhaw/betterlockscreen
 #set $locker lock --lock
 # Using swaylock to lock the screen the right way
@@ -319,6 +319,7 @@ exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 exec udiskie -0 -a -n -T -F --no-appindicator &
 # Windows assignments
 assign [class="Firefox"] → $WS1 workspace $WS1
+assign [class="qutebrowser"] → $WS1 workspace $WS1
 assign [class="Firefox Nightly"] → $WS1
 assign [class="Riot"] → $WS9
 # Worskpace assignments
@@ -332,10 +333,10 @@ workspace "9:chat" output eDP-1
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null; then swaymsg 'workspace "10:term"; exec urxvt'; fullscreen; fi"
 # Assign mpv to dock's HDMI when connected
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → "0:HDMI"'; fi"
-# Launch firefox on startup
-exec --no-startup-id swaymsg 'workspace "1:www", exec firefox'
 # Launch Riot on startup
 exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
+# Launch firefox on startup
+exec --no-startup-id swaymsg 'workspace "1:www", exec qutebrowser'
 # Going to the first workspace
 exec --no-startup-id swaymsg 'workspace "1:www"'
 # Preparing the background for the lockscreen
