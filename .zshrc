@@ -141,6 +141,8 @@ alias p2='python2'
 alias pi='pip install'
 # For when I forget I'm in normal mode in zsh
 alias nger="ranger"
+# Root GUI
+alias zl='xhost +local'
 
 ### Completion things
 # Launch comletion module
