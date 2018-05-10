@@ -62,6 +62,8 @@ argument_parser.add_argument('--merge-candidates', '-m', action='store_true',
 group = argument_parser.add_mutually_exclusive_group()
 group.add_argument('--username-only', '-e', action='store_true', help='Only insert username')
 group.add_argument('--password-only', '-w', action='store_true', help='Only insert password')
+group.add_argument('--Yubikey', '-y', action='store_true', help='Try Yubikey 2 factor authentification')
+group.add_argument('--Yubikey-only', '-Y', action='store_true', help='Only autocomplete 2 factor authentification')
 
 stderr = functools.partial(print, file=sys.stderr)
 
@@ -85,7 +87,6 @@ def find_pass_candidates(domain, password_store_path):
     candidates = []
     for path, directories, file_names in os.walk(password_store_path):
         for file_name in file_names:
-            print(file_name)
             if domain in file_name:
                 pass_path = path[len(password_store_path) + 1:]
                 gpg = parse("{0}.gpg", pass_path + "/" + file_name)[0]
@@ -110,6 +111,11 @@ def fake_key_raw(text):
         # Escape all characters by default, space requires special handling
         sequence = '" "' if character == ' ' else '\{}'.format(character)
         qute_command('fake-key {}'.format(sequence))
+
+def code(domain):
+    command = 'ykman oath code ' + domain + ' | cut -d " " -f3'
+    c = parse("b'{0}\\n'", str(subprocess.check_output(['bash','-c', command])))[0]
+    return c
 
 
 def main(arguments):
@@ -157,12 +163,21 @@ def main(arguments):
         fake_key_raw(username)
     elif arguments.password_only:
         fake_key_raw(password)
+    elif arguments.Yubikey_only:
+        c = code(target)
+        print("working")
+        fake_key_raw(c)
     else:
         # Enter username and password using fake-key and <Tab> (which seems to work almost universally), then switch
         # back into insert-mode, so the form can be directly submitted by hitting enter afterwards
         fake_key_raw(username)
         qute_command('fake-key <Tab>')
         fake_key_raw(password)
+
+    if arguments.Yubikey:
+        qute_command('fake-key <Tab>')
+        fake_key_raw(c)
+
 
     if arguments.insert_mode:
         qute_command('enter-mode insert')
