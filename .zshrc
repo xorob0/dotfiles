@@ -72,13 +72,14 @@ setopt COMPLETE_ALIASES
 # The fuck
 eval $(thefuck --alias)
 # Colorized, list and dotfile with ls
-alias ll='ls -lhF --color=auto'
-alias llt='ls -lht --color=auto'
-alias lla='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
-alias ls="ls --color=auto"
-alias ldot="ls -ld .* --color=auto"
+alias ll='ls -lhF'
+alias llt='ls -lht'
+alias lla='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls="colorls"
+alias ls_old="ls --color=auto"
+alias ldot="ls -ld .*"
 # Easy .zshrc edit
 alias zshrc="$EDITOR ~/.zshrc"
 # History access
@@ -116,6 +117,8 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
+# For when I forget I'm in normal mode in zsh
+alias nger="ranger"
 
 ### Completion things
 # Launch comletion module
