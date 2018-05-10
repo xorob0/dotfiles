@@ -1,17 +1,19 @@
 [Default Applications]
-x-scheme-handler/http=qutebrowser.desktop
-x-scheme-handler/https=qutebrowser.desktop
-x-scheme-handler/ftp=qutebrowser.desktop
-x-scheme-handler/chrome=qutebrowser.desktop
-text/html=qutebrowser.desktop
-application/x-extension-htm=qutebrowser.desktop
-application/x-extension-html=qutebrowser.desktop
-application/x-extension-shtml=qutebrowser.desktop
-application/xhtml+xml=qutebrowser.desktop
-application/x-extension-xhtml=qutebrowser.desktop
-application/x-extension-xht=qutebrowser.desktop
-x-scheme-handler/mailto=thunderbird.desktop
-message/rfc822=thunderbird.desktop
+x-scheme-handler/http=qutebrowser.desktop;
+x-scheme-handler/https=qutebrowser.desktop;
+x-scheme-handler/ftp=qutebrowser.desktop;
+x-scheme-handler/chrome=qutebrowser.desktop;
+text/html=qutebrowser.desktop;
+application/x-extension-htm=qutebrowser.desktop;
+application/x-extension-html=qutebrowser.desktop;
+application/x-extension-shtml=qutebrowser.desktop;
+application/xhtml+xml=qutebrowser.desktop;
+application/x-extension-xhtml=qutebrowser.desktop;
+application/x-extension-xht=qutebrowser.desktop;
+x-scheme-handler/mailto=thunderbird.desktop;
+message/rfc822=thunderbird.desktop;
+message/rfc822=thunderbird.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;org.pwmt.zathura.desktop;
 
 [Added Associations]
 x-scheme-handler/http=qutebrowser.desktop;userapp-Firefox Developer Edition-9Y5UTY.desktop;firefox.desktop;userapp-Nightly-5G26BZ.desktop;
