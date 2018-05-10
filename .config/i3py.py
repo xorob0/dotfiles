@@ -10,6 +10,23 @@ import sensors
 from i3pystatus import Status
 from i3pystatus.updates import pacman, cower
 
+import urllib.request
+from bs4 import BeautifulSoup
+from parse import *
+
+def getTether():
+    u = urllib.request.urlopen("http://192.168.1.60:8000")
+    html = u.read()
+    soup = BeautifulSoup(html, "html.parser")
+    
+    i = ""
+    for p in soup.find_all('p'):
+        i = i + str(p)
+    
+    reg = '<p>Battery level :{0} </p><p>Network type :{1}</p><p>IP: 192.168.43.1</p><p> Network connected</p><p> Network non restricted</p>'
+    p = parse(reg, i)
+    return p
+
 
 status = Status(standalone=True, internet_check=('archlinux.org', 80),logfile='/tmp/i3pystatus.log')
 
@@ -41,6 +58,14 @@ for s in netifaces.interfaces():
             color_down="#EF2929",
             format_up=" {essid} {v4cidr}",
             format_down="",)
+    elif s.startswith('enp0s20f'):
+        # p = getTether()
+        status.register("network",
+            interface=s,
+            color_up="#8AE234",
+            color_down="#EF2929",
+            format_up=" Z5 Compact",
+            format_down="",)
     else:
         status.register("network",
            interface=s,
