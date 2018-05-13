@@ -166,6 +166,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('vim-airline/vim-airline')
 	call dein#add('vim-airline/vim-airline-themes')
 
+	" Translations in vim buffer
+	call dein#add('soywod/vim-translate')
+
 	" Required:
 	call dein#end()
 	call dein#save_state()
@@ -289,7 +292,16 @@ if !exists('g:not_finish_vimplug')
 	colorscheme molokai
 endif
 
+"" Translation
+let g:trans_default_source = "fr"
+let g:trans_default_target = "en"
+
 """ Mapping
+
+"" Easy buffer switching
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>  
 
 "" Copy/Paste/Cut
 if has('unnamedplus')
