@@ -71,16 +71,19 @@ setopt COMPLETE_ALIASES
 ### Setting aliases
 # The fuck
 eval $(thefuck --alias)
-# Colorized, list and dotfile with ls
-alias ll='ls -lhF'
-alias llt='ls -lht'
-alias lla='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ls="colorls"
-alias ls_old="ls --color=auto"
-alias ldot="ls -ld .*"
-alias lg='ls | grep'
+# Colorized aliases for ls
+alias l="colorls"
+alias ls="ls --color=auto"
+alias ll='l -l'
+alias lsl='ls -l'
+alias lt='l -lt'
+alias lst='ls -lt'
+alias lla='l -lA'
+alias lsla='l -lA'
+alias la='l -A'
+alias lsa='ls -A'
+alias lg='l -l | grep'
+alias lsg='ls -l | grep'
 # Easy .zshrc edit
 alias zshrc="$EDITOR ~/.zshrc"
 # History access
