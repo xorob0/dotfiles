@@ -28,7 +28,7 @@ c.hints.mode = 'number'
 
 # Hide the statusbar unless a message is shown.
 # Type: Bool
-c.statusbar.hide = True
+c.statusbar.hide = False
 
 # Position of the tab bar.
 # Type: Position
@@ -89,7 +89,7 @@ c.colors.completion.item.selected.border.top = 'black'
 c.colors.completion.item.selected.border.bottom = 'black'
 
 # Bindings for normal mode
-config.bind(',m', 'spawn mpv {url}')
-config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
-config.bind('M', 'hint links spawn mpv {hint-url}')
+config.bind(',m', 'spawn umpv {url}')
+config.bind(';m', 'hint links spawn umpv {hint-url}')
 config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
+config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
