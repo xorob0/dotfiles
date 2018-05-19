@@ -232,6 +232,10 @@ imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
 nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 
+"" NerdTREE
+" Close vim if only window left is nerdTREE
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 "" Visual Studio like braces
 let b:delimitMate_expand_space = 1
