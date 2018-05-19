@@ -106,6 +106,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Addons
 	" Fuzzy finder
 	call dein#add('Shougo/denite.nvim')
+	call dein#add('scrooloose/nerdtree')
 
 	" " Completion Framework
 	" call dein#add('Shougo/deoplete.nvim')
@@ -231,6 +232,7 @@ imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
 nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 
+
 "" Visual Studio like braces
 let b:delimitMate_expand_space = 1
 let b:delimitMate_expand_cr = 1
@@ -312,6 +314,14 @@ noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
-" New Java class template
+"" New Java class template
 autocmd BufNewFile *.java
 			\ exe "normal Opublic class " . expand('%:t:r') . " {\<Delete>\<Esc>o\<Esc>o}\<Esc>2Gi\<Tab>"
+
+"" Folds
+" Using Shift-Tab to open and close folds
+nnoremap <s-tab> za
+" not as cool as syntax, but faster
+set foldmethod=indent               
+" start unfolded
+set foldlevelstart=99               
