@@ -169,6 +169,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Translations in vim buffer
 	call dein#add('soywod/vim-translate')
+	call dein#add('junegunn/fzf.vim')
 
 	" Required:
 	call dein#end()
