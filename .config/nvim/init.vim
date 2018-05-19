@@ -106,6 +106,8 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Addons
 	" Fuzzy finder
 	call dein#add('Shougo/denite.nvim')
+
+	" NerdTREE
 	call dein#add('scrooloose/nerdtree')
 
 	" " Completion Framework
@@ -169,7 +171,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Translations in vim buffer
 	call dein#add('soywod/vim-translate')
-	call dein#add('junegunn/fzf.vim')
+
+	" Tagbar
+	call dein#add('majutsushi/tagbar')
 
 	" Required:
 	call dein#end()
@@ -236,6 +240,8 @@ imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 "" NerdTREE
 " Close vim if only window left is nerdTREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Disable display of '?' text and 'Bookmarks' label.
+let g:NERDTreeMinimalUI=1
 
 
 "" Visual Studio like braces
@@ -304,11 +310,11 @@ let g:trans_default_source = "fr"
 let g:trans_default_target = "en"
 
 """ Mapping
-"" Window switching with ctrl
-map <C-h> :wincmd h<CR>
-map <C-j> :wincmd j<CR>
-map <C-k> :wincmd k<CR>
-map <C-l> :wincmd l<CR>
+"" Window switching with leader
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
 
 "" Easy buffer switching
 map gn :bn<cr>
