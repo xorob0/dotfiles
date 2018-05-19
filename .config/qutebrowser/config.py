@@ -48,6 +48,11 @@ c.tabs.position = 'right'
 #   - switching: Show the tab bar when switching tabs.
 c.tabs.show = 'switching'
 
+# Width (in pixels or as percentage of the window) of the tab bar if
+# it's vertical.
+# Type: PercOrInt
+c.tabs.width = '10%'
+
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
@@ -62,7 +67,7 @@ c.url.default_page = 'https://qwant.com'
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}', 'acom': 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}', 'ade': 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}', 'aes': 'https://www.amazon.es/s/ref=nb_sb_noss?field-keywords={}', 'afr': 'https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords={}', 'ait': 'https://www.amazon.it/s/ref=nb_sb_noss?field-keywords={}', 'auk': 'https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords={}', 'aw': 'https://wiki.archlinux.org/?search={}', 'ddg': 'https://duckduckgo.com/?q={}', 'gg': 'https://www.google.com/search?hl=en&q={}', 'wen': 'https://en.wikipedia.org/w/?search={}', 'wfr': 'https://fr.wikipedia.org/w/?search={}', 'yt': 'https://youtube.com/results?search_query={}', 'gg': 'https://www.google.com/search?q={}', 'ebcom': 'https://www.ebay.com/sch/i.html?_nkw={}', 'ebbe': 'https://www.ebay.fr/sch/i.html?_nkw={}'}
+c.url.searchengines = {'DEFAULT': 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}', 'acom': 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}', 'ade': 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}', 'aes': 'https://www.amazon.es/s/ref=nb_sb_noss?field-keywords={}', 'afr': 'https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords={}', 'ait': 'https://www.amazon.it/s/ref=nb_sb_noss?field-keywords={}', 'auk': 'https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords={}', 'aw': 'https://wiki.archlinux.org/?search={}', 'ddg': 'https://duckduckgo.com/?q={}', 'gg': 'https://www.google.com/search?q={}', 'wen': 'https://en.wikipedia.org/w/?search={}', 'wfr': 'https://fr.wikipedia.org/w/?search={}', 'yt': 'https://youtube.com/results?search_query={}', 'ebcom': 'https://www.ebay.com/sch/i.html?_nkw={}', 'ebbe': 'https://www.ebay.fr/sch/i.html?_nkw={}'}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
@@ -91,5 +96,5 @@ c.colors.completion.item.selected.border.bottom = 'black'
 # Bindings for normal mode
 config.bind(',m', 'spawn umpv {url}')
 config.bind(';m', 'hint links spawn umpv {hint-url}')
-config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
 config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
+config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
