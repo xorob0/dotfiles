@@ -303,6 +303,11 @@ let g:trans_default_source = "fr"
 let g:trans_default_target = "en"
 
 """ Mapping
+"" Window switching with ctrl
+map <C-h> :wincmd h<CR>
+map <C-j> :wincmd j<CR>
+map <C-k> :wincmd k<CR>
+map <C-l> :wincmd l<CR>
 
 "" Easy buffer switching
 map gn :bn<cr>
