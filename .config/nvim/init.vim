@@ -67,17 +67,6 @@ set t_Co=256
 set guioptions=egmrti
 set gfn=Monospace\ 10
 
-syntax on
-set ruler
-set number
-
-let no_buffers_menu=1
-
-set mousemodel=popup
-set t_Co=256
-set guioptions=egmrti
-set gfn=Monospace\ 10
-
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
 set scrolloff=3
