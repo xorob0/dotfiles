@@ -318,9 +318,8 @@ exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 # Automounting of usb keys
 exec udiskie -0 -a -n -T -F --no-appindicator &
 # Windows assignments
-assign [class="Firefox"] → $WS1 workspace $WS1
-assign [class="qutebrowser"] → $WS1 workspace $WS1
-assign [class="Firefox Nightly"] → $WS1
+assign [class="Firefox"] → $WSHDMI
+assign [class="qutebrowser"] → $WS1
 assign [class="Riot"] → $WS9
 # Worskpace assignments
 workspace "0:HDMI" output HDMI-A-1
