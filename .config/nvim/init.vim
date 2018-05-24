@@ -125,6 +125,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Add git status
 	call dein#add('airblade/vim-gitgutter')
 
+	" Git wrapper for vim
+	call dein#add('tpope/vim-fugitive')
+
 	" Syntax colorization for almost all languages
 	call dein#add('sheerun/vim-polyglot')
 
