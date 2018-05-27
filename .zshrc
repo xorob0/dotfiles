@@ -147,7 +147,7 @@ alias nger="ranger"
 # Root GUI
 alias zl='xhost +local'
 # Youtube downloades
-alias yt-'youtube-dl'
+alias yt='youtube-dl'
 
 ### Completion things
 # Launch comletion module
