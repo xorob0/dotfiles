@@ -99,6 +99,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" NerdTREE
 	call dein#add('scrooloose/nerdtree')
 
+	" Linting
+	call dein#add('w0rp/ale')
+
 	" " Completion Framework
 	" call dein#add('Shougo/deoplete.nvim')
 	call dein#add('roxma/nvim-completion-manager')
