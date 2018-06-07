@@ -299,6 +299,7 @@ endif
 if !exists('g:not_finish_vimplug')
 	colorscheme molokai
 endif
+hi Normal guibg=NONE ctermbg=NONE
 
 "" Translation
 let g:trans_default_source = "fr"

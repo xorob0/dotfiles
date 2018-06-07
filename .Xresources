@@ -39,6 +39,10 @@ URxvt.font: xft:InconsolataGo Nerd Font Mono:size=14
 *.color7:       #dddddd
 *.color15:      #dddddd
 
+! Transparency ?
+URxvt*depth: 32
+URxvt*background: rgba:1000/1000/1000/c800
+
 !!Misc
 !Clickable URLs
 URxvt.perl-ext-common: default,matcher,resize-font
