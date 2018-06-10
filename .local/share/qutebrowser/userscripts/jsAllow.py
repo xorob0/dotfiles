@@ -3,7 +3,7 @@ import os, sys
 
 # Defining varibales
 argument = str(sys.argv[1])
-url = os.getenv('QUTE_URL') + '\n'
+url = os.getenv('QUTE_URL').split("//")[-1].split("/")[0].split('?')[0] + '\n'
 path = '/home/toum/.config/qutebrowser'
 urlInFile = False
 

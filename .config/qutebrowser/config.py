@@ -5,18 +5,10 @@
 
 # Importing library needed to get current path
 import os, inspect
+path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
-
-# Which cookies to accept.
-# Type: String
-# Valid values:
-#   - all: Accept all cookies.
-#   - no-3rdparty: Accept cookies from the same origin only.
-#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain.
-#   - never: Don't accept cookies at all.
-c.content.cookies.accept = 'no-3rdparty'
 
 # Store cookies. Note this option needs a restart with QtWebEngine on Qt
 # < 5.9.
@@ -40,16 +32,16 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.content.javascript.enabled = False
 
 # Openning list of domain where javascript is allowed
-text_file = open(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) + "/jsAllow.txt", "r")
+domainlist = open(path + "/jsAllow.txt", "r")
 # Creating a array from the file
-domains = text_file.read().split('\n')
+domains = domainlist.read().split('\n')
 # Deleting last element as it is empty (and thus, allow javascript anywhere)
 del domains[-1]
 
 # Enable javascript on the allowed domains
 for domain in domains:
     config.set('content.javascript.enabled', True, '*.' + domain)
-text_file.close()
+domainlist.close()
 
 
 # Mode to use for hints.
@@ -101,31 +93,18 @@ c.url.default_page = 'https://qwant.com'
 # used by prepending the search engine name to the search term, e.g.
 # `:open google qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}', 'acom': 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}', 'ade': 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}', 'aes': 'https://www.amazon.es/s/ref=nb_sb_noss?field-keywords={}', 'afr': 'https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords={}', 'ait': 'https://www.amazon.it/s/ref=nb_sb_noss?field-keywords={}', 'auk': 'https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords={}', 'aw': 'https://wiki.archlinux.org/?search={}', 'ddg': 'https://duckduckgo.com/?q={}', 'gg': 'https://www.google.com/search?q={}', 'wen': 'https://en.wikipedia.org/w/?search={}', 'wfr': 'https://fr.wikipedia.org/w/?search={}', 'yt': 'https://youtube.com/results?search_query={}', 'ebcom': 'https://www.ebay.com/sch/i.html?_nkw={}', 'ebbe': 'https://www.ebay.fr/sch/i.html?_nkw={}'}
+
+with open(path + "/searchengines.txt", "r") as f :
+    for line in f:
+       (alias, url) = line.split()
+       c.url.searchengines[str(alias)] = url
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://qwant.com'
 
-# Background color of the completion widget for odd rows.
-# Type: QssColor
-c.colors.completion.odd.bg = '#333'
-
-# Background color of the completion widget for even rows.
-# Type: QssColor
-c.colors.completion.even.bg = '#222'
-
-# Background color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.bg = '#0099cc'
-
-# Top border color of the completion widget category headers.
-# Type: QssColor
-c.colors.completion.item.selected.border.top = 'black'
-
-# Bottom border color of the selected completion item.
-# Type: QssColor
-c.colors.completion.item.selected.border.bottom = 'black'
+# Load colorscheme
+exec(open(path + '/colorscheme.py').read())
 
 # Bindings for normal mode
 config.bind(',d', 'spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {url}')
@@ -134,6 +113,10 @@ config.bind(';d', 'hint links spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {hi
 config.bind(';m', 'hint links spawn umpv {hint-url}')
 config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
 config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
-config.bind('aa', 'spawn --userscript /home/toum/.scripts/jsAllow.py -a')
-config.bind('au', 'spawn --userscript /home/toum/.scripts/jsAllow.py -d')
 config.bind('gi', 'spawn --userscript /home/toum/.scripts/cycle-inputs.js')
+
+def bind_chained(key, *commands):
+    config.bind(key, ' ;; '.join(commands))
+
+bind_chained('aa', 'spawn --userscript /home/toum/.scripts/jsAllow.py -a', 'config-source', 'reload')
+bind_chained('au', 'spawn --userscript /home/toum/.scripts/jsAllow.py -u', 'config-source', 'reload')
