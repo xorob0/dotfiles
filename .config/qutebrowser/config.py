@@ -3,8 +3,25 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+# Importing library needed to get current path
+import os, inspect
+
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
+
+# Which cookies to accept.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain.
+#   - never: Don't accept cookies at all.
+c.content.cookies.accept = 'no-3rdparty'
+
+# Store cookies. Note this option needs a restart with QtWebEngine on Qt
+# < 5.9.
+# Type: Bool
+c.content.cookies.store = True
 
 # Enable JavaScript.
 # Type: Bool
@@ -17,6 +34,23 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
+
+# Enable JavaScript.
+# Type: Bool
+c.content.javascript.enabled = False
+
+# Openning list of domain where javascript is allowed
+text_file = open(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) + "/jsAllow.txt", "r")
+# Creating a array from the file
+domains = text_file.read().split('\n')
+# Deleting last element as it is empty (and thus, allow javascript anywhere)
+del domains[-1]
+
+# Enable javascript on the allowed domains
+for domain in domains:
+    config.set('content.javascript.enabled', True, '*.' + domain)
+text_file.close()
+
 
 # Mode to use for hints.
 # Type: String
@@ -94,9 +128,11 @@ c.colors.completion.item.selected.border.top = 'black'
 c.colors.completion.item.selected.border.bottom = 'black'
 
 # Bindings for normal mode
+config.bind(',d', 'spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {url}')
 config.bind(',m', 'spawn umpv {url}')
+config.bind(';d', 'hint links spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {hint-url}')
 config.bind(';m', 'hint links spawn umpv {hint-url}')
 config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
 config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
-config.bind(',d', 'spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {url}')
-config.bind(';d', 'hint links spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {hint-url}')
+config.bind('aa', 'spawn --userscript /home/toum/.scripts/jsAllow.py -a')
+config.bind('au', 'spawn --userscript /home/toum/.scripts/jsAllow.py -d')
