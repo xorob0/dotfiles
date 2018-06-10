@@ -3,9 +3,7 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-# Importing library needed to get current path
-import os, inspect
-path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+path = str(config.configdir)
 
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
@@ -104,19 +102,19 @@ with open(path + "/searchengines.txt", "r") as f :
 c.url.start_pages = 'https://qwant.com'
 
 # Load colorscheme
-exec(open(path + '/colorscheme.py').read())
+exec(open(str(config.datadir) + '/userscripts/colorscheme.py').read())
 
 # Bindings for normal mode
 config.bind(',d', 'spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {url}')
 config.bind(',m', 'spawn umpv {url}')
 config.bind(';d', 'hint links spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {hint-url}')
 config.bind(';m', 'hint links spawn umpv {hint-url}')
-config.bind('E', 'spawn --userscript /home/toum/.scripts/qutepass.py -Y')
-config.bind('e', 'spawn --userscript /home/toum/.scripts/qutepass.py --username xorob0')
-config.bind('gi', 'spawn --userscript /home/toum/.scripts/cycle-inputs.js')
+config.bind('E', 'spawn --userscript qutepass.py -Y')
+config.bind('e', 'spawn --userscript qutepass.py --username xorob0')
+config.bind('gi', 'spawn --userscript cycle-inputs.js')
 
 def bind_chained(key, *commands):
     config.bind(key, ' ;; '.join(commands))
 
-bind_chained('aa', 'spawn --userscript /home/toum/.scripts/jsAllow.py -a', 'config-source', 'reload')
-bind_chained('au', 'spawn --userscript /home/toum/.scripts/jsAllow.py -u', 'config-source', 'reload')
+bind_chained('aa', 'spawn --userscript jsAllow.py -a', 'config-source', 'reload')
+bind_chained('au', 'spawn --userscript jsAllow.py -u', 'config-source', 'reload')
