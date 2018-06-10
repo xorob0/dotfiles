@@ -178,6 +178,6 @@ config.bind(';d', 'hint links spawn youtube-dl -o ~/Videos/%(title)s.%(ext)s {hi
 config.bind(';m', 'hint links spawn umpv {hint-url}')
 config.bind('E', 'spawn --userscript qutepass.py -Y')
 config.bind('e', 'spawn --userscript qutepass.py --username xorob0')
-config.bind('gi', 'spawn --userscript cycle-inputs.js')
+config.bind('gi', 'jseval -q -f ' + str(config.datadir) +'/userscripts/cycle-inputs.js')
 config.bind('aa', 'spawn --userscript jsAllow.py -a')
 config.bind('au', 'spawn --userscript jsAllow.py -u')
