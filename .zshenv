@@ -52,3 +52,7 @@ if [ -n "$DISPLAY" ]; then
 else 
     export BROWSER=links
 fi
+
+# Defaults for nnn
+export NNN_FALLBACK_OPENER=xdg-open
+export NNN_DE_FILE_MANAGER=ranger
