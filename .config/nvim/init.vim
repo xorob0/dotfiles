@@ -151,8 +151,8 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Colorize parentheses
 	call dein#add('luochen1990/rainbow')
 
-	" Theme
-	call dein#add('tomasr/molokai')
+	" Magnificent theme
+	call dein#add('arcticicestudio/nord-vim')
 
 	" Colorize parentheses
 	call dein#add('luochen1990/rainbow')
@@ -254,7 +254,7 @@ let g:gitgutter_realtime = 1
 
 "" Activate Vim airline
 let g:airline#extensions#virtualenv#enabled = 1
-let g:airline_theme = 'murmur'
+" let g:airline_theme = 'murmur'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -297,7 +297,17 @@ endif
 
 "" Theme
 if !exists('g:not_finish_vimplug')
-	colorscheme molokai
+	" Enable italic
+	let g:nord_italic = 1
+	let g:nord_italic_comments = 1
+	" Uniform status lines
+	let g:nord_uniform_status_lines = 1
+	" Comment brightness
+	" set termguicolors
+	let g:nord_comment_brightness = 12
+
+	" Activation
+	colorscheme nord
 endif
 hi Normal guibg=NONE ctermbg=NONE
 
