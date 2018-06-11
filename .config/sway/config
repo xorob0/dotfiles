@@ -315,6 +315,7 @@ bindsym $mod+Print mode $mode_screenshot
 # Status Bar
 bar {
     output eDP-1
+    output DP-3
 	position bottom
 	colors {
 		statusline $nord6
