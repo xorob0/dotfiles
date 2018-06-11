@@ -14,6 +14,23 @@ import urllib.request
 from bs4 import BeautifulSoup
 from parse import *
 
+nord0 = "#2E3440"
+nord1 = "#3B4252"
+nord2 = "#434C5E"
+nord3 = "#4C566A"
+nord4 = "#D8DEE9"
+nord5 = "#E5E9F0"
+nord6 = "#ECEFF4"
+nord7 = "#8FBCBB"
+nord8 = "#88C0D0"
+nord9 = "#81A1C1"
+nord10 = "#5E81AC"
+nord11 = "#BF616A"
+nord12 = "#D08770"
+nord13 = "#EBCB8B"
+nord14 = "#A3BE8C"
+nord15 = "#B48EAD"
+
 def getTether():
     u = urllib.request.urlopen("http://192.168.1.60:8000")
     html = u.read()
@@ -32,21 +49,26 @@ status = Status(standalone=True, internet_check=('archlinux.org', 80),logfile='/
 
 status.register("clock",
     format=" %H:%M:%S",
-    color='#C678DD',
+    color=nord6,
     interval=1,)
 
 status.register("clock",
     format=" %a %d-%m-%Y",
-    color='#61AEEE',
+    color=nord4,
     interval=60,)
 
 status.register("pulseaudio",
-    color_unmuted='#98C379',
-    color_muted='#E06C75',
+    color_unmuted=nord14,
+    color_muted=nord11,
     format_muted=' [muted]',
     format=" {volume}% {volume_bar}",)
 
-status.register("external_ip")
+status.register("external_ip",
+    color=nord8,
+    color_down=nord11,
+    color_hide=nord8,
+    format_hide="{country_name} {country_code} {ip}",
+    format="{country_code}")
 
 for s in netifaces.interfaces():
     if s == 'lo' or s.startswith("tun"):
@@ -54,31 +76,31 @@ for s in netifaces.interfaces():
     elif s.startswith('wl'):
         status.register("network",
             interface=s,
-            color_up="#8AE234",
-            color_down="#EF2929",
+            color_up=nord14,
+            color_down=nord11,
             format_up=" {essid} {v4cidr}",
             format_down="",)
     elif s.startswith('enp0s20f'):
         # p = getTether()
         status.register("network",
             interface=s,
-            color_up="#8AE234",
-            color_down="#EF2929",
+            color_up=nord14,
+            color_down=nord11,
             format_up=" Z5 Compact",
             format_down="",)
     else:
         status.register("network",
            interface=s,
-           color_up="#8AE234",
-           color_down="#EF2929",
+           color_up=nord14,
+           color_down=nord11,
            format_up=" {v4cidr}",
            format_down="",)
 
 status.register("shell",
     command="bash /home/toum/.scripts/ovpnIsOn.sh",
     ignore_empty_stdout=True,
-    error_color="#EF2929",
-    color="#8AE234",)
+    error_color=nord11,
+    color=nord14,)
 
 status.register("backlight",
     interval=5,
@@ -92,10 +114,10 @@ status.register("battery",
     format="{status}{percentage:.0f}% {remaining}",
     alert=True,
     alert_percentage=15,
-    color="#FFFFFF",
-    critical_color="#FF1919",
-    charging_color="#E5E500",
-    full_color="#D19A66",
+    color=nord4,
+    critical_color=nord11,
+    charging_color=nord12,
+    full_color=nord15,
     status={
         "DIS": " ",
         "CHR": "  ",
@@ -106,26 +128,32 @@ status.register("temp",
                 format="{Package_id_0}°C {Core_0_bar}{Core_1_bar}{Core_2_bar}{Core_3_bar}",
                 hints={"markup": "pango"},
                 lm_sensors_enabled=True,
-                dynamic_color=True)
+                color=nord7,
+                alert_color=nord12)
 
-status.register("cpu_usage",
-    format=" {usage}%",)
+status.register("cpu_usage_bar",
+    format=" {usage}% {usage_bar}",
+    bar_type="vertical",
+    start_color=nord10,
+    end_color=nord7)
 
 status.register("mem",
-    color="#999999",
-    warn_color="#E5E500",
-    alert_color="#FF1919",
-    format=" {avail_mem}/{total_mem} Go",
+    color=nord9,
+    warn_color=nord12,
+    alert_color=nord11,
+    format=" {avail_mem} Go",
     divisor=1073741824,)
 
 status.register("disk",
-    color='#56B6C2',
+    color=nord7,
     path="/home",
     format=" {avail} Go",)
 
 status.register("updates",
                 format = "Updates: {count}",
                 format_no_updates = "No updates",
-                backends = [pacman.Pacman(), cower.Cower()])
+                backends = [pacman.Pacman(), cower.Cower()],
+                color=nord13,
+                color_no_updates=nord10)
 
 status.run()
