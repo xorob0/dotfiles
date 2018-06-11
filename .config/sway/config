@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 # Using rxvt-unicode as main terminal emulator
-set $term urxvtc
+set $term kitty
 # Using j4-dmenu to launch programs
 set $menu j4-dmenu-desktop
 # Using firefox as main browser
