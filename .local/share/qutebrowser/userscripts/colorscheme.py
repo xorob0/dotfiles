@@ -2,6 +2,7 @@ nord = {
     # Polar Night
     'nord0': '#2e3440',
     'nord1': '#3b4252',
+    # 'nord1': 'rgba(59, 66, 82, 0.1)',
     'nord2': '#434c5e',
     'nord3': '#4c566a',
     # Snow Storm
@@ -39,11 +40,11 @@ c.colors.completion.category.fg = nord['nord5']
 
 ## Background color of the completion widget for even rows.
 ## Type: QssColor
-c.colors.completion.even.bg = nord['nord1']
+c.colors.completion.even.bg = 'rgba(59, 66, 82, 0.95)'
 
 ## Background color of the completion widget for odd rows.
 ## Type: QssColor
-c.colors.completion.odd.bg = nord['nord1']
+c.colors.completion.odd.bg = 'rgba(59, 66, 82, 0.0)'
 
 ## Text color of the completion widget.
 ## Type: QtColor
