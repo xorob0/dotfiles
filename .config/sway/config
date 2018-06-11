@@ -4,6 +4,23 @@
 # Setting up font
 font pango: InconsolataLGC Nerd Font 9
 
+set $nord0 #2E3440
+set $nord1 #3B4252
+set $nord2 #434C5E
+set $nord3 #4C566A
+set $nord4 #D8DEE9
+set $nord5 #E5E9F0
+set $nord6 #ECEFF4
+set $nord7 #8FBCBB
+set $nord8 #88C0D0
+set $nord9 #81A1C1
+set $nord10 #5E81AC
+set $nord11 #BF616A
+set $nord12 #D08770
+set $nord13 #EBCB8B
+set $nord14 #A3BE8C
+set $nord15 #B48EAD
+
 #############
 # Variables #
 #############
@@ -294,15 +311,19 @@ mode $mode_screenshot {
 	bindsym Escape mode "default"
 }
 bindsym $mod+Print mode $mode_screenshot
+
 # Status Bar
 bar {
+    output eDP-1
 	position bottom
 	colors {
-		statusline #ffffff
-		background #282828
-		active_workspace #333333 #0F9DE8 #ffffff
-		urgent_workspace #333333 #CC0000 #ffffff
-		inactive_workspace #333333 #555555 #ffffff
+		statusline $nord6
+		background $nord0 
+		focused_workspace $nord10 $nord10 $nord0
+		active_workspace $nord9 $nord9 $nord0
+		inactive_workspace $nord3 $nord3 $nord0
+		urgent_workspace $nord11 $nord12 $nord0
+		binding_mode $nord9 $nord9 $nord0
 	}
 	separator_symbol " | "
 	# Hidden bar and show with $mod
@@ -319,8 +340,6 @@ bar {
 exec dunst &
 # Activate gestures for the trackpad
 exec libinput-gestures-setup start &> /dev/null
-# Launching urxvt deamon
-exec --no-startup-id urxvtd --quiet --opendisplay --fork &
 # Automounting of usb keys
 exec udiskie -0 -a -n -T -F --no-appindicator &
 # Windows assignments
@@ -335,7 +354,7 @@ workspace "1:www" output eDP-1
 workspace "9:chat" output eDP-1
 ## Launch apps
 # Launch term on VGA when connected (fullscreen not working for the moment)
-exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null; then swaymsg 'workspace "10:term"; exec urxvt'; fullscreen; fi"
+exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null; then swaymsg 'workspace "10:term"; exec kitty'; fullscreen; fi"
 # Assign mpv to dock's HDMI when connected
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → "0:HDMI"'; fi"
 # Launch Riot on startup
