@@ -45,6 +45,8 @@ from parse import *
 
 import tldextract
 
+# os.system("echo $QUTE_FIFO >> /tmp/ttttt")
+
 argument_parser = argparse.ArgumentParser(description=__doc__, usage=USAGE, epilog=EPILOG)
 argument_parser.add_argument('url', nargs='?', default=os.getenv('QUTE_URL'))
 argument_parser.add_argument('--password-store', '-p', default=os.path.expanduser('~/.password-store'),

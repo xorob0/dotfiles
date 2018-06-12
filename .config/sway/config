@@ -352,6 +352,7 @@ workspace "0:HDMI" output HDMI-A-1
 workspace "0:HDMI" output DP-3
 workspace "10:term" output DP-5
 workspace "1:www" output eDP-1
+workspace "2" output eDP-1
 workspace "9:chat" output eDP-1
 ## Launch apps
 # Launch term on VGA when connected (fullscreen not working for the moment)
