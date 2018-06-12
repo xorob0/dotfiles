@@ -95,7 +95,7 @@ c.scrolling.smooth = True
 
 # Hide the statusbar unless a message is shown.
 # Type: Bool
-c.statusbar.hide = False
+c.statusbar.hide = True
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
@@ -142,6 +142,9 @@ c.url.default_page = 'https://qwant.com'
 # invoked without parameters.
 # Type: Bool
 c.url.open_base_url = True
+
+# Window title format
+c.window.title_format = '{title}{title_sep}{current_url}'
 
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`

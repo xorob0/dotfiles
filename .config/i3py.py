@@ -100,7 +100,7 @@ status.register("shell",
     command="bash /home/toum/.scripts/ovpnIsOn.sh",
     ignore_empty_stdout=True,
     error_color=nord11,
-    color=nord14,)
+    color=nord14)
 
 status.register("backlight",
     interval=5,
@@ -155,5 +155,12 @@ status.register("updates",
                 backends = [pacman.Pacman(), cower.Cower()],
                 color=nord13,
                 color_no_updates=nord10)
+
+status.register("shell",
+    command="python3 /home/toum/.scripts/getTitle.py",
+    ignore_empty_stdout=True,
+    error_color=nord11,
+    color=nord14,
+    interval=1)
 
 status.run()
