@@ -111,7 +111,7 @@ status.register("backlight",
 status.register("battery",
     battery_ident="BAT0",
     interval=5,
-    format="{status}{percentage:.0f}% {remaining}",
+    format="{status}{percentage:.0f}%",
     alert=True,
     alert_percentage=15,
     color=nord4,
@@ -148,13 +148,6 @@ status.register("disk",
     color=nord7,
     path="/home",
     format=" {avail} Go",)
-
-status.register("updates",
-                format = "Updates: {count}",
-                format_no_updates = "No updates",
-                backends = [pacman.Pacman(), cower.Cower()],
-                color=nord13,
-                color_no_updates=nord10)
 
 status.register("shell",
     command="python3 /home/toum/.scripts/getTitle.py",
