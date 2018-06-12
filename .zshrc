@@ -137,6 +137,7 @@ alias wm='wifi-menu -o'
 alias wmm='wifi-menu'
 # editor
 alias e='$EDITOR'
+alias se='sudo $EDITOR'
 # Python
 alias p='python'
 alias p2='python2'
