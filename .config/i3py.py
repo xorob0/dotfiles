@@ -60,7 +60,7 @@ status.register("clock",
 status.register("pulseaudio",
     color_unmuted=nord14,
     color_muted=nord11,
-    format_muted=' [muted]',
+    format_muted='',
     format=" {volume}% {volume_bar}",)
 
 status.register("external_ip",
