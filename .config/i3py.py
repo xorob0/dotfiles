@@ -147,7 +147,7 @@ status.register("mem",
 status.register("disk",
     color=nord7,
     path="/home",
-    format=" {avail} Go",)
+    format=" {avail} Go")
 
 status.register("shell",
     command="python3 /home/toum/.scripts/getTitle.py",

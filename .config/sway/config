@@ -289,7 +289,7 @@ bindsym $mod+r mode "resize"
 set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
 mode $mode_power {
 	bindsym l exec $locker, mode "default"
-	bindsym s exec $locker && systemctl suspend, mode "default"
+	bindsym s exec "$locker ;systemctl suspend", mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff -i, mode "default"
 	bindsym w exec rm /tmp/xorgon, exit, mode "default"
@@ -360,7 +360,7 @@ exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-5 &> /dev/null;
 # Assign mpv to dock's HDMI when connected
 exec --no-startup-id zsh -c "if swaymsg -t get_outputs | grep DP-3 &> /dev/null; then swaymsg 'assign [class="mpv"] → "0:HDMI"'; fi"
 # Launch Riot on startup
-exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
+# exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
 # Launch firefox on startup
 exec --no-startup-id swaymsg 'workspace "1:www", exec qutebrowser'
 # Going to the first workspace
