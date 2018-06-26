@@ -149,6 +149,9 @@ status.register("disk",
     path="/home",
     format=" {avail} Go")
 
+status.register("pomodoro",
+    sound="~/.pomodoro.mp3")
+
 status.register("shell",
     command="python3 /home/toum/.scripts/getTitle.py",
     ignore_empty_stdout=True,
