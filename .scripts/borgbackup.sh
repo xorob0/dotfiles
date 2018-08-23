@@ -18,7 +18,6 @@ borg create									\
     ::'{hostname}-{now}'            		\
     /etc                            		\
     /home                           		\
-    /root                           		\
     /var                            		\
 
 borg prune                          		\
