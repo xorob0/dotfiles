@@ -2,7 +2,9 @@
 
 exec xrandr --output eDP1 --right-of DP1-1 && xrandr --output DP1-2 --rotate left --right-of eDP1
 
-exec feh --bg-scale ~/Pictures/Wallpapers/background.png
+exec xset r rate 180 30
+
+exec feh --bg-fill ~/Pictures/Wallpapers/background.png
 
 ###############
 ### General ###
@@ -306,6 +308,7 @@ exec libinput-gestures-setup start &> /dev/null
 exec udiskie -0 -a -n -T -F --no-appindicator &
 # Windows assignments
 assign [class="Firefox"] → $WSHDMI
+assign [class="mpv"] → $WSHDMI
 assign [class="qutebrowser"] → $WS1
 assign [class="Riot"] → $WS9
 # Worskpace assignments
