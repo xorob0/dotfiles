@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script will import your OTP from andOTP and export it to a Yubikey
+# Plug a Yubikey and execute this passing the andOTP backup in argument.
+
 # Resetting the oath on the yubikey
 echo "y" | ykman oath reset
 
