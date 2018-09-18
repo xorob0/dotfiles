@@ -93,7 +93,7 @@ alias gc="git commit -m"
 alias gca="git commit -am"
 alias gpl="git pull"
 alias gp="git push"
-alias gl="git log --pretty=format:'%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --date=short"
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
 alias gs="git status -s"
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
