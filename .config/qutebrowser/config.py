@@ -40,7 +40,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.content.javascript.enabled = False
 
 # list of whitelisted domains
-domains = ['posteo.de']
+domains = ['posteo.de', 'reddit.com']
 
 # Enable javascript on the allowed domains
 for domain in domains:
