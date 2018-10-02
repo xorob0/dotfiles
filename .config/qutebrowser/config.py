@@ -39,17 +39,12 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 # Type: Bool
 c.content.javascript.enabled = False
 
-# Openning list of domain where javascript is allowed
-domainlist = open(path + "/jsAllow.txt", "r")
-# Creating a array from the file
-domains = domainlist.read().split('\n')
-# Deleting last element as it is empty (and thus, allow javascript anywhere)
-del domains[-1]
+# list of whitelisted domains
+domains = ['posteo.de', 'reddit.com']
 
 # Enable javascript on the allowed domains
 for domain in domains:
     config.set('content.javascript.enabled', True, '*.' + domain)
-domainlist.close()
 
 # Height (in pixels or as percentage of the window) of the completion.
 # Type: PercOrInt
@@ -156,10 +151,11 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # `:open google qutebrowser`.
 # Type: Dict
 
-with open(path + "/searchengines.txt", "r") as f :
-    for line in f:
-       (alias, url) = line.split()
-       c.url.searchengines[str(alias)] = url
+searchengines = {'DEFAULT' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
+                 'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'}
+
+for alias, url in searchengines.items():
+   c.url.searchengines[alias] = url
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
