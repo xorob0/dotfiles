@@ -152,7 +152,31 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # Type: Dict
 
 searchengines = {'DEFAULT' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
-                 'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'}
+    'acom' : 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}',
+    'acomw' : 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'ade' : 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}',
+    'adew' : 'https://www.amazon.de/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'aes' : 'https://www.amazon.es/s/ref=nb_sb_noss?field-keywords={}',
+    'aesw' : 'https://www.amazon.es/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'afr' : 'https://www.amazon.fr/s/ref=nb_sb_noss?field-keywords={}',
+    'afrw' : 'https://www.amazon.fr/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'ait' : 'https://www.amazon.it/s/ref=nb_sb_noss?field-keywords={}',
+    'aitw' : 'https://www.amazon.it/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'auk' : 'https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords={}',
+    'aukw' : 'https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
+    'aw' : 'https://wiki.archlinux.org/?search={}',
+    'ddg' : 'https://duckduckgo.com/?q={}',
+    'gg' : 'https://www.google.com/search?q={}',
+    'wen' : 'https://en.wikipedia.org/w/?search={}',
+    'wfr' : 'https://fr.wikipedia.org/w/?search={}',
+    'yt' : 'https://youtube.com/results?search_query={}',
+    'ebcom' : 'https://www.ebay.com/sch/i.html?_nkw={}',
+    'ebbe' : 'https://www.ebay.fr/sch/i.html?_nkw={}',
+    'nyaa' : 'https://nyaa.si/?q={}',
+    'ali' : 'https://fr.aliexpress.com/wholesale?SearchText={}',
+    'ipt' : 'https://www.iptorrents.com/t?q={}',
+    'ph' : 'https://pornhub.com/?q={}',
+    'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'}
 
 for alias, url in searchengines.items():
    c.url.searchengines[alias] = url
