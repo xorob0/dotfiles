@@ -151,7 +151,10 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # `:open google qutebrowser`.
 # Type: Dict
 
-searchengines = {'DEFAULT' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
+searchengines = {
+    'DEFAULT' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}'
+    'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}'
+    'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'
     'acom' : 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}',
     'acomw' : 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
     'ade' : 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}',
@@ -175,8 +178,7 @@ searchengines = {'DEFAULT' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i
     'nyaa' : 'https://nyaa.si/?q={}',
     'ali' : 'https://fr.aliexpress.com/wholesale?SearchText={}',
     'ipt' : 'https://www.iptorrents.com/t?q={}',
-    'ph' : 'https://pornhub.com/?q={}',
-    'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'}
+}
 
 for alias, url in searchengines.items():
    c.url.searchengines[alias] = url
