@@ -152,9 +152,9 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # Type: Dict
 
 searchengines = {
-    'DEFAULT' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}'
-    'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}'
-    'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}'
+    'DEFAULT' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
+    'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
+    'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
     'acom' : 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}',
     'acomw' : 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
     'ade' : 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}',
