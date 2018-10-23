@@ -1,4 +1,4 @@
-""" General
+""" Gener
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -11,9 +11,9 @@ set backspace=indent,eol,start
 set cursorline
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 "
 "" Enable hidden buffers
@@ -97,14 +97,18 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('Shougo/denite.nvim')
 
 	" NerdTREE
-	call dein#add('scrooloose/nerdtree')
+	"call dein#add('scrooloose/nerdtree')
 
 	" Linting
-	call dein#add('w0rp/ale')
+	"call dein#add('w0rp/ale')
 
-	" " Completion Framework
-	" call dein#add('Shougo/deoplete.nvim')
-	call dein#add('roxma/nvim-completion-manager')
+	" Completion Framework
+	"call dein#add('Shougo/deoplete.nvim')
+	"call dein#add('roxma/nvim-completion-manager')
+	call dein#add('ncm2/ncm2')
+	call dein#add('roxma/nvim-yarp')
+	call dein#add('ncm2/ncm2-bufword')
+	call dein#add('ncm2/ncm2-path')
 
 	" Snippets
 	call dein#add('Shougo/neosnippet.vim')
@@ -154,9 +158,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Magnificent theme
 	call dein#add('arcticicestudio/nord-vim')
 
-	" Colorize parentheses
-	call dein#add('luochen1990/rainbow')
-
 	" Show indent level
 	call dein#add('nathanaelkane/vim-indent-guides')
 
@@ -164,10 +165,17 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('vim-airline/vim-airline')
 
 	" Translations in vim buffer
-	call dein#add('soywod/vim-translate')
+	" call dein#add('soywod/vim-translate')
+	
+	" Pretty code
+	" call dein#add('prettier/vim-prettier')
 
 	" Tagbar
 	call dein#add('majutsushi/tagbar')
+
+	" Flow checking code
+	call dein#add('flowtype/vim-flow')
+	
 
 	" Required:
 	call dein#end()
@@ -189,17 +197,17 @@ endif
 imap <c-j>     <Plug>(neosnippet_expand_or_jump)
 vmap <c-j>     <Plug>(neosnippet_expand_or_jump)
 " Control u to expand
-inoremap <silent> <c-u> <c-r>=cm#sources#neosnippet#trigger_or_popup("\<Plug>(neosnippet_expand_or_jump)")<cr>
+" inoremap <silent> <c-u> <c-r>=cm#sources#neosnippet#trigger_or_popup("\<Plug>(neosnippet_expand_or_jump)")<cr>
 vmap <c-u>     <Plug>(neosnippet_expand_target)
 " expand parameters
 let g:neosnippet#enable_completed_snippet=1
 " personal snippets
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
-" NCM
-" Entrer to complete
-imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
-imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
 " Tab go to next
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -211,11 +219,13 @@ let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 " Enable trimmming of trailing whitespace
 let g:neoformat_basic_format_trim = 1
-" Run on save
-"augroup fmt
-"	autocmd!
-"	autocmd BufWritePre * undojoin | Neoformat
-"augroup END
+
+" Auto prettify js
+autocmd BufWritePre *.js Neoformat
+
+"" Flow
+" Don't show quickfix
+let g:flow#showquickfix = 0
 
 ""DelimitMate
 " Visual Studio like braces
