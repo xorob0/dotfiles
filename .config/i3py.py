@@ -124,12 +124,12 @@ status.register("battery",
         "FULL": "   ",
 },)
 
-status.register("temp",
-                format="{Package_id_0}°C {Core_0_bar}{Core_1_bar}{Core_2_bar}{Core_3_bar}",
-                hints={"markup": "pango"},
-                lm_sensors_enabled=True,
-                color=nord7,
-                alert_color=nord12)
+# status.register("temp",
+#                 format="{Package_id_0}°C {Core_0_bar}{Core_1_bar}{Core_2_bar}{Core_3_bar}",
+#                 hints={"markup": "pango"},
+#                 lm_sensors_enabled=True,
+#                 color=nord7,
+#                 alert_color=nord12)
 
 status.register("cpu_usage_bar",
     format=" {usage}% {usage_bar}",
