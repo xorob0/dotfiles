@@ -2,9 +2,11 @@
 
 exec xrandr --output eDP1 --right-of DP1-1 && xrandr --output DP1-2 --rotate left --right-of eDP1
 
-exec xset r rate 180 30
+exec xset r rate 200 20
 
 exec feh --bg-fill ~/Pictures/Wallpapers/background.png
+
+exec compton
 
 ###############
 ### General ###
@@ -116,6 +118,7 @@ bindsym $mod+escape exec xkill
 # Start your launcher
 bindsym Mod4+d exec $menu
 bindsym Mod4+space exec $menu
+bindsym Mod4+backspace exec $menu
 # Start the browser
 bindsym Mod4+w workspace 1:www, exec $browser
 # Open password-store manager
