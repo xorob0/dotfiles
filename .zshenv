@@ -29,15 +29,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 #######################
 ### Keyboard config ###
 #######################
-# US layout
-export XKB_DEFAULT_LAYOUT=us
-# International variant
-export XKB_DEFAULT_VARIANT=intl
-# Caps lock as escape, escape as escape
-export XKB_DEFAULT_OPTIONS=caps:escape
-# Faster key repeat
-export WLC_REPEAT_DELAY=200
-export WLC_REPEAT_RATE=20
 # dead ' + c = ç
 export GTK_IM_MODULE=cedilla
 export QT_IM_MODULE=cedilla

@@ -122,6 +122,11 @@ input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
 # Keyboard imput
 input "1:1:AT_Translated_Set_2_keyboard" {
 	events enabled
+  repeat_delay 200 # ms
+  repeat_rate 20 # keys per second
+  xkb_layout us
+  xkb_variant intl
+  xkb_options caps:escape
 }
 # Anne pro input
 input "13:0:ANNE_KB_L0_7156" {
