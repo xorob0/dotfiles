@@ -1,7 +1,7 @@
 #!/bin/bash
-result=$(ls /etc/openvpn/client/ | dmenu)
+result=$(ls /etc/openvpn/nordvpn/ | dmenu)
 
 sudo kill $(pidof openvpn)
 
-cd /etc/openvpn/client/
-sudo openvpn  $result
+cd /etc/openvpn/nordvpn
+sudo openvpn $result
