@@ -31,8 +31,8 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Using rxvt-unicode as main terminal emulator
-set $term kitty
+# Using alacritty as main terminal emulator
+set $term alacritty
 # Using j4-dmenu to launch programs
 set $menu j4-dmenu-desktop
 # Using firefox as main browser
@@ -105,7 +105,8 @@ output DP-3 pos 0,0 res 1920x1080
 # Main screen on the center
 output eDP-1 pos 1920,0 res 1920x1080
 # VGA output on the right
-output DP-5 pos 3840,0 res 1280x1024
+# output DP-4 pos 3840,0 
+output DP-4 transform 270
 
 #######################
 # Input configuration #
