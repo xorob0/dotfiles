@@ -1,3 +1,6 @@
+# Making alacritty use XWayland
+# export WAYLAND_DISPLAY=alacritty
+
 # Support for android studio sdk
 export ANDROID_HOME=/opt/android-sdk
 
@@ -16,9 +19,9 @@ export PASSWORD_STORE_GENERATED_LENGTH=40
 # Better compatibility with java windows
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-#export GDK_BACKEND=wayland
-#export QT_QPA_PLATFORM=eglfs
-export CLUTTER_BACKEND=wayland
+# export GDK_BACKEND=wayland
+# export QT_QPA_PLATFORM=eglfs
+# export CLUTTER_BACKEND=wayland
 # export SDL_VIDEODRIVER=wayland
 
 # export WLC_USE_EGLDEVICE=1
@@ -34,7 +37,7 @@ export XKB_DEFAULT_VARIANT=intl
 export XKB_DEFAULT_OPTIONS=caps:escape
 # Faster key repeat
 export WLC_REPEAT_DELAY=200
-export WLC_REPEAT_RATE=30
+export WLC_REPEAT_RATE=20
 # dead ' + c = ç
 export GTK_IM_MODULE=cedilla
 export QT_IM_MODULE=cedilla
