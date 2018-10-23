@@ -112,7 +112,7 @@ output DP-4 transform 270
 # Input configuration #
 #######################
 # Touchpad config (on Nelya)
-input "1739:31251:DLL07BE:01_06CB:7A13_To" {
+input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
 	dwt enabled
 		tap enabled
 		natural_scroll enabled
