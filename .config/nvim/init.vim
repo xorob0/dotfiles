@@ -355,3 +355,39 @@ nnoremap <s-tab> za
 set foldmethod=indent               
 " start unfolded
 set foldlevelstart=99               
+
+"" Netrw
+" Using tree in netrw
+let g:netrw_liststyle = 3
+" Open files in a split window
+let g:netrw_browse_split = 4
+" Taking 20% of the space
+let g:netrw_winsize = 20
+" hide vim swap files
+let g:netrw_list_hide='.*\.swp$'
+" Hit enter in the file browser to open the selected
+" file with :vsplit to the right of the browser.
+let g:netrw_v = 1
+" Disable the banner
+let g:netrw_banner = 0
+" Change directory to the current buffer when opening files.
+set autochdir
+" Function that focus or open netrw
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+" Opening netrw with SHift-Enter
+noremap <S-CR> :call ToggleVExplorer()<CR>
