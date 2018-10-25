@@ -31,7 +31,10 @@ set binary
 
 "" Directories for swp files
 set nobackup
-set noswapfile
+" set noswapfile
+
+" Save undo trees
+set undofile
 
 set fileformats=unix,dos,mac
 set showcmd
