@@ -133,6 +133,14 @@ input "13:0:ANNE_KB_L0_7156" {
 	events enabled
 }
 
+input "65261:4871:ErgoDox_EZ_ErgoDox_EZ" {
+	events enabled
+  repeat_delay 200
+  repeat_rate 20
+  xkb_layout us
+  xkb_variant intl
+  xkb_options caps:escape
+}
 ################
 # Key bindings #
 ################
