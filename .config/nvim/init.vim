@@ -46,8 +46,8 @@ set wildmenu
 
 " Session management
 let g:session_directory = "~/.config/nvim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
+let g:session_autoload = "yes"
+let g:session_autosave = "yes"
 let g:session_command_aliases = 1
 
 " Python support
@@ -56,6 +56,10 @@ let g:python_host_prog='usr/bin/python3'
 " Set map leader
 let mapleader = ","
 let g:mapleader = ","
+
+"" Center search completion
+nnoremap n nzz
+nnoremap N Nzz
 
 """ Visual
 syntax on
