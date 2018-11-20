@@ -106,12 +106,6 @@ alias gs="git status -s"
 alias pacman='sudo pacman'
 # Cool gtypist
 alias gtypist='gtypist -b -i'
-# Graphical ping
-alias ping_old='/bin/ping'
-alias ping='gping'
-# Graphical top
-alias top_old='/bin/top'
-alias top='gtop'
 # Top order
 alias cpu='top -o cpu'   # CPU
 alias mem='top -o rsize' # Memory
