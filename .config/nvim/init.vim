@@ -366,21 +366,5 @@ set foldmethod=indent
 " start unfolded
 set foldlevelstart=99               
 
-"" Netrw
-" Using tree in netrw
-let g:netrw_liststyle = 3
-" Open files in a split window
-let g:netrw_browse_split = 4
-" Taking 20% of the space
-let g:netrw_winsize = 20
-" hide vim swap files
-let g:netrw_list_hide='.*\.swp$'
-" Hit enter in the file browser to open the selected
-" file with :vsplit to the right of the browser.
-let g:netrw_v = 1
-" Disable the banner
-let g:netrw_banner = 0
-" Change directory to the current buffer when opening files.
-set autochdir
 " Opening NERDTree with SHift-Enter
 noremap <S-CR> :NERDTreeToggle<CR>
