@@ -382,5 +382,5 @@ let g:netrw_v = 1
 let g:netrw_banner = 0
 " Change directory to the current buffer when opening files.
 set autochdir
-" Opening netrw with SHift-Enter
-noremap <S-CR> :call ToggleVExplorer()<CR>
+" Opening NERDTree with SHift-Enter
+noremap <S-CR> :NERDTreeToggle<CR>
