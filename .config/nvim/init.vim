@@ -256,6 +256,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Disable display of '?' text and 'Bookmarks' label.
 let g:NERDTreeMinimalUI=1
+" Opening NERDTree with SHift-Enter
+noremap <S-CR> :NERDTreeToggle<CR>
 
 
 "" Visual Studio like braces
@@ -365,6 +367,3 @@ nnoremap <s-tab> za
 set foldmethod=indent               
 " start unfolded
 set foldlevelstart=99               
-
-" Opening NERDTree with SHift-Enter
-noremap <S-CR> :NERDTreeToggle<CR>
