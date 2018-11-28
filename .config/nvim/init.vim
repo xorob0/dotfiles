@@ -104,7 +104,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('Shougo/denite.nvim')
 
 	" NerdTREE
-	"call dein#add('scrooloose/nerdtree')
+	call dein#add('scrooloose/nerdtree')
 
 	" Linting
 	"call dein#add('w0rp/ale')
@@ -249,6 +249,9 @@ nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
 
 "" NerdTREE
+" User NerdTREE on directories
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " Close vim if only window left is nerdTREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Disable display of '?' text and 'Bookmarks' label.
@@ -379,22 +382,5 @@ let g:netrw_v = 1
 let g:netrw_banner = 0
 " Change directory to the current buffer when opening files.
 set autochdir
-" Function that focus or open netrw
-function! ToggleVExplorer()
-  if exists("t:expl_buf_num")
-      let expl_win_num = bufwinnr(t:expl_buf_num)
-      if expl_win_num != -1
-          let cur_win_nr = winnr()
-          exec expl_win_num . 'wincmd w'
-          unlet t:expl_buf_num
-      else
-          unlet t:expl_buf_num
-      endif
-  else
-      exec '1wincmd w'
-      Vexplore
-      let t:expl_buf_num = bufnr("%")
-  endif
-endfunction
 " Opening netrw with SHift-Enter
 noremap <S-CR> :call ToggleVExplorer()<CR>
