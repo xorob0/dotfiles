@@ -228,7 +228,7 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
 " Auto prettify js
-autocmd BufWritePre *.js Neoformat
+"autocmd BufWritePre *.js Neoformat
 
 "" Flow
 " Don't show quickfix
