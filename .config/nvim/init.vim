@@ -168,7 +168,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Show indent level
 	call dein#add('nathanaelkane/vim-indent-guides')
 
-	" Nice looking vim !
 	call dein#add('vim-airline/vim-airline')
 
 	" Translations in vim buffer
@@ -334,6 +333,12 @@ hi Normal guibg=NONE ctermbg=NONE
 "" Translation
 let g:trans_default_source = "fr"
 let g:trans_default_target = "en"
+
+"" Indent Guide
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=NONE
+hi IndentGuidesEven ctermbg=0
 
 """ Mapping
 "" Window switching with leader
