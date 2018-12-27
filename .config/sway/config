@@ -103,9 +103,9 @@ output HDMI-A-1 pos 1920,0 res 1920x1080
 # HDMI on dock on the left
 output DP-3 pos 0,0 res 1920x1080
 # Main screen on the center
-output eDP-1 pos 1920,0 res 1920x1080
+output eDP-1 pos 3060,0 res 1920x1080
 # VGA output on the right
-# output DP-4 pos 3840,0 
+output DP-4 pos 1920,0 
 output DP-4 transform 270
 
 #######################
@@ -328,8 +328,6 @@ bindsym $mod+Print mode $mode_screenshot
 
 # Status Bar
 bar {
-    output eDP-1
-    output DP-3
 	position bottom
 	colors {
 		statusline $nord6
