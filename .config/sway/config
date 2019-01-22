@@ -373,3 +373,5 @@ exec --no-startup-id swaymsg 'workspace "1:www", exec qutebrowser'
 exec --no-startup-id swaymsg 'workspace "2:term"'
 # Preparing the background for the lockscreen
 exec --no-startup-id cp -R /var/cache/lock /tmp/lock
+# Launching polkit agent
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
