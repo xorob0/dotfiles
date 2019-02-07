@@ -121,6 +121,8 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('ncm2/ncm2-ultisnips')
 	call dein#add('SirVer/ultisnips')
 	call dein#add('honza/vim-snippets')
+	call dein#add('epilande/vim-react-snippets')
+	call dein#add('epilande/vim-es2015-snippets')
 
 	" Change date with <C-A> and <C-X>
 	call dein#add('tpope/vim-speeddating')
@@ -197,7 +199,7 @@ endif
 """ Addons configuration
 "" Autocompletion
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<enter>"
+let g:UltiSnipsExpandTrigger="<c-enter>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
@@ -221,7 +223,7 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
 " Auto prettify js
-"autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.js Neoformat
 
 "" Flow
 " Don't show quickfix
