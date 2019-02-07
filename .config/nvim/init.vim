@@ -172,7 +172,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" call dein#add('soywod/vim-translate')
 	
 	" Pretty code
-	" call dein#add('prettier/vim-prettier')
+	call dein#add('prettier/vim-prettier')
 
 	" Tagbar
 	call dein#add('majutsushi/tagbar')
