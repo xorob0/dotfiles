@@ -124,6 +124,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('epilande/vim-react-snippets')
 	call dein#add('epilande/vim-es2015-snippets')
 
+	" Linter
+	call dein#add('w0rp/ale')
+
 	" Change date with <C-A> and <C-X>
 	call dein#add('tpope/vim-speeddating')
 
@@ -205,6 +208,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+let g:ale_completion_enabled = 1
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
