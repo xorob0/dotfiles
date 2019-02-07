@@ -110,16 +110,17 @@ if dein#load_state('/home/toum/.config/nvim/')
 	"call dein#add('w0rp/ale')
 
 	" Completion Framework
-	"call dein#add('Shougo/deoplete.nvim')
-	"call dein#add('roxma/nvim-completion-manager')
 	call dein#add('ncm2/ncm2')
 	call dein#add('roxma/nvim-yarp')
 	call dein#add('ncm2/ncm2-bufword')
 	call dein#add('ncm2/ncm2-path')
 
+	call dein#add('ncm2/ncm2-tern')
+
 	" Snippets
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
+	call dein#add('ncm2/ncm2-ultisnips')
+	call dein#add('SirVer/ultisnips')
+	call dein#add('honza/vim-snippets')
 
 	" Change date with <C-A> and <C-X>
 	call dein#add('tpope/vim-speeddating')
@@ -132,9 +133,6 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Code formating (see the github page for the compatible formatters)
 	call dein#add('sbdchd/neoformat')
-
-	" Java autocomplete
-	" call dein#add('artur-shaik/vim-javacomplete2')
 
 	" Add git status
 	call dein#add('airblade/vim-gitgutter')
@@ -198,17 +196,13 @@ endif
 
 """ Addons configuration
 "" Autocompletion
-" neosnippet configuration
-" Control j to jump
-imap <c-j>     <Plug>(neosnippet_expand_or_jump)
-vmap <c-j>     <Plug>(neosnippet_expand_or_jump)
-" Control u to expand
-" inoremap <silent> <c-u> <c-r>=cm#sources#neosnippet#trigger_or_popup("\<Plug>(neosnippet_expand_or_jump)")<cr>
-vmap <c-u>     <Plug>(neosnippet_expand_target)
-" expand parameters
-let g:neosnippet#enable_completed_snippet=1
-" personal snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<enter>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
