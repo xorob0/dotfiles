@@ -149,6 +149,9 @@ alias nger="ranger"
 alias zl='xhost +local'
 # Youtube downloades
 alias yt='youtube-dl'
+# Temporary alias for note taking during my internship
+alias jrnl='e /home/toum/Documents/Ecole/2018-2019/Stage/`date +"%Y%m%d"`.md'
+
 
 ### Completion things
 # Launch comletion module
@@ -245,3 +248,13 @@ bindkey '^[[A' history-beginning-search-backward
 bindkey '^[OA' history-beginning-search-backward
 bindkey '^[[B' history-beginning-search-forward
 bindkey '^[OB' history-beginning-search-forward
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename '/home/toum/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+export PATH="/home/toum/.bin:/usr/local/bin::/home/toum/.bin:/usr/local/bin::/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/tools:/opt/android-sdk/tools/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/toum/.vimpkg/bin"
