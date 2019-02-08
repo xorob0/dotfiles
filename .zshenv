@@ -20,9 +20,9 @@ export PASSWORD_STORE_GENERATED_LENGTH=40
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # export GDK_BACKEND=wayland
-# export QT_QPA_PLATFORM=eglfs
- export CLUTTER_BACKEND=wayland
- export SDL_VIDEODRIVER=wayland
+# export QT_QPA_PLATFORM=wayland
+export CLUTTER_BACKEND=wayland
+# export SDL_VIDEODRIVER=wayland
 
  export WLC_USE_EGLDEVICE=1
 
