@@ -1,3 +1,6 @@
+# Corrected error about compdef
+autoload -U compinit && compinit
+
 ###############
 ### Plugins ###
 ###############
