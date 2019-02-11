@@ -100,8 +100,8 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('/home/toum/.config/nvim//repos/github.com/Shougo/dein.vim')
 
 	" Addons
-	" Fuzzy finder
-	call dein#add('Shougo/denite.nvim')
+	" " Fuzzy finder
+	" call dein#add('Shougo/denite.nvim')
 
 	" NerdTREE
 	call dein#add('scrooloose/nerdtree')
@@ -184,7 +184,14 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Flow checking code
 	call dein#add('flowtype/vim-flow')
-	
+
+	" Coloring CSS files
+	call dein#add('ap/vim-css-color')
+
+	" Fuzzy file finder
+	call dein#add('junegunn/fzf')
+	" Fuzzy word finder
+	call dein#add('mileszs/ack.vim')
 
 	" Required:
 	call dein#end()
