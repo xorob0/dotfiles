@@ -193,6 +193,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 	" Fuzzy word finder
 	call dein#add('mileszs/ack.vim')
 
+	" abbreviation for html
+	call dein#add('mattn/emmet-vim')
+
 	" Required:
 	call dein#end()
 	call dein#save_state()
@@ -225,8 +228,14 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 " Tab go to next
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" only have emmet on html and css files
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" Using custom shortcut for emmet
+let g:user_emmet_leader_key='<C-Enter>'
 
 "" Neoformat
 " Enable alignment
