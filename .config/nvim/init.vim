@@ -51,7 +51,7 @@ let g:session_autosave = "yes"
 let g:session_command_aliases = 1
 
 " Python support
-let g:python_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python3.7'
 
 " Set map leader
 let mapleader = ","
