@@ -213,8 +213,8 @@ endif
 "" Autocompletion
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-enter>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -235,7 +235,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 " Using custom shortcut for emmet
-let g:user_emmet_leader_key='<C-Enter>'
+let g:user_emmet_expandabbr_key='<S-Tab>'
+imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
 
 "" Neoformat
 " Enable alignment
