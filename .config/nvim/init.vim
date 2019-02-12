@@ -105,6 +105,9 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" NerdTREE
 	call dein#add('scrooloose/nerdtree')
+	call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+	call dein#add('ryanoasis/vim-devicons')
+
 
 	" Linting
 	"call dein#add('w0rp/ale')
@@ -213,8 +216,8 @@ endif
 "" Autocompletion
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-enter>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
