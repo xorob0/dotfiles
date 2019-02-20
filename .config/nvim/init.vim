@@ -143,7 +143,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 	call dein#add('sbdchd/neoformat')
 
 	" Add git status
-	call dein#add('airblade/vim-gitgutter')
+	call dein#add('mhinz/vim-signify')
 
 	" Git wrapper for vim
 	call dein#add('tpope/vim-fugitive')
