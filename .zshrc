@@ -105,6 +105,12 @@ alias gpl="git pull"
 alias gp="git push"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
 alias gs="git status -s"
+# Git cz aliass
+alias gcz="git cz"
+alias gczr="git cz --retry"
+alias gcza="git add -A && git cz"
+alias gczu="git add -u && git cz"
+alias gczA="git add . && git cz"
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
 # Cool gtypist
