@@ -107,7 +107,7 @@ alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%
 alias gs="git status -s"
 # Git cz aliass
 alias gcz="git cz && git push"
-alias gczr="git cz --retry && git push"
+alias gczr="git add -A && git cz --retry && git push"
 alias gcza="git add -A && git cz && git push"
 alias gczu="git add -u && git cz && git push"
 alias gczA="git add . && git cz && git push"
