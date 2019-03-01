@@ -130,14 +130,11 @@ alias rm='echo "This is not the command you are looking for"; false'
 alias /rm="rm"
 alias tp='trash-put'
 # Some alias for backward directory
+alias -g ..="cd .."
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
 # Easy Grep
 alias -g G='| grep'
 # Easy Sudo
