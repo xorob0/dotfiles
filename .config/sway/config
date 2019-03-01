@@ -99,7 +99,7 @@ workspace_auto_back_and_forth yes
 # Wallpaper
 output "*" background ~/Pictures/Wallpapers/background.png fill
 # HDMI Out up
-output HDMI-A-1 pos 3060,0
+output HDMI-A-1 pos 3060,0 res 1920x1080
 # HDMI Out as mirror
 # output HDMI-A-1 layout none mirror eDP-1
 # HDMI on dock on the left
