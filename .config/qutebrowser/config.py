@@ -206,6 +206,3 @@ config.bind('e', 'spawn --userscript qutepass.py --username xorob0')
 config.bind('gi', 'jseval -q -f ' + str(config.datadir) +'/userscripts/cycle-inputs.js')
 config.bind('aa', 'spawn --userscript jsAllow.py -a')
 config.bind('au', 'spawn --userscript jsAllow.py -u')
-
-# Disable ctrl-v
-config.unbind('<Ctrl-v>', mode='normal')
