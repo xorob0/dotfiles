@@ -86,7 +86,7 @@ for s in netifaces.interfaces():
             interface=s,
             color_up=nord14,
             color_down=nord11,
-            format_up=" Z5 Compact",
+            format_up=" FP2,
             format_down="",)
     else:
         status.register("network",
@@ -132,7 +132,7 @@ status.register("battery",
 #                 alert_color=nord12)
 
 status.register("cpu_usage_bar",
-    format=" {usage}% {usage_bar}",
+    format=" {usage}%",
     bar_type="vertical",
     start_color=nord10,
     end_color=nord7)
@@ -149,14 +149,14 @@ status.register("disk",
     path="/home",
     format=" {avail} Go")
 
-status.register("pomodoro",
-    sound="~/.pomodoro.mp3")
+# status.register("pomodoro",
+#     sound="~/.pomodoro.mp3")
 
-status.register("shell",
-    command="python3 /home/toum/.scripts/getTitle.py",
-    ignore_empty_stdout=True,
-    error_color=nord11,
-    color=nord14,
-    interval=1)
+# status.register("shell",
+#     command="python3 /home/toum/.scripts/getTitle.py",
+#     ignore_empty_stdout=True,
+#     error_color=nord11,
+#     color=nord14,
+#     interval=1)
 
 status.run()
