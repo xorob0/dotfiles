@@ -147,6 +147,7 @@ if dein#load_state('/home/toum/.config/nvim/')
 
 	" Git wrapper for vim
 	call dein#add('tpope/vim-fugitive')
+	call dein#add('rbong/vim-flog')
 
 	" Syntax colorization for almost all languages
 	call dein#add('sheerun/vim-polyglot')
