@@ -40,7 +40,7 @@ set $browser qutebrowser
 # Using pavanjadhaw/betterlockscreen
 #set $locker lock --lock
 # Using swaylock to lock the screen the right way
-set $locker swaylock -i /tmp/lock/blur.png
+set $locker mkdir -p /tmp/lock && grim /tmp/lock/screenshot.png && convert -scale 10% -scale 1000% /tmp/lock/screenshot.png /tmp/lock/blur.png && swaylock -i /tmp/lock/blur.png && rm -Rf /tmp/lock
 # Workspace keys on azerty
 #set $Key1 ampersand
 #set $Key2 eacute
