@@ -34,7 +34,7 @@ set $right l
 # Using alacritty as main terminal emulator
 set $term alacritty
 # Using j4-dmenu to launch programs
-set $menu j4-dmenu-desktop
+set $menu "rofi -combi-modi window,drun -show combi"
 # Using firefox as main browser
 set $browser qutebrowser
 # Using pavanjadhaw/betterlockscreen
