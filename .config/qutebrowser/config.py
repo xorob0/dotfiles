@@ -40,7 +40,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.content.javascript.enabled = False
 
 # list of whitelisted domains
-domains = ['posteo.de', 'reddit.com', 'niu.moe', 'celty.eu']
+domains = ['posteo.de', 'reddit.com', 'niu.moe', 'celty.eu', 'localhost']
 
 # Enable javascript on the allowed domains
 for domain in domains:
@@ -178,6 +178,8 @@ searchengines = {
     'nyaa' : 'https://nyaa.si/?q={}',
     'ali' : 'https://fr.aliexpress.com/wholesale?SearchText={}',
     'ipt' : 'https://www.iptorrents.com/t?q={}',
+    'deal' : 'https://www.dealabs.com/search?q={}',
+    'mdeal' : 'https://www.mydealz.de/search?q={}'
 }
 
 for alias, url in searchengines.items():
