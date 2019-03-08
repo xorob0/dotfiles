@@ -239,7 +239,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 " Using custom shortcut for emmet
-let g:user_emmet_expandabbr_key='<S-Tab>'
+let g:user_emmet_expandabbr_key='<C-S-Tab>'
 imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
 
 "" Neoformat
@@ -281,7 +281,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Disable display of '?' text and 'Bookmarks' label.
 let g:NERDTreeMinimalUI=1
 " Opening NERDTree with SHift-Enter
-noremap <S-CR> :NERDTreeToggle<CR>
+noremap <S-CR> :NERDTreeFocus<CR>
+noremap <C-S-CR> :NERDTreeFocus<CR>
 
 
 "" Visual Studio like braces
