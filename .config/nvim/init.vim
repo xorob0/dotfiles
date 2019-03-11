@@ -378,6 +378,11 @@ map gn :bn<cr>
 map gp :bp<cr>
 map gd :bd<cr>  
 
+"" Easier Diff
+map <leader>r :diffg RE<CR>
+map <leader>o :diffg LO<CR>
+map <leader>b :diffg BA<CR>
+
 "" Copy/Paste/Cut
 if has('unnamedplus')
 	set clipboard=unnamed,unnamedplus
