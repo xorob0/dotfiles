@@ -14,6 +14,23 @@ if ! zgen saved; then
 	zgen oh-my-zsh plugins/pass
 	zgen oh-my-zsh plugins/systemd
 	zgen oh-my-zsh plugins/git
+	zgen oh-my-zsh plugins/archlinux
+	zgen oh-my-zsh plugins/catimg
+	zgen oh-my-zsh plugins/compleat
+	zgen oh-my-zsh plugins/copyfile
+	zgen oh-my-zsh plugins/docker
+	zgen oh-my-zsh plugins/extract
+	zgen oh-my-zsh plugins/gitfast
+	zgen oh-my-zsh plugins/git-extras
+	zgen oh-my-zsh plugins/npm
+	zgen oh-my-zsh plugins/pass
+	zgen oh-my-zsh plugins/per-directory-history
+	zgen oh-my-zsh plugins/pip
+	zgen oh-my-zsh plugins/sudo
+	zgen oh-my-zsh plugins/systemd
+	zgen oh-my-zsh plugins/taskwarrior
+	zgen oh-my-zsh plugins/yarn
+
 
 	# Magnificent theme
 	zgen load bhilburn/powerlevel9k powerlevel9k
@@ -27,6 +44,12 @@ if ! zgen saved; then
 
 	# Use z to jump around
 	zgen load rupa/z
+
+	# Calculator
+	zgen load arzzen/calc.plugin.zsh
+
+	# Better jira plugin
+	zgen load igoradamenko/jira.plugin.zsh
 
 	# Generate the init script from plugins above
 	zgen save
@@ -42,13 +65,13 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ### Configure plugins
 ## Personnal theme for PowerLevel9k
 # Compatibility with font Awesome
-POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_MODE='nerdfont-complete'
 # Installation path
 POWERLEVEL9K_INSTALLATION_PATH=/home/xorob0/.zgen/bhilburn/powerlevel9k-master/powerlevel9k.zsh-theme
 # Elements on the left
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_linux_icon root_indicator dir )
 # Elements on the right
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs vi_mode)
 # Colorscheme
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='2'
 POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='15'
@@ -64,6 +87,15 @@ POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='12'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='15'
 POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='9'
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='15'
+
+POWERLEVEL9K_CUSTOM_LINUX_ICON="echo "
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+# jira config
+JIRA_BRANCH_REGEX="s/.+\/([A-Z0-9]+-[0-9]+)\-.+/\1/p"
 
 ###################
 ### ZSH options ###
