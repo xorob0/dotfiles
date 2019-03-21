@@ -41,6 +41,12 @@ set $browser qutebrowser
 #set $locker lock --lock
 # Using swaylock to lock the screen the right way
 set $locker mkdir -p /tmp/lock && grim /tmp/lock/screenshot.png && convert -scale 10% -scale 1000% /tmp/lock/screenshot.png /tmp/lock/blur.png && swaylock -i /tmp/lock/blur.png && rm -Rf /tmp/lock
+
+exec swayidle \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 # Workspace keys on azerty
 #set $Key1 ampersand
 #set $Key2 eacute
@@ -53,17 +59,17 @@ set $locker mkdir -p /tmp/lock && grim /tmp/lock/screenshot.png && convert -scal
 #set $Key9 ccedilla
 #set $Key10 agrave
 # Workspace keys on qwerty
-set $Key1 1
-set $Key2 2
-set $Key3 3
-set $Key4 4
-set $Key5 5
-set $Key6 6
-set $Key7 7
-set $Key8 8
-set $Key9 9
-set $Key10 0
-set $KeyHDMI dead_grave
+set $Key1 a
+set $Key2 s
+set $Key3 d
+set $Key4 f
+set $Key5 g
+set $Key6 u
+set $Key7 i
+set $Key8 o
+set $Key9 p
+set $Key10 bracketleft
+set $KeyHDMI bracketright
 # Workspace names
 set $WS1 1:www
 set $WS2 2:term
@@ -99,7 +105,7 @@ workspace_auto_back_and_forth yes
 # Wallpaper
 output "*" background ~/Pictures/Wallpapers/background.png fill
 # HDMI Out up
-output HDMI-A-1 pos 3060,0
+# output HDMI-A-1 pos 3060,0
 # HDMI Out as mirror
 # output HDMI-A-1 layout none mirror eDP-1
 # HDMI on dock on the left
@@ -128,11 +134,20 @@ input "1:1:AT_Translated_Set_2_keyboard" {
   repeat_rate 20
   xkb_layout us
   xkb_variant intl
-  xkb_options caps:escape
+  xkb_options caps:escape,shift:both_shiftlock
 }
 # Anne pro input
 input "13:0:ANNE_KB_L0_7156" {
 	events enabled
+}
+
+input "1241:373:USB-HID_Keyboard" {
+	events enabled
+  repeat_delay 200
+  repeat_rate 20
+  xkb_layout us
+  xkb_variant intl
+  xkb_options caps:escape
 }
 
 input "65261:4871:ErgoDox_EZ_ErgoDox_EZ" {
@@ -229,7 +244,7 @@ bindsym $mod+Shift+$KeyHDMI move container to workspace $WSHDMI
 bindsym $mod+b splith
 bindsym $mod+v splitv
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
+bindsym $mod+n layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 # Using ,./\;
@@ -239,13 +254,13 @@ bindsym $mod+slash toggle split
 bindsym $mod+backslash auto_left
 bindsym $mod+semicolon layout auto next
 # Make the current focus fullscreen
-bindsym $mod+f fullscreen
+bindsym $mod+x fullscreen
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+m focus mode_toggle
 # Move focus to the parent container
-bindsym $mod+a focus parent
+bindsym $mod+1 focus parent
 # Toggle border styles
 bindsym $mod+Shift+b border toggle
 # Stick window
@@ -312,7 +327,7 @@ mode $mode_power {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+p mode $mode_power
+bindsym $mod+0 mode $mode_power
 # Screenshots interface
 set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
 mode $mode_screenshot {
