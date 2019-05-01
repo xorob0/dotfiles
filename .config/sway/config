@@ -42,34 +42,18 @@ set $browser qutebrowser
 # Using swaylock to lock the screen the right way
 set $locker mkdir -p /tmp/lock && grim /tmp/lock/screenshot.png && convert -scale 10% -scale 1000% /tmp/lock/screenshot.png /tmp/lock/blur.png && swaylock -i /tmp/lock/blur.png && rm -Rf /tmp/lock
 
-exec swayidle \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
-# Workspace keys on azerty
-#set $Key1 ampersand
-#set $Key2 eacute
-#set $Key3 quotedbl
-#set $Key4 apostrophe
-#set $Key5 parenleft
-#set $Key6 minus
-#set $Key7 egrave
-#set $Key8 underscore
-#set $Key9 ccedilla
-#set $Key10 agrave
 # Workspace keys on qwerty
-set $Key1 a
-set $Key2 s
-set $Key3 d
-set $Key4 f
-set $Key5 g
-set $Key6 u
-set $Key7 i
-set $Key8 o
-set $Key9 p
-set $Key10 bracketleft
-set $KeyHDMI bracketright
+set $Key1 q
+set $Key2 w
+set $Key3 e
+set $Key4 r
+set $Key5 t
+set $Key6 y
+set $Key7 u
+set $Key8 i
+set $Key9 o
+set $Key10 p
+set $KeyHDMI semicolon
 # Workspace names
 set $WS1 1:www
 set $WS2 2:term
@@ -167,7 +151,6 @@ bindsym Mod4+s exec $term
 # Start a terminal with ranger
 bindsym Mod4+f exec $term -e sh -c "~/.scripts/ranger.sh"
 # Kill focused window
-bindsym $mod+Shift+q kill
 bindsym Mod4+q kill
 # Force kill focused window
 bindsym $mod+escape exec xkill
@@ -244,15 +227,12 @@ bindsym $mod+Shift+$KeyHDMI move container to workspace $WSHDMI
 bindsym $mod+b splith
 bindsym $mod+v splitv
 # Switch the current container between different layout styles
-bindsym $mod+n layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+a layout tabbed
 # Using ,./\;
-bindsym $mod+comma layout stacking
-bindsym $mod+period layout tabbed
-bindsym $mod+slash toggle split
-bindsym $mod+backslash auto_left
-bindsym $mod+semicolon layout auto next
+bindsym $mod+comma toggle split
+bindsym $mod+period auto_left
+bindsym $mod+colon layout auto next
 # Make the current focus fullscreen
 bindsym $mod+x fullscreen
 # Toggle the current focus between tiling and floating mode
@@ -312,7 +292,7 @@ mode "resize" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+greater mode "resize"
 # Power interface
 set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
 mode $mode_power {
@@ -389,6 +369,13 @@ exec --no-startup-id swaymsg 'workspace "1:www", exec qutebrowser'
 # Going to the main workspace
 exec --no-startup-id swaymsg 'workspace "2:term"'
 # Preparing the background for the lockscreen
-exec --no-startup-id cp -R /var/cache/lock /tmp/lock
+# exec --no-startup-id cp -R /var/cache/lock /tmp/lock
 # Launching polkit agent
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
+
+exec swayidle \
+         timeout 300 $locker \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep $locker
+
