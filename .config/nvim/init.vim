@@ -105,6 +105,18 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 	Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 	Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 
 	" " Snippets
 	Plug 'honza/vim-snippets'
@@ -142,8 +154,8 @@ call plug#begin('~/.vim/plugged')
 
 	" Surround with cs"'
 	Plug 'tpope/vim-surround'
-	" Better pairs tricks
-	Plug 'wellle/targets.vim'
+	" " Better pairs tricks
+	" Plug 'wellle/targets.vim'
 
 	" See undo tree with F5
 	Plug 'mbbill/undotree'
@@ -171,16 +183,16 @@ call plug#begin('~/.vim/plugged')
 	" Flow checking code
 	Plug 'flowtype/vim-flow'
 
-	" Coloring CSS files
-	Plug 'ap/vim-css-color'
+	" " Coloring CSS files
+	" Plug 'ap/vim-css-color'
 
 	" Fuzzy file finder
 	Plug 'junegunn/fzf'
 	" Fuzzy word finder
 	Plug 'mileszs/ack.vim'
 
-	" abbreviation for html
-	Plug 'mattn/emmet-vim'
+	" " abbreviation for html
+	" Plug 'mattn/emmet-vim'
 
 	" Markdown preview
 	Plug 'iamcco/markdown-preview.nvim'
@@ -206,30 +218,19 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Use Tab to move around inside the snippet
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-y>" :
-"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" let g:coc_snippet_next = '<Tab>'
-" let g:coc_snippet_prev = '<S-Tab>'
+let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_prev = '<S-Tab>'
 
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
 let g:ale_completion_enabled = 1
 
-" only have emmet on html and css files
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-" Using custom shortcut for emmet
-" let g:user_emmet_expandabbr_key='<C-S-Tab>'
+" " only have emmet on html and css files
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css EmmetInstall
+" " Using custom shortcut for emmet
+" " let g:user_emmet_expandabbr_key='<C-S-Tab>'
 " imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
 
 "" Neoformat
@@ -469,7 +470,7 @@ autocmd BufNewFile *.java
 
 "" Folds
 " Using Shift-Tab to open and close folds
-nnoremap <s-tab> za
+" nnoremap <s-tab> za
 " not as cool as syntax, but faster
 set foldmethod=indent               
 " start unfolded
