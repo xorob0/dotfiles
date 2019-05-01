@@ -92,132 +92,109 @@ endif
 
 set runtimepath+=/home/toum/.config/nvim/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('/home/toum/.config/nvim/')
-	call dein#begin('/home/toum/.config/nvim/')
-
-	" Let dein manage dein
-	" Required:
-	call dein#add('/home/toum/.config/nvim//repos/github.com/Shougo/dein.vim')
-
-	" Addons
-	" " Fuzzy finder
-	" call dein#add('Shougo/denite.nvim')
+call plug#begin('~/.vim/plugged')
 
 	" NerdTREE
-	call dein#add('scrooloose/nerdtree')
-	call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
-	call dein#add('ryanoasis/vim-devicons')
+	Plug 'scrooloose/nerdtree'
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+	Plug 'ryanoasis/vim-devicons'
 
-
-	" Linting
-	"call dein#add('w0rp/ale')
 
 	" Completion Framework
-	call dein#add('ncm2/ncm2')
-	call dein#add('roxma/nvim-yarp')
-	call dein#add('ncm2/ncm2-bufword')
-	call dein#add('ncm2/ncm2-path')
+	Plug 'ncm2/ncm2'
+	Plug 'roxma/nvim-yarp'
+	Plug 'ncm2/ncm2-bufword'
+	Plug 'ncm2/ncm2-path'
 
-	call dein#add('ncm2/ncm2-tern')
+	Plug 'ncm2/ncm2-tern'
 
 	" Snippets
-	call dein#add('ncm2/ncm2-ultisnips')
-	call dein#add('SirVer/ultisnips')
-	call dein#add('honza/vim-snippets')
-	call dein#add('epilande/vim-react-snippets')
-	call dein#add('epilande/vim-es2015-snippets')
+	Plug 'ncm2/ncm2-ultisnips'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'epilande/vim-react-snippets'
+	Plug 'epilande/vim-es2015-snippets'
 
 	" Linter
-	call dein#add('w0rp/ale')
+	Plug 'w0rp/ale'
 
 	" Change date with <C-A> and <C-X>
-	call dein#add('tpope/vim-speeddating')
+	Plug 'tpope/vim-speeddating'
 
 	" Comment with <gcc>
-	call dein#add('tpope/vim-commentary')
+	Plug 'tpope/vim-commentary'
 
 	" Enable multiple curors with <C-n>
-	call dein#add('terryma/vim-multiple-cursors')
+	Plug 'terryma/vim-multiple-cursors'
 
 	" Code formating (see the github page for the compatible formatters)
-	call dein#add('sbdchd/neoformat')
+	Plug 'sbdchd/neoformat'
 
 	" Add git status
-	call dein#add('mhinz/vim-signify')
+	Plug 'mhinz/vim-signify'
 
 	" Git wrapper for vim
-	call dein#add('tpope/vim-fugitive')
-	call dein#add('rbong/vim-flog')
+	Plug 'tpope/vim-fugitive'
+	Plug 'rbong/vim-flog'
 
 	" Syntax colorization for almost all languages
-	call dein#add('sheerun/vim-polyglot')
+	Plug 'sheerun/vim-polyglot'
 
 	" Automatic opening and closing of parentheses
-	call dein#add('Raimondi/delimitMate')
+	Plug 'Raimondi/delimitMate'
 
 	" Add functions like Delete, Move, SudoWrite,...
-	call dein#add('tpope/vim-eunuch')
+	Plug 'tpope/vim-eunuch'
 
 	" Surround with cs"'
-	call dein#add('tpope/vim-surround')
+	Plug 'tpope/vim-surround'
 	" Better pairs tricks
-	call dein#add('wellle/targets.vim')
+	Plug 'wellle/targets.vim'
 
 	" See undo tree with F5
-	call dein#add('mbbill/undotree')
+	Plug 'mbbill/undotree'
 
 	" Colorize parentheses
-	call dein#add('luochen1990/rainbow')
+	Plug 'luochen1990/rainbow'
 
 	" Magnificent theme
-	call dein#add('arcticicestudio/nord-vim')
+	Plug 'arcticicestudio/nord-vim'
 
 	" Show indent level
-	call dein#add('nathanaelkane/vim-indent-guides')
+	Plug 'nathanaelkane/vim-indent-guides'
 
-	call dein#add('vim-airline/vim-airline')
+	Plug 'vim-airline/vim-airline'
 
 	" Translations in vim buffer
-	" call dein#add('soywod/vim-translate')
+	" Plug 'soywod/vim-translate'
 	
 	" Pretty code
-	call dein#add('prettier/vim-prettier')
+	Plug 'prettier/vim-prettier'
 
 	" Tagbar
-	call dein#add('majutsushi/tagbar')
+	Plug 'majutsushi/tagbar'
 
 	" Flow checking code
-	call dein#add('flowtype/vim-flow')
+	Plug 'flowtype/vim-flow'
 
 	" Coloring CSS files
-	call dein#add('ap/vim-css-color')
+	Plug 'ap/vim-css-color'
 
 	" Fuzzy file finder
-	call dein#add('junegunn/fzf')
+	Plug 'junegunn/fzf'
 	" Fuzzy word finder
-	call dein#add('mileszs/ack.vim')
+	Plug 'mileszs/ack.vim'
 
 	" abbreviation for html
-	call dein#add('mattn/emmet-vim')
+	Plug 'mattn/emmet-vim'
 
 	" Markdown preview
-	call dein#add('iamcco/markdown-preview.nvim')
+	Plug 'iamcco/markdown-preview.nvim'
 
 	" JS auto import
-	call dein#add('Galooshi/vim-import-js')
+	Plug 'Galooshi/vim-import-js'
 
-	" Required:
-	call dein#end()
-	call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-if dein#check_install()
-	call dein#install()
-endif
+call plug#end()
 
 """ Addons configuration
 "" Autocompletion
