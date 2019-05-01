@@ -99,21 +99,15 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 	Plug 'ryanoasis/vim-devicons'
 
-
 	" Completion Framework
-	Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+	" Completion Extentions
+	Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
-	Plug 'ncm2/ncm2-tern'
-
-	" Snippets
-	Plug 'ncm2/ncm2-ultisnips'
-	Plug 'SirVer/ultisnips'
+	" " Snippets
 	Plug 'honza/vim-snippets'
-	Plug 'epilande/vim-react-snippets'
-	Plug 'epilande/vim-es2015-snippets'
 
 	" Linter
 	Plug 'w0rp/ale'
@@ -198,32 +192,45 @@ call plug#end()
 
 """ Addons configuration
 "" Autocompletion
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-enter>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" Use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use Tab and S-Tab to navigate in completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Use Enter to complete
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use Enter to auto select first if no other selected
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" Use Enter to select snippets
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Use Tab to move around inside the snippet
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-y>" :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+" let g:coc_snippet_next = '<Tab>'
+" let g:coc_snippet_prev = '<S-Tab>'
+
 
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
 let g:ale_completion_enabled = 1
 
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-" Tab go to next
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " only have emmet on html and css files
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
 " Using custom shortcut for emmet
-let g:user_emmet_expandabbr_key='<C-S-Tab>'
-imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
+" let g:user_emmet_expandabbr_key='<C-S-Tab>'
+" imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
 
 "" Neoformat
 " Enable alignment
