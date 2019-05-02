@@ -55,8 +55,8 @@ set $Key9 o
 set $Key10 p
 set $KeyHDMI semicolon
 # Workspace names
-set $WS1 1:www
-set $WS2 2:term
+set $WS1 1:term
+set $WS2 2:www
 set $WS3 3
 set $WS4 4
 set $WS5 5
@@ -64,8 +64,8 @@ set $WS6 6
 set $WS7 7
 set $WS8 8:dl
 set $WS9 9:chat
-set $WSHDMI 0:HDMI
 set $WS10 10:media
+set $WSHDMI 0:HDMI
 
 ############
 # Settings #
@@ -340,6 +340,19 @@ bar {
 	strip_workspace_numbers yes
 	status_command  i3pystatus -c ~/.config/i3py.py
 }
+
+# Windows assignments
+assign [class="qutebrowser"] → $WS2
+assign [class="Riot"] → $WS9
+assign [class="mpv"] → $WS10
+assign [class="Plex"] → $WS10
+# Worskpace assignments
+workspace "0:HDMI" output HDMI-A-1
+workspace "2:www" output DP-3
+workspace "9:chat" output eDP-1
+workspace "10:media" output eDP-1
+workspace "1:term" output DP-4
+
 ## Startup programs
 # Launch dunst
 exec dunst &
@@ -347,35 +360,21 @@ exec dunst &
 exec libinput-gestures-setup start &> /dev/null
 # Automounting of usb keys
 exec udiskie -0 -a -n -T -F --no-appindicator &
-# Windows assignments
-assign [class="Firefox"] → $WS1
-assign [class="qutebrowser"] → $WS1
-assign [class="Riot"] → $WS9
-assign [class="mpv"] → $WS10
-assign [class="Plex"] → $WS10
-# Worskpace assignments
-workspace "0:HDMI" output HDMI-A-1
-workspace "1:www" output DP-3
-workspace "9:chat" output eDP-1
-workspace "10:media" output eDP-1
-workspace "2:term" output DP-4
+
 ## Launch apps
 # Launch Riot on startup
-exec --no-startup-id swaymsg 'workspace "9:chat", exec riot-desktop'
+exec --no-startup-id swaymsg 'exec riot-desktop'
 # Launch browser on startup
-exec --no-startup-id swaymsg 'workspace "1:www", exec qutebrowser'
+exec --no-startup-id swaymsg 'exec qutebrowser'
 # Launch term on startup
-# exec --no-startup-id swaymsg 'workspace "2:term", exec kitty'
+exec --no-startup-id swaymsg 'workspace "2:term", exec alacritty'
 # Going to the main workspace
-exec --no-startup-id swaymsg 'workspace "2:term"'
-# Preparing the background for the lockscreen
-# exec --no-startup-id cp -R /var/cache/lock /tmp/lock
+exec --no-startup-id swaymsg 'workspace "1:term"'
 # Launching polkit agent
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
-
+# Auto-lock screen after some times
 exec swayidle \
          timeout 300 $locker \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep $locker
-
