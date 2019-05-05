@@ -367,7 +367,7 @@ exec --no-startup-id swaymsg 'exec riot-desktop'
 # Launch browser on startup
 exec --no-startup-id swaymsg 'exec qutebrowser'
 # Launch term on startup
-exec --no-startup-id swaymsg 'workspace "2:term", exec alacritty'
+exec --no-startup-id swaymsg 'workspace "1:term", exec alacritty'
 # Going to the main workspace
 exec --no-startup-id swaymsg 'workspace "1:term"'
 # Launching polkit agent

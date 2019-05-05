@@ -200,6 +200,9 @@ call plug#begin('~/.vim/plugged')
 	" JS auto import
 	Plug 'Galooshi/vim-import-js'
 
+	" See git commit under the cursor with <leader>gm
+	Plug 'rhysd/git-messenger.vim'
+
 call plug#end()
 
 """ Addons configuration
