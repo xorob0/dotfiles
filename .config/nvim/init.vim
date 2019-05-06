@@ -164,7 +164,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'luochen1990/rainbow'
 
 	" Magnificent theme
-	Plug 'arcticicestudio/nord-vim'
+	Plug 'ayu-theme/ayu-vim'
 
 	" Show indent level
 	Plug 'nathanaelkane/vim-indent-guides'
@@ -339,20 +339,9 @@ else
 endif
 
 "" Theme
-if !exists('g:not_finish_vimplug')
-	" Enable italic
-	let g:nord_italic = 1
-	let g:nord_italic_comments = 1
-	" Uniform status lines
-	let g:nord_uniform_status_lines = 1
-	" Comment brightness
-	" set termguicolors
-	let g:nord_comment_brightness = 12
-
-	" Activation
-	colorscheme nord
-endif
-hi Normal guibg=NONE ctermbg=NONE
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 
 "" Translation
 let g:trans_default_source = "fr"
