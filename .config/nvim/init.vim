@@ -172,7 +172,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline'
 
 	" Translations in vim buffer
-	" Plug 'soywod/vim-translate'
+	Plug 'VincentCordobes/vim-translate'
 	
 	" Pretty code
 	Plug 'prettier/vim-prettier'
@@ -188,6 +188,8 @@ call plug#begin('~/.vim/plugged')
 
 	" Fuzzy file finder
 	Plug 'junegunn/fzf'
+	" Fuzzy search settings
+	Plug 'teto/nvim-palette', { 'do': ':UpdateRemotePlugins'}
 	" Fuzzy word finder
 	Plug 'mileszs/ack.vim'
 
@@ -196,6 +198,8 @@ call plug#begin('~/.vim/plugged')
 
 	" Markdown preview
 	Plug 'iamcco/markdown-preview.nvim'
+	" LaTeX preview
+	Plug 'donRaphaco/neotex', { 'for': 'tex' }
 
 	" JS auto import
 	Plug 'Galooshi/vim-import-js'

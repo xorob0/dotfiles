@@ -158,7 +158,7 @@ bindsym $mod+escape exec xkill
 bindsym Mod4+d exec $menu
 bindsym Mod4+space exec $menu
 # Start the browser
-bindsym Mod4+w workspace_auto_back_and_forth no, workspace 1:www, exec $browser, workspace_auto_back_and_forth yes
+bindsym Mod4+w workspace_auto_back_and_forth no, workspace 2:www, exec $browser, workspace_auto_back_and_forth yes
 # Open password-store manager
 bindsym Mod4+slash exec passmenu
 # Drag floating windows by holding down $mod and left mouse button.
@@ -346,12 +346,13 @@ assign [class="qutebrowser"] → $WS2
 assign [class="Riot"] → $WS9
 assign [class="mpv"] → $WS10
 assign [class="Plex"] → $WS10
+# Automatic focus of urgent workspace
+for_window [urgent="latest"] focus
 # Worskpace assignments
 workspace "0:HDMI" output HDMI-A-1
 workspace "2:www" output DP-3
 workspace "9:chat" output eDP-1
 workspace "10:media" output eDP-1
-workspace "1:term" output DP-4
 
 ## Startup programs
 # Launch dunst
