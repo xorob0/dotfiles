@@ -341,12 +341,16 @@ if !exists('g:not_finish_vimplug')
 	" Enable italic
 	let g:nord_italic = 1
 	let g:nord_italic_comments = 1
+	" Enable underlined
+	let g:nord_underline = 1
 	" Uniform status lines
 	let g:nord_uniform_status_lines = 1
-	" Comment brightness
-	" set termguicolors
-	let g:nord_comment_brightness = 12
-
+	" Better looking diff
+	let g:nord_uniform_diff_background = 1
+	" Background goes all the way to the numbers
+	let g:nord_cursor_line_number_background = 1
+	" Better looking separations
+	let g:nord_bold_vertical_split_line = 1
 	" Activation
 	colorscheme nord
 endif

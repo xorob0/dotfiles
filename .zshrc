@@ -130,14 +130,23 @@ alias zshrc="$EDITOR ~/.zshrc"
 # History access
 alias h="history"
 # Obligatory git aliases
+alias g="git"
 alias ga="git add"
 alias gc="git commit -m"
+alias gcl="git clone"
 alias gca="git add -A && git commit -am"
+alias gcA="git commit -am"
 alias gcap="git add -A && git commit -am && git push"
 alias gpl="git pull"
 alias gp="git push"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
 alias gs="git status -s"
+alias gb="git branch"
+alias gd="git diff"
+alias gi="git init"
+alias gm="git merge"
+alias gmv="git mv"
+alias grm="git rm"
 # Git cz aliass
 alias gcz="git cz && git push"
 alias gczr="git add -A && git cz --retry && git push"
@@ -176,7 +185,7 @@ alias _='sudo'
 alias wm='wifi-menu -o'
 alias wmm='wifi-menu'
 # editor
-alias e='$EDITOR'
+alias -g e='$EDITOR'
 alias se='sudo $EDITOR'
 # Python
 alias p='python'
