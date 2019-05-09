@@ -164,7 +164,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'luochen1990/rainbow'
 
 	" Magnificent theme
-	Plug 'ayu-theme/ayu-vim'
+	Plug 'arcticicestudio/nord-vim'
 
 	" Show indent level
 	Plug 'nathanaelkane/vim-indent-guides'
@@ -188,8 +188,6 @@ call plug#begin('~/.vim/plugged')
 
 	" Fuzzy file finder
 	Plug 'junegunn/fzf'
-	" Fuzzy search settings
-	Plug 'teto/nvim-palette', { 'do': ':UpdateRemotePlugins'}
 	" Fuzzy word finder
 	Plug 'mileszs/ack.vim'
 
@@ -339,9 +337,20 @@ else
 endif
 
 "" Theme
-set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+if !exists('g:not_finish_vimplug')
+	" Enable italic
+	let g:nord_italic = 1
+	let g:nord_italic_comments = 1
+	" Uniform status lines
+	let g:nord_uniform_status_lines = 1
+	" Comment brightness
+	" set termguicolors
+	let g:nord_comment_brightness = 12
+
+	" Activation
+	colorscheme nord
+endif
+hi Normal guibg=NONE ctermbg=NONE
 
 "" Translation
 let g:trans_default_source = "fr"
