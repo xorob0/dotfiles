@@ -86,7 +86,7 @@ for s in netifaces.interfaces():
             interface=s,
             color_up=nord14,
             color_down=nord11,
-            format_up=" FP2,
+            format_up=" FP2",
             format_down="",)
     else:
         status.register("network",
