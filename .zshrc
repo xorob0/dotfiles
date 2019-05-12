@@ -155,6 +155,8 @@ alias gczu="git add -u && git cz && git push"
 alias gczA="git add . && git cz && git push"
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
+alias t='trizen'
+alias update='trizen -Syu'
 # Cool gtypist
 alias gtypist='gtypist -b -i'
 # Top order
