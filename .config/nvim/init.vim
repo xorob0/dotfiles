@@ -134,7 +134,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'terryma/vim-multiple-cursors'
 
 	" Code formating (see the github page for the compatible formatters)
-	Plug 'sbdchd/neoformat'
+	" Plug 'sbdchd/neoformat'
 
 	" Add git status
 	Plug 'mhinz/vim-signify'
@@ -175,7 +175,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'VincentCordobes/vim-translate'
 	
 	" Pretty code
-	Plug 'prettier/vim-prettier'
+	" Plug 'prettier/vim-prettier'
 
 	" Tagbar
 	Plug 'majutsushi/tagbar'
@@ -204,6 +204,9 @@ call plug#begin('~/.vim/plugged')
 
 	" See git commit under the cursor with <leader>gm
 	Plug 'rhysd/git-messenger.vim'
+
+	" Manage taskwarrior and timewarrior from vim
+	Plug 'soywod/kronos.vim'
 
 call plug#end()
 
@@ -240,15 +243,15 @@ let g:ale_completion_enabled = 1
 
 "" Neoformat
 " Enable alignment
-let g:neoformat_basic_format_align = 1
-" Enable tab to spaces conversion
-let g:neoformat_basic_format_retab = 1
-" Enable trimmming of trailing whitespace
-let g:neoformat_basic_format_trim = 1
+" let g:neoformat_basic_format_align = 1
+" " Enable tab to spaces conversion
+" let g:neoformat_basic_format_retab = 1
+" " Enable trimmming of trailing whitespace
+" let g:neoformat_basic_format_trim = 1
 
-" Auto prettify js
-autocmd BufWritePre *.js Neoformat
-autocmd BufWritePre *.ts Neoformat
+" " Auto prettify js
+" autocmd BufWritePre *.js Neoformat
+" autocmd BufWritePre *.ts Neoformat
 
 "" Flow
 " Don't show quickfix
@@ -288,8 +291,13 @@ let b:delimitMate_expand_cr = 1
 " See undo tree with F5
 nnoremap <F5> :UndotreeToggle<cr>
 
+" COC magical shortcues" === coc.nvim === "
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
+
 "" Activate rainbow parentheses
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 "" Activate GitGutter
 let g:gitgutter_realtime = 1
@@ -342,7 +350,7 @@ if !exists('g:not_finish_vimplug')
 	let g:nord_italic = 1
 	let g:nord_italic_comments = 1
 	" Enable underlined
-	let g:nord_underline = 1
+	" let g:nord_underline = 1
 	" Uniform status lines
 	let g:nord_uniform_status_lines = 1
 	" Better looking diff
@@ -469,9 +477,9 @@ if has('unnamedplus')
 	set clipboard=unnamed,unnamedplus
 endif
 
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
+" noremap YY "+y<CR>
+" noremap <leader>p "+gP<CR>
+" noremap XX "+x<CR>
 
 "" New Java class template
 autocmd BufNewFile *.java
