@@ -1,8 +1,12 @@
-""" Gener
+" TODO: Per type config
+""" General
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+
+" Autoload files changes
+set autoread
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -54,12 +58,53 @@ let g:session_command_aliases = 1
 let g:python_host_prog='/usr/bin/python3.7'
 
 " Set map leader
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+"save current buffer
+nnoremap <leader>w :w<cr>
+
+"move lines around
+nnoremap <leader>k :m-2<cr>==
+nnoremap <leader>j :m+<cr>==
+xnoremap <leader>k :m-2<cr>gv=gv
+xnoremap <leader>j :m'>+<cr>gv=gv
+
+"create a new buffer (save it with :w ./path/to/FILENAME)
+nnoremap <leader>B :enew<cr>
+"close current buffer
+nnoremap <leader>bq :bp <bar> bd! #<cr>
+"close all open buffers
+nnoremap <leader>ba :bufdo bd!<cr>
+
+"Tab to switch to next open buffer
+nnoremap <Tab> :bnext<cr>
+"Shift + Tab to switch to previous open buffer
+nnoremap <S-Tab> :bprevious<cr>
+"leader key twice to cycle between last two open buffers
+nnoremap <leader><leader> <c-^>
+
+"move to the split in the direction shown, or create a new split
+nnoremap <silent> <C-h> :call WinMove('h')<cr>
+nnoremap <silent> <C-j> :call WinMove('j')<cr>
+nnoremap <silent> <C-k> :call WinMove('k')<cr>
+nnoremap <silent> <C-l> :call WinMove('l')<cr>
+
+function! WinMove(key)
+  let t:curwin = winnr()
+  exec "wincmd ".a:key
+  if (t:curwin == winnr())
+    if (match(a:key,'[jk]'))
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec "wincmd ".a:key
+  endif
+endfunction
 
 "" Center search completion
-nnoremap n nzz
-nnoremap N Nzz
+noremap <plug>(slash-after) zz
 
 """ Visual
 syntax on
@@ -79,7 +124,47 @@ set gcr=a:blinkon0
 set scrolloff=3
 
 "" Status bar
+function! StatusLine(current, width)
+  let l:s = ''
+
+  if a:current
+    let l:s .= crystalline#mode() . crystalline#right_mode_sep('')
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+  let l:s .= ' %f%h%w%m%r '
+  if a:current
+    let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}'
+  endif
+
+  let l:s .= '%='
+  if a:current
+    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+    let l:s .= crystalline#left_mode_sep('')
+  endif
+  if a:width > 80
+    let l:s .= ' %{&ft}[%{&enc}][%{&ffs}] %l/%L %c%V %P '
+  else
+    let l:s .= ' '
+  endif
+
+  return l:s
+endfunction
+
+function! TabLine()
+  let l:vimlabel = has('nvim') ?  ' NVIM ' : ' VIM '
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'onedark'
+
+set showtabline=2
+set guioptions-=e
 set laststatus=2
+
 
 "" Use modeline overrides
 set modeline
@@ -117,6 +202,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 	Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 	Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
+	Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile'}
 
 	" " Snippets
 	Plug 'honza/vim-snippets'
@@ -133,21 +220,18 @@ call plug#begin('~/.vim/plugged')
 	" Enable multiple curors with <C-n>
 	Plug 'terryma/vim-multiple-cursors'
 
-	" Code formating (see the github page for the compatible formatters)
-	Plug 'sbdchd/neoformat'
-
 	" Add git status
 	Plug 'mhinz/vim-signify'
 
 	" Git wrapper for vim
 	Plug 'tpope/vim-fugitive'
-	Plug 'rbong/vim-flog'
+	Plug 'junegunn/gv.vim'
 
 	" Syntax colorization for almost all languages
 	Plug 'sheerun/vim-polyglot'
 
 	" Automatic opening and closing of parentheses
-	Plug 'Raimondi/delimitMate'
+	" Plug 'Raimondi/delimitMate'
 
 	" Add functions like Delete, Move, SudoWrite,...
 	Plug 'tpope/vim-eunuch'
@@ -169,32 +253,23 @@ call plug#begin('~/.vim/plugged')
 	" Show indent level
 	Plug 'nathanaelkane/vim-indent-guides'
 
-	Plug 'vim-airline/vim-airline'
+	" Custom status line
+	" Plug 'vim-airline/vim-airline'
+	Plug 'rbong/vim-crystalline'
 
 	" Translations in vim buffer
 	Plug 'VincentCordobes/vim-translate'
 	
-	" Pretty code
-	Plug 'prettier/vim-prettier'
-
 	" Tagbar
 	Plug 'majutsushi/tagbar'
 
-	" Flow checking code
-	Plug 'flowtype/vim-flow'
-
 	" " Coloring CSS files
-	" Plug 'ap/vim-css-color'
+	Plug 'ap/vim-css-color'
 
 	" Fuzzy file finder
 	Plug 'junegunn/fzf'
-	" Fuzzy search settings
-	Plug 'teto/nvim-palette', { 'do': ':UpdateRemotePlugins'}
 	" Fuzzy word finder
 	Plug 'mileszs/ack.vim'
-
-	" " abbreviation for html
-	" Plug 'mattn/emmet-vim'
 
 	" Markdown preview
 	Plug 'iamcco/markdown-preview.nvim'
@@ -206,6 +281,18 @@ call plug#begin('~/.vim/plugged')
 
 	" See git commit under the cursor with <leader>gm
 	Plug 'rhysd/git-messenger.vim'
+
+	" Manage taskwarrior and timewarrior from vim
+	Plug 'soywod/kronos.vim'
+
+	" Show registers content before user
+	Plug 'junegunn/vim-peekaboo'
+
+	" Better search
+	Plug 'junegunn/vim-slash'
+
+	" Grammar checking
+	Plug 'rhysd/vim-grammarous'
 
 call plug#end()
 
@@ -228,47 +315,14 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
-
-" Enable completion where available.
-" This setting must be set before ALE is loaded.
-let g:ale_completion_enabled = 1
-
-" " only have emmet on html and css files
-" let g:user_emmet_install_global = 0
-" autocmd FileType html,css EmmetInstall
-" " Using custom shortcut for emmet
-" " let g:user_emmet_expandabbr_key='<C-S-Tab>'
-" imap <expr> <s-tab> emmet#expandAbbrIntelligent("\<s-tab>")
-
-"" Neoformat
-" Enable alignment
-let g:neoformat_basic_format_align = 1
-" Enable tab to spaces conversion
-let g:neoformat_basic_format_retab = 1
-" Enable trimmming of trailing whitespace
-let g:neoformat_basic_format_trim = 1
-
-" Auto prettify js
-autocmd BufWritePre *.js Neoformat
-autocmd BufWritePre *.ts Neoformat
-
 "" Flow
 " Don't show quickfix
 let g:flow#showquickfix = 0
 
 ""DelimitMate
 " Visual Studio like braces
-let b:delimitMate_expand_space = 1
-let b:delimitMate_expand_cr = 1
-
-"" Javacomplete2
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-nmap <F4> <Plug>(JavaComplete-Imports-Add)
-imap <F4> <Plug>(JavaComplete-Imports-Add)
-nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
-imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
-nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
-imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+" let b:delimitMate_expand_space = 1
+" let b:delimitMate_expand_cr = 1
 
 "" NerdTREE
 " User NerdTREE on directories
@@ -282,13 +336,13 @@ let g:NERDTreeMinimalUI=1
 noremap <S-CR> :NERDTreeFocus<CR>
 noremap <C-S-CR> :NERDTreeFocus<CR>
 
+" See undo tree with leader U
+nnoremap <leader>u :UndotreeToggle<cr>
 
-"" Visual Studio like braces
-let b:delimitMate_expand_space = 1
-let b:delimitMate_expand_cr = 1
-
-" See undo tree with F5
-nnoremap <F5> :UndotreeToggle<cr>
+" COC magical shortcues" === coc.nvim === "
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 "" Activate rainbow parentheses
 let g:rainbow_active = 1
@@ -343,12 +397,16 @@ if !exists('g:not_finish_vimplug')
 	" Enable italic
 	let g:nord_italic = 1
 	let g:nord_italic_comments = 1
+	" Enable underlined
+	" let g:nord_underline = 1
 	" Uniform status lines
 	let g:nord_uniform_status_lines = 1
-	" Comment brightness
-	" set termguicolors
-	let g:nord_comment_brightness = 12
-
+	" Better looking diff
+	let g:nord_uniform_diff_background = 1
+	" Background goes all the way to the numbers
+	let g:nord_cursor_line_number_background = 1
+	" Better looking separations
+	let g:nord_bold_vertical_split_line = 1
 	" Activation
 	colorscheme nord
 endif
@@ -440,13 +498,6 @@ let g:mkdp_port = ''
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
 
-""" Mapping
-"" Window switching with leader
-" map <leader>h :wincmd h<CR>
-" map <leader>j :wincmd j<CR>
-" map <leader>k :wincmd k<CR>
-" map <leader>l :wincmd l<CR>
-
 "" JS auto import
 map <leader>f :ImportJSFix<CR>
 map <leader>w :ImportJSWord<CR>
@@ -467,9 +518,9 @@ if has('unnamedplus')
 	set clipboard=unnamed,unnamedplus
 endif
 
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
+" noremap YY "+y<CR>
+" noremap <leader>p "+gP<CR>
+" noremap XX "+x<CR>
 
 "" New Java class template
 autocmd BufNewFile *.java
@@ -477,8 +528,8 @@ autocmd BufNewFile *.java
 
 "" Folds
 " Using Shift-Tab to open and close folds
-" nnoremap <s-tab> za
-" not as cool as syntax, but faster
-set foldmethod=indent               
+nnoremap <CR> za
+" fold word depending on syntax
+set foldmethod=syntax          
 " start unfolded
-set foldlevelstart=99               
+set foldlevelstart=2              
