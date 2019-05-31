@@ -7,6 +7,9 @@ export ANDROID_HOME=/opt/android-sdk
 # No xdg dir
 export XDG_DESKTOP_DIR=/dev/null
 
+# termial for mimeopen
+export TERMINAL="/usr/bin/alacritty -e"
+
 # Adding /urs/local/bin to the path
 export PATH=$HOME/.bin::$PATH
 

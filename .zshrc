@@ -184,8 +184,8 @@ alias -g G='| grep'
 # Easy Sudo
 alias _='sudo'
 # Wifi-menu (obfscated and non-obfuscated passwords)
-alias wm='wifi-menu -o'
-alias wmm='wifi-menu'
+alias wm='sudo wifi-menu -o'
+alias wmm='sudo wifi-menu'
 # editor
 alias -g e='$EDITOR'
 alias se='sudo $EDITOR'
@@ -199,9 +199,29 @@ alias nger="ranger"
 alias zl='xhost +local'
 # Youtube downloades
 alias yt='youtube-dl'
-# Temporary alias for note taking during my internship
-alias jrnl='e /home/toum/Documents/Ecole/2018-2019/Stage/`date +"%Y%m%d"`.md'
+# easier open
+alias open 'mimeopen'
+alias o 'mimeopen'
 
+# nnn config
+# export NNN_USE_EDITOR=1
+# export NNN_BMS="D:~/Downloads;d:~/Documents"
+# export NNN_OPENER=mimeopen
+# export NNN_CONTEXT_COLORS="5678"
+# export NNN_IDLE_TIMEOUT=900
+# export NNN_PLAIN_FILTER=1
+# export NNN_OPS_PROG=1
+# export NNN_TRASH=1 
+
+n()
+{
+	NNN_TMPFILE="/tmp/nnn" nnn "$@"
+
+	if [ -f $NNN_TMPFILE ]; then
+		. $NNN_TMPFILE
+		/bin/rm $NNN_TMPFILE
+	fi
+}
 
 ### Completion things
 # Launch comletion module

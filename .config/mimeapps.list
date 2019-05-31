@@ -13,7 +13,8 @@ application/x-extension-xht=qutebrowser.desktop;
 x-scheme-handler/mailto=thunderbird.desktop;
 message/rfc822=thunderbird.desktop;
 message/rfc822=thunderbird.desktop;
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;org.pwmt.zathura.desktop;
+application/pdf=xpdf.desktop
+x-scheme-handler/ssh=Hyper.desktop
 
 [Added Associations]
 x-scheme-handler/http=qutebrowser.desktop;userapp-Firefox Developer Edition-9Y5UTY.desktop;firefox.desktop;userapp-Nightly-5G26BZ.desktop;
@@ -32,3 +33,7 @@ application/x-bittorrent=transmission-qt.desktop;transmission-remote-gtk.desktop
 x-scheme-handler/mailto=thunderbird.desktop;
 message/rfc822=thunderbird.desktop;
 application/zip=org.pwmt.zathura-pdf-mupdf.desktop;org.pwmt.zathura.desktop;
+text/markdown=nvim.desktop;
+application/x-perl=nvim.desktop;
+image/png=imv.desktop;
+image/jpeg=imv.desktop;
