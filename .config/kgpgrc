@@ -1,0 +1,11 @@
+[GPG Settings]
+gpg_config_path[$e]=$HOME/.gnupg/gpg.conf
+
+[General Options]
+First run=false
+
+[MainWindow]
+Height 1080=1060
+State=AAAA/wAAAAD9AAAAAAAAA7MAAAPVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1920=947

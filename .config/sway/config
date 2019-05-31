@@ -77,8 +77,10 @@ default_border pixel 1
 hide_edge_borders both
 # Gaps settings
 smart_gaps on
-gaps inner 5
-gaps outer 5
+gaps {
+	inner 5
+	outer 5
+} 
 # Allow back and forth
 workspace_auto_back_and_forth yes
 
@@ -87,18 +89,19 @@ workspace_auto_back_and_forth yes
 ########################
 
 # Wallpaper
-output "*" background ~/Pictures/Wallpapers/background.png fill
-# HDMI Out up
-# output HDMI-A-1 pos 3060,0
-# HDMI Out as mirror
-# output HDMI-A-1 layout none mirror eDP-1
+output "*" {
+	background ~/Pictures/Wallpapers/background.png fill
+	res 1920x1080
+}
 # HDMI on dock on the left
-output DP-3 pos 0,1080  res 1920x1080
-# Laptop screen on the right
-output eDP-1 pos 3060,1080 res 1920x1080
+output DP-3 pos 0,1080  
 # DisplayPort output in the center
-output DP-4 pos 1920,1080 
-output DP-4 transform 270
+output DP-4 {
+	pos 1920,1080 
+	transform 270
+}
+# Laptop screen on the right
+output eDP-1 pos 3060,1080
 
 #######################
 # Input configuration #
@@ -106,42 +109,21 @@ output DP-4 transform 270
 # Touchpad config (on Nelya)
 input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
 	dwt enabled
-		tap enabled
-		natural_scroll enabled
-		middle_emulation enabled
-		scroll_method two_finger
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+	scroll_method two_finger
 }
 # Keyboard imput
-input "1:1:AT_Translated_Set_2_keyboard" {
+input * {
 	events enabled
   repeat_delay 200
-  repeat_rate 20
+  repeat_rate 30
   xkb_layout us
   xkb_variant intl
   xkb_options caps:escape,shift:both_shiftlock
 }
-# Anne pro input
-input "13:0:ANNE_KB_L0_7156" {
-	events enabled
-}
 
-input "1241:373:USB-HID_Keyboard" {
-	events enabled
-  repeat_delay 200
-  repeat_rate 20
-  xkb_layout us
-  xkb_variant intl
-  xkb_options caps:escape
-}
-
-input "65261:4871:ErgoDox_EZ_ErgoDox_EZ" {
-	events enabled
-  repeat_delay 200
-  repeat_rate 20
-  xkb_layout us
-  xkb_variant intl
-  xkb_options caps:escape
-}
 ################
 # Key bindings #
 ################
@@ -152,7 +134,7 @@ bindsym Mod4+s exec $term
 bindsym Mod4+f exec $term -e sh -c "~/.scripts/ranger.sh"
 # Kill focused window
 bindsym Mod4+q kill
-# Force kill focused window
+#jForce kill focused window
 bindsym $mod+escape exec xkill
 # Start your launcher
 bindsym Mod4+d exec $menu
@@ -302,7 +284,6 @@ mode $mode_power {
 	bindsym Shift+s exec systemctl poweroff -i, mode "default"
 	bindsym w exec rm /tmp/xorgon, exit, mode "default"
 	bindsym x exec touch /tmp/xorgon, exit, mode "default"
-	bindsym Shift+w exec sudo grub-reboot 'Windaube' && systemctl reboot, mode "default"
 	# Return to default mode
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -348,6 +329,8 @@ assign [class="mpv"] → $WS10
 assign [class="Plex"] → $WS10
 # Automatic focus of urgent workspace
 for_window [urgent="latest"] focus
+for_window [urgent="latest"] focus
+for_window [title="gvim"] floating enable
 # Worskpace assignments
 workspace "0:HDMI" output HDMI-A-1
 workspace "2:www" output DP-3
@@ -375,7 +358,7 @@ exec --no-startup-id swaymsg 'workspace "1:term"'
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
 # Auto-lock screen after some times
 exec swayidle \
-         timeout 300 $locker \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep $locker
+	timeout 300 $locker \
+	timeout 600 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep $locker

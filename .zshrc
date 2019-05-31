@@ -130,13 +130,23 @@ alias zshrc="$EDITOR ~/.zshrc"
 # History access
 alias h="history"
 # Obligatory git aliases
+alias g="git"
 alias ga="git add"
 alias gc="git commit -m"
-alias gca="git commit -am"
+alias gcl="git clone"
+alias gca="git add -A && git commit -am"
+alias gcA="git commit -am"
+alias gcap="git add -A && git commit -am && git push"
 alias gpl="git pull"
 alias gp="git push"
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
 alias gs="git status -s"
+alias gb="git branch"
+alias gd="git diff"
+alias gi="git init"
+alias gm="git merge"
+alias gmv="git mv"
+alias grm="git rm"
 # Git cz aliass
 alias gcz="git cz && git push"
 alias gczr="git add -A && git cz --retry && git push"
@@ -145,6 +155,8 @@ alias gczu="git add -u && git cz && git push"
 alias gczA="git add . && git cz && git push"
 # Automatic sudo for pacman
 alias pacman='sudo pacman'
+alias t='trizen'
+alias update='trizen -Syu'
 # Cool gtypist
 alias gtypist='gtypist -b -i'
 # Top order
@@ -172,10 +184,10 @@ alias -g G='| grep'
 # Easy Sudo
 alias _='sudo'
 # Wifi-menu (obfscated and non-obfuscated passwords)
-alias wm='wifi-menu -o'
-alias wmm='wifi-menu'
+alias wm='sudo wifi-menu -o'
+alias wmm='sudo wifi-menu'
 # editor
-alias e='$EDITOR'
+alias -g e='$EDITOR'
 alias se='sudo $EDITOR'
 # Python
 alias p='python'
@@ -187,9 +199,29 @@ alias nger="ranger"
 alias zl='xhost +local'
 # Youtube downloades
 alias yt='youtube-dl'
-# Temporary alias for note taking during my internship
-alias jrnl='e /home/toum/Documents/Ecole/2018-2019/Stage/`date +"%Y%m%d"`.md'
+# easier open
+alias open 'mimeopen'
+alias o 'mimeopen'
 
+# nnn config
+# export NNN_USE_EDITOR=1
+# export NNN_BMS="D:~/Downloads;d:~/Documents"
+# export NNN_OPENER=mimeopen
+# export NNN_CONTEXT_COLORS="5678"
+# export NNN_IDLE_TIMEOUT=900
+# export NNN_PLAIN_FILTER=1
+# export NNN_OPS_PROG=1
+# export NNN_TRASH=1 
+
+n()
+{
+	NNN_TMPFILE="/tmp/nnn" nnn "$@"
+
+	if [ -f $NNN_TMPFILE ]; then
+		. $NNN_TMPFILE
+		/bin/rm $NNN_TMPFILE
+	fi
+}
 
 ### Completion things
 # Launch comletion module

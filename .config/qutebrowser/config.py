@@ -3,8 +3,14 @@
 
 path = str(config.configdir)
 
+# Blocking distracting websites
+c.content.host_blocking.lists.append( str(config.configdir) + "/blockedHosts")
+
 # Uncomment this to still load settings configured via autoconfig.yml
 # config.load_autoconfig()
+
+# Setting editor
+# config.set('editor.command', True,  '/usr/bin/alacritty -t floating -e /usr/bin/nvim "{}"')
 
 # Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 # environment variable and is useful to force using the XCB plugin when
@@ -208,3 +214,4 @@ config.bind('e', 'spawn --userscript qutepass.py --username xorob0')
 config.bind('gi', 'jseval -q -f ' + str(config.datadir) +'/userscripts/cycle-inputs.js')
 config.bind('aa', 'spawn --userscript jsAllow.py -a')
 config.bind('au', 'spawn --userscript jsAllow.py -u')
+config.bind('I', 'open-editor')
