@@ -34,7 +34,7 @@ set $right l
 # Using alacritty as main terminal emulator
 set $term alacritty
 # Using j4-dmenu to launch programs
-set $menu "rofi -combi-modi window,drun -show combi"
+set $menu "sh ~/.scripts/rofi.sh"
 # Using firefox as main browser
 set $browser qutebrowser
 # Using pavanjadhaw/betterlockscreen
@@ -344,6 +344,8 @@ exec dunst &
 exec libinput-gestures-setup start &> /dev/null
 # Automounting of usb keys
 exec udiskie -0 -a -n -T -F --no-appindicator &
+# Automounting of usb keys
+exec python3 ~/.scripts/inactive-windows-transparency.py &
 
 ## Launch apps
 # Launch Riot on startup

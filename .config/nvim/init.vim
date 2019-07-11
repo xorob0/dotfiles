@@ -247,6 +247,9 @@ call plug#begin('~/.vim/plugged')
 	" Colorize parentheses
 	Plug 'luochen1990/rainbow'
 
+	" Cool surround control"
+	Plug 'machakann/vim-sandwich'
+
 	" Magnificent theme
 	Plug 'arcticicestudio/nord-vim'
 
@@ -293,6 +296,9 @@ call plug#begin('~/.vim/plugged')
 
 	" Grammar checking
 	Plug 'rhysd/vim-grammarous'
+
+	" Smart f 
+	Plug 'rhysd/clever-f.vim'
 
 call plug#end()
 
@@ -533,3 +539,6 @@ nnoremap <CR> za
 set foldmethod=syntax          
 " start unfolded
 set foldlevelstart=2              
+
+"" Smart f settings
+let g:clever_f_smart_case = 1

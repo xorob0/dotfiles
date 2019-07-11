@@ -137,7 +137,7 @@ c.tabs.width = '10%'
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-c.url.default_page = 'https://qwant.com'
+c.url.default_page = 'https://org.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=1&shb=0&shl=1'
 
 # Open base URL of the searchengine if a searchengine shortcut is
 # invoked without parameters.
@@ -158,7 +158,7 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # Type: Dict
 
 searchengines = {
-    'DEFAULT' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
+    'DEFAULT' : 'https://org.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=1&shb=0&shl=1&q={}',
     'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
     'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
     'acom' : 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}',
