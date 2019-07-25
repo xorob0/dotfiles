@@ -145,7 +145,7 @@ c.url.default_page = 'https://org.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&
 c.url.open_base_url = True
 
 # Window title format
-c.window.title_format = '{title}{title_sep}{current_url}'
+# c.window.title_format = '{title}{title_sep}{current_url}'
 
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -158,9 +158,10 @@ c.window.title_format = '{title}{title_sep}{current_url}'
 # Type: Dict
 
 searchengines = {
-    'DEFAULT' : 'https://org.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=1&shb=0&shl=1&q={}',
+    'DEFAULT' : 'https://www.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&vt=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=0&shb=0&shl=1&q={}',
     'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
     'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
+    'cb' : 'https://www.coolblue.be/en/search?query={}',
     'acom' : 'https://www.amazon.com/s/ref=nb_sb_noss?field-keywords={}',
     'acomw' : 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
     'ade' : 'https://www.amazon.de/s/ref=nb_sb_noss?field-keywords={}',
@@ -215,3 +216,4 @@ config.bind('gi', 'jseval -q -f ' + str(config.datadir) +'/userscripts/cycle-inp
 config.bind('aa', 'spawn --userscript jsAllow.py -a')
 config.bind('au', 'spawn --userscript jsAllow.py -u')
 config.bind('I', 'open-editor')
+config.bind('h', 'back')

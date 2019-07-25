@@ -206,10 +206,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile'}
 
 	" " Snippets
-	Plug 'honza/vim-snippets'
+	" Plug 'honza/vim-snippets'
 
 	" Linter
-	Plug 'w0rp/ale'
+	" Plug 'w0rp/ale'
 
 	" Change date with <C-A> and <C-X>
 	Plug 'tpope/vim-speeddating'
@@ -226,6 +226,7 @@ call plug#begin('~/.vim/plugged')
 	" Git wrapper for vim
 	Plug 'tpope/vim-fugitive'
 	Plug 'junegunn/gv.vim'
+	Plug 'tpope/vim-rhubarb'
 
 	" Syntax colorization for almost all languages
 	Plug 'sheerun/vim-polyglot'
@@ -300,6 +301,15 @@ call plug#begin('~/.vim/plugged')
 	" Smart f 
 	Plug 'rhysd/clever-f.vim'
 
+	" Fancy start screen
+	Plug 'mhinz/vim-startify'
+
+	" Automatic recizing of the current window
+	Plug 'roman/golden-ratio'
+
+	" Focus mode
+	Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
+
 call plug#end()
 
 """ Addons configuration
@@ -338,6 +348,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Disable display of '?' text and 'Bookmarks' label.
 let g:NERDTreeMinimalUI=1
+let g:NERDTreeWinPos = "right"
 " Opening NERDTree with SHift-Enter
 noremap <S-CR> :NERDTreeFocus<CR>
 noremap <C-S-CR> :NERDTreeFocus<CR>
