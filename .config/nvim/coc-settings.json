@@ -1,0 +1,13 @@
+{
+	"suggest.noselect": true,
+	"suggest.snippetIndicator": " ►",
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact"],
+  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+	"prettier.eslintIntegration": true,
+	"prettier.stylelintIntegration": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•"
+}
