@@ -37,8 +37,6 @@ set $term alacritty
 set $menu "sh ~/.scripts/rofi.sh"
 # Using firefox as main browser
 set $browser qutebrowser
-# Using pavanjadhaw/betterlockscreen
-#set $locker lock --lock
 # Using swaylock to lock the screen the right way
 set $locker grim /tmp/screenshot.png && convert -scale 10% -scale 1000% /tmp/screenshot.png /tmp//blur.png && swaylock -i /tmp/blur.png && rm -Rf /tmp/screenshot.png
 
@@ -130,12 +128,8 @@ input * {
 # Start a terminal
 bindsym Mod4+Return exec $term
 bindsym Mod4+s exec $term
-# Start a terminal with ranger
-# bindsym Mod4+f exec $term -e sh -c "~/.scripts/ranger.sh"
 # Kill focused window
 bindsym Mod4+q kill
-#Force kill focused window
-# bindsym $mod+escape exec xkill
 # Start your launcher
 bindsym Mod4+d exec $menu
 bindsym Mod4+space exec $menu
@@ -211,10 +205,6 @@ bindsym $mod+v splitv
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+a layout tabbed
-# Using ,./\;
-bindsym $mod+comma toggle split
-bindsym $mod+period auto_left
-bindsym $mod+colon layout auto next
 # Make the current focus fullscreen
 bindsym $mod+x fullscreen
 # Toggle the current focus between tiling and floating mode
@@ -287,11 +277,10 @@ mode $mode_power {
 }
 bindsym $mod+0 mode $mode_power
 # Screenshots interface
-set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
+set $mode_screenshot "Screenshot (a) full screen, (f) focused"
 mode $mode_screenshot {
 	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
 	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
-	bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
 	# return to default mode
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -314,6 +303,7 @@ bar {
 	# Hidden bar and show with $mod
 	mode hide
 	hidden_state hide
+
 	modifier $mod
 	strip_workspace_numbers yes
 	status_command i3status 
