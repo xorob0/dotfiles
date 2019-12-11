@@ -1,0 +1,18 @@
+{
+	"suggest.noselect": true,
+	"suggest.snippetIndicator": " ►",
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "dart"],
+	"prettier.eslintIntegration": true,
+	"prettier.tslintIntegration": true,
+	"prettier.stylelintIntegration": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+	"codeLens.enable": false,
+	"tslint.jsEnable": true,
+	"tslint.autoFixOnSave": true,
+	"jest.terminalPosition": "bottom",
+	"deno.enable": true
+}
