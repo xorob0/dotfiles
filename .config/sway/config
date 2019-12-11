@@ -1,0 +1,363 @@
+###############
+### General ###
+###############
+# Setting up font
+font pango: InconsolataLGC Nerd Font 9
+
+set $nord0 #2E3440
+set $nord1 #3B4252
+set $nord2 #434C5E
+set $nord3 #4C566A
+set $nord4 #D8DEE9
+set $nord5 #E5E9F0
+set $nord6 #ECEFF4
+set $nord7 #8FBCBB
+set $nord8 #88C0D0
+set $nord9 #81A1C1
+set $nord10 #5E81AC
+set $nord11 #BF616A
+set $nord12 #D08770
+set $nord13 #EBCB8B
+set $nord14 #A3BE8C
+set $nord15 #B48EAD
+
+#############
+# Variables #
+#############
+# Using Alt as main modifier
+set $mod Mod1
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Using alacritty as main terminal emulator
+set $term alacritty
+# Using j4-dmenu to launch programs
+set $menu "sh ~/.scripts/rofi.sh"
+# Using firefox as main browser
+set $browser qutebrowser
+# Using pavanjadhaw/betterlockscreen
+#set $locker lock --lock
+# Using swaylock to lock the screen the right way
+set $locker grim /tmp/screenshot.png && convert -scale 10% -scale 1000% /tmp/screenshot.png /tmp//blur.png && swaylock -i /tmp/blur.png && rm -Rf /tmp/screenshot.png
+
+# Workspace keys on qwerty
+set $Key1 q
+set $Key2 w
+set $Key3 e
+set $Key4 r
+set $Key5 t
+set $Key6 y
+set $Key7 u
+set $Key8 i
+set $Key9 o
+set $Key10 p
+set $KeyHDMI semicolon
+# Workspace names
+set $WS1 1:term
+set $WS2 2:www
+set $WS3 3
+set $WS4 4
+set $WS5 5
+set $WS6 6
+set $WS7 7
+set $WS8 8:dl
+set $WS9 9:chat
+set $WS10 10:media
+set $WSHDMI 0:HDMI
+
+############
+# Settings #
+############
+
+# Hide borders when using only one program
+hide_edge_borders both
+# Gaps settings
+smart_gaps on
+gaps {
+	inner 5
+	outer 5
+} 
+# Allow back and forth
+workspace_auto_back_and_forth yes
+
+########################
+# Output configuration #
+########################
+
+# Wallpaper
+output "*" background ~/Pictures/background.jpg fill
+# HDMI dongle on top
+output DP-2 pos 3060,0 
+output DP-1 pos 3060,0 
+# HDMI on dock on the left
+output DP-3 pos 0,2160  
+# HDMI on dock on the left
+output DP-3 pos 0,2160  res 1920x1080
+# Laptop screen on the right
+output eDP-1 pos 3060,2160 res 1920x1080
+output eDP-1 scale 2
+# DisplayPort output in the center
+output DP-4 {
+	pos 1920,2160 
+	transform 270
+}
+
+#######################
+# Input configuration #
+#######################
+input * {
+# Keyboard
+	events enabled
+  repeat_delay 200
+  repeat_rate 30
+  xkb_layout us
+  xkb_variant intl
+  xkb_options caps:escape,shift:both_shiftlock
+
+# Touchpad
+	dwt enabled
+	tap enabled
+	natural_scroll enabled
+	middle_emulation enabled
+	scroll_method two_finger
+}
+
+################
+# Key bindings #
+################
+# Start a terminal
+bindsym Mod4+Return exec $term
+bindsym Mod4+s exec $term
+# Start a terminal with ranger
+# bindsym Mod4+f exec $term -e sh -c "~/.scripts/ranger.sh"
+# Kill focused window
+bindsym Mod4+q kill
+#Force kill focused window
+# bindsym $mod+escape exec xkill
+# Start your launcher
+bindsym Mod4+d exec $menu
+bindsym Mod4+space exec $menu
+# Start the browser
+bindsym Mod4+w  exec $browser
+# Open password-store manager
+bindsym Mod4+slash exec rofi-pass 
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
+floating_modifier $mod normal
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Launch calculator
+bindsym Mod4+c exec speedcrunch
+## Moving around
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# _move_ the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# Move the focused workspace to main screen
+bindsym $mod+Shift+backspace move workspace to output eDP-1
+# Move the focused workspace to dock's HDMI
+bindsym $mod+Shift+minus move workspace to output DP-3
+# Move the focused workspace to DP
+bindsym $mod+Shift+equal move workspace to output DP-4
+# switch to workspace
+bindsym $mod+$Key1 workspace $WS1
+bindsym $mod+$Key2 workspace $WS2
+bindsym $mod+$Key3 workspace $WS3
+bindsym $mod+$Key4 workspace $WS4
+bindsym $mod+$Key5 workspace $WS5
+bindsym $mod+$Key6 workspace $WS6
+bindsym $mod+$Key7 workspace $WS7
+bindsym $mod+$Key8 workspace $WS8
+bindsym $mod+$Key9 workspace $WS9
+bindsym $mod+$Key10 workspace $WS10
+bindsym $mod+$KeyHDMI workspace $WSHDMI
+# move focused container to workspace
+bindsym $mod+Shift+$Key1 move container to workspace $WS1
+bindsym $mod+Shift+$Key2 move container to workspace $WS2
+bindsym $mod+Shift+$Key3 move container to workspace $WS3
+bindsym $mod+Shift+$Key4 move container to workspace $WS4
+bindsym $mod+Shift+$Key5 move container to workspace $WS5
+bindsym $mod+Shift+$Key6 move container to workspace $WS6
+bindsym $mod+Shift+$Key7 move container to workspace $WS7
+bindsym $mod+Shift+$Key8 move container to workspace $WS8
+bindsym $mod+Shift+$Key9 move container to workspace $WS9
+bindsym $mod+Shift+$Key10 move container to workspace $WS10
+bindsym $mod+Shift+$KeyHDMI move container to workspace $WSHDMI
+## Layout stuff
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+a layout tabbed
+# Using ,./\;
+bindsym $mod+comma toggle split
+bindsym $mod+period auto_left
+bindsym $mod+colon layout auto next
+# Make the current focus fullscreen
+bindsym $mod+x fullscreen
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+m focus mode_toggle
+# Move focus to the parent container
+bindsym $mod+1 focus parent
+# Toggle border styles
+bindsym $mod+Shift+b border toggle
+# Stick window
+bindsym $mod+z sticky toggle
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+g move scratchpad
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+g scratchpad show
+
+# Screenshot on Print Screen
+bindsym Print swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
+## Dmenu scripts
+# Use OTP with a Yubikey
+bindsym Mod4+y exec ~/.scripts/dmenuYubi.sh
+# VPN chooser with dmenu
+bindsym Mod4+v exec ~/.scripts/VPNdmenu.sh
+# Wifi chooser with rofi 
+bindsym Mod4+minus exec ~/.scripts/rofi-wifi-menu.sh
+## Media Keys
+# Brightness control
+bindsym 0x1008ff02 exec brightnessctl set 10%+
+bindsym 0x1008ff03 exec brightnessctl set 10%-
+# Sound control
+bindsym 0x1008ff11 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 -2% || pactl set-sink-volume 1 -2%
+bindsym 0x1008ff12 exec --no-startup-id pactl set-sink-mute 0 toggle || pactl set-sink-mute 1 toggle
+bindsym 0x1008ff13 exec --no-startup-id pactl set-sink-mute 0 false && pactl set-sink-volume 0 +2% || pactl set-sink-volume 1 +2%
+#############
+### Modes ###
+#############
+# Resizing interface
+mode "resize" {
+	# Left will shrink the containers width
+	# Right will grow the containers width
+	# Up will shrink the containers height
+	# Down will grow the containers height
+	bindsym $left resize shrink width 10 px or 10 ppt
+	bindsym $down resize grow height 10 px or 10 ppt
+	bindsym $up resize shrink height 10 px or 10 ppt
+	bindsym $right resize grow width 10 px or 10 ppt
+	# Ditto, with arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+greater mode "resize"
+# Power interface
+set $mode_power "System (l) lock, (s) suspend, (r) reboot, (Shift+s) shutdown, (w) sway, (x) i3, (Shift+w) Windows"
+mode $mode_power {
+	bindsym l exec $locker, mode "default"
+	bindsym s exec "$locker ;systemctl suspend", mode "default"
+	bindsym r exec systemctl reboot, mode "default"
+	bindsym Shift+s exec systemctl poweroff -i, mode "default"
+	bindsym x exit, mode "default"
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+0 mode $mode_power
+# Screenshots interface
+set $mode_screenshot "Screenshot (a) full screen, (f) focused, (Shift+a) full screen video"
+mode $mode_screenshot {
+	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+	bindsym Shift+a exec swaygrab -c ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.webm"), mode "default"
+	# return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Print mode $mode_screenshot
+
+# Status Bar
+bar {
+	position bottom
+	colors {
+		statusline $nord6
+		background $nord0 
+		focused_workspace $nord10 $nord10 $nord0
+		active_workspace $nord9 $nord9 $nord0
+		inactive_workspace $nord3 $nord3 $nord0
+		urgent_workspace $nord11 $nord12 $nord0
+		binding_mode $nord9 $nord9 $nord0
+	}
+	separator_symbol " | "
+	# Hidden bar and show with $mod
+	mode hide
+	hidden_state hide
+	modifier $mod
+	strip_workspace_numbers yes
+	status_command i3status 
+}
+
+# Windows assignments
+assign [class="qutebrowser"] → $WS2
+assign [class="Riot"] → $WS9
+assign [class="Ferdi"] → $WS9
+assign [class="ferdi"] → $WS9
+assign [class="mpv"] → $WS10
+assign [class="Plex"] → $WS10
+# Automatic focus of urgent workspace
+for_window [urgent="latest"] focus
+# Worskpace assignments
+workspace "0:HDMI" output HDMI-A-1
+workspace "2:www" output DP-3
+workspace "9:chat" output eDP-1
+workspace "10:media" output eDP-1
+
+## Startup programs
+# Launch dunst
+exec dunst &
+# Activate gestures for the trackpad
+exec libinput-gestures-setup start &> /dev/null
+# Automounting of usb keys
+exec udiskie -0 -a -n -T -F --no-appindicator &
+# Automounting of usb keys
+exec python3 ~/.scripts/inactive-windows-transparency.py &
+
+## Launch apps
+# Launch Riot on startup
+exec --no-startup-id swaymsg 'exec ferdi'
+# Launch browser on startup
+exec --no-startup-id swaymsg 'exec qutebrowser'
+# Launch term on startup
+exec --no-startup-id swaymsg 'workspace "1:term", exec alacritty'
+# Going to the main workspace
+exec --no-startup-id swaymsg 'workspace "1:term"'
+# Launching polkit agent
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session sway
+# Auto-lock screen after some times
+exec swayidle \
+	timeout 300 $locker \
+	timeout 600 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep $locker
