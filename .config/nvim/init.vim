@@ -239,7 +239,7 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 Plug 'Pablo1107/codi.vim', { 'branch': 'nvim-virtual-text' }
 
 " Easy window swapping
-Plug 'wesQ3/vim-windowswap'
+" Plug 'wesQ3/vim-windowswap'
 
 " Search for TODO, FIXME and XXX
 Plug 'gilsondev/searchtasks.vim'
@@ -277,8 +277,6 @@ nnoremap <leader>ba :bufdo bd!<cr>
 nnoremap <Tab> :bnext<cr>
 "Shift + Tab to switch to previous open buffer
 nnoremap <S-Tab> :bprevious<cr>
-"leader key twice to cycle between last two open buffers
-" nnoremap <leader><leader> <c-^>
 
 "move to the split in the direction shown, or create a new split
 nnoremap <silent> <C-h> :call WinMove('h')<cr>
