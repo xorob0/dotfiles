@@ -289,6 +289,14 @@ bindsym $mod+Print mode $mode_screenshot
 
 # Status Bar
 bar {
+	# Hidden bar and show with $mod
+	mode hide
+	hidden_state hide
+
+	modifier $mod
+	strip_workspace_numbers yes
+	status_command i3status-rs ~/.config/i3status-rs/config.toml
+	font FuraCode Nerd Font Mono 10
 	position bottom
 	colors {
 		statusline $nord6
@@ -299,14 +307,6 @@ bar {
 		urgent_workspace $nord11 $nord12 $nord0
 		binding_mode $nord9 $nord9 $nord0
 	}
-	separator_symbol " | "
-	# Hidden bar and show with $mod
-	mode hide
-	hidden_state hide
-
-	modifier $mod
-	strip_workspace_numbers yes
-	status_command i3status 
 }
 
 # Windows assignments
