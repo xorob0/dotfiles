@@ -25,6 +25,7 @@ set hidden
 "" Searching
 set hlsearch
 set incsearch
+set ignorecase
 set smartcase
 
 "" Encoding
@@ -238,9 +239,6 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
 " Plug 'metakirby5/codi.vim'
 Plug 'Pablo1107/codi.vim', { 'branch': 'nvim-virtual-text' }
 
-" Easy window swapping
-" Plug 'wesQ3/vim-windowswap'
-
 " Search for TODO, FIXME and XXX
 Plug 'gilsondev/searchtasks.vim'
 
@@ -248,6 +246,8 @@ Plug 'gilsondev/searchtasks.vim'
 Plug 'joeytwiddle/sexy_scroller.vim'
 
 Plug 'fannheyward/coc-deno'
+
+Plug 'lambdalisue/fila.vim'
 
 call plug#end()
 
@@ -297,6 +297,7 @@ function! WinMove(key)
 	endif
 endfunction
 
+
 "" Center search completion
 noremap <plug>(slash-after) zz
 
@@ -312,6 +313,10 @@ map <leader>b :diffg BA<CR>
 
 "" Open Startify
 nmap <leader>st :Startify<cr>
+
+"" Fila
+nmap <leader>i :Fila -drawer -toggle -width=50<cr>
+xmap <leader>i :Fila -drawer -toggle -width=50<cr>
 
 "" COC
 " Prettier
