@@ -85,7 +85,7 @@ set ruler
 set number
 set relativenumber
 
-" Show tabline
+"Show tabline
 set showtabline=2  
 
 "" Use modeline overrides
@@ -203,13 +203,13 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'VincentCordobes/vim-translate'
 
 " Tagbar
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 
 " " Coloring CSS files
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Everything fuzzy finder
-Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
 
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim'
@@ -304,7 +304,9 @@ noremap <plug>(slash-after) zz
 "" Fuzzy search mapping
 map <leader><leader> :Clap files<CR>
 map <leader>/ :Clap grep<CR>
-
+map <leader>? :Clap blines<CR>
+map <leader>h :Clap history<CR>
+map <leader>p :Clap registers<CR>
 
 "" Easier Diff
 map <leader>r :diffg RE<CR>
