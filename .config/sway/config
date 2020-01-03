@@ -102,6 +102,8 @@ output DP-4 {
 	transform 270
 }
 
+seat seat0 xcursor_theme captaine 48 
+
 #######################
 # Input configuration #
 #######################
