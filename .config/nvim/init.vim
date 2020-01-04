@@ -304,7 +304,7 @@ noremap <plug>(slash-after) zz
 "" Fuzzy search mapping
 map <leader><leader> :Clap files<CR>
 map <leader>/ :Clap grep<CR>
-map <leader>? :Clap blines<CR>
+map // :Clap blines<CR>
 map <leader>h :Clap history<CR>
 map <leader>p :Clap registers<CR>
 
