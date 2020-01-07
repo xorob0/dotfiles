@@ -144,6 +144,8 @@ Plug 'iamcco/coc-gitignore', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-webpack', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-flutter', {'do': 'yarn install --frozen-lockfile'}
 Plug 'coc-extensions/coc-svelte', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 
 "" Git stuff
 " Git wrapper for vim
@@ -334,6 +336,9 @@ nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
+
+" coc-explorer
+nmap <leader>e :CocCommand explorer<CR>
 
 "" COC mappings
 " Remap for rename current word

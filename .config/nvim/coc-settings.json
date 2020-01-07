@@ -14,5 +14,65 @@
 	"tslint.jsEnable": true,
 	"tslint.autoFixOnSave": true,
 	"jest.terminalPosition": "bottom",
-	"deno.enable": true
+	"explorer.position" : "right",
+	"explorer.icon.enableVimDevions" : true,
+	"deno.enable": true,
+	"explorer.icon.enableNerdfont" : true,
+  "explorer.keyMappings": {
+    "k": "nodePrev",
+    "j": "nodeNext",
+
+    "*": "toggleSelection",
+    "<tab>": "actionMenu",
+
+    "<bs>": "collapse",
+    "l": "expand",
+    "J": ["toggleSelection", "normal:j"],
+    "K": ["toggleSelection", "normal:k"],
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "o": "expandOrCollapse",
+    "<cr>": "open",
+    "e": "open",
+    "E": "openInVsplit",
+    "t": "openInTab",
+    "h": "gotoParent",
+
+    "y": "copyFilepath",
+    "Y": "copyFilename",
+    "c": "copyFile",
+    "x": "cutFile",
+    "p": "pasteFile",
+    "d": "delete",
+    "D": "deleteForever",
+
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+
+    ".": "toggleHidden",
+    "R": "refresh",
+
+    "?": "help",
+    "q": "quit",
+    "X": "systemExecute",
+    "gd": "listDrive",
+
+    "f": "search",
+    "F": "searchRecursive",
+
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer",
+
+    "[[": "sourcePrev",
+    "]]": "sourceNext",
+
+    "[d": "diagnosticPrev",
+    "]d": "diagnosticNext",
+
+    "[c": "gitPrev",
+    "]c": "gitNext",
+    "<<": "gitStage",
+    ">>": "gitUnstage",
+  },
 }
