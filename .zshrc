@@ -22,9 +22,7 @@ if ! zgen saved; then
 	zgen oh-my-zsh plugins/git-extras
 	zgen oh-my-zsh plugins/npm
 	zgen oh-my-zsh plugins/pass
-	# zgen oh-my-zsh plugins/per-directory-history
 	zgen oh-my-zsh plugins/pip
-	zgen oh-my-zsh plugins/sudo
 	zgen oh-my-zsh plugins/yarn
 
 	zgen load romkatv/powerlevel10k powerlevel10k
@@ -44,9 +42,6 @@ if ! zgen saved; then
 
 # Fish like autosuggestions
 	zgen load zsh-users/zsh-autosuggestions
-
-	# interactive git
-	zgen load wfxr/forgit
 
 	# Generate the init script from plugins above
 	zgen save
