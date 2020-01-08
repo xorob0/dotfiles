@@ -18,6 +18,11 @@
 	"explorer.icon.enableVimDevions" : true,
 	"deno.enable": true,
 	"explorer.icon.enableNerdfont" : true,
+	"java.format.onType.enabled": true,
+	"java.format.enabled": true,
+  "java.format.comments.enabled": true,
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.completion.overwrite": true,
   "explorer.keyMappings": {
     "k": "nodePrev",
     "j": "nodeNext",
