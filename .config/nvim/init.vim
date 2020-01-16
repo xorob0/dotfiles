@@ -147,7 +147,8 @@ Plug 'coc-extensions/coc-svelte', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
 
 " Needed for coc-neco
 Plug 'Shougo/neco-vim'
@@ -209,9 +210,6 @@ Plug 'mengelbrecht/lightline-bufferline'
 " Translations in vim buffer
 Plug 'VincentCordobes/vim-translate'
 
-" Tagbar
-" Plug 'majutsushi/tagbar'
-
 " " Coloring CSS files
 Plug 'norcalli/nvim-colorizer.lua'
 
@@ -252,13 +250,14 @@ Plug 'gilsondev/searchtasks.vim'
 " smooth scrolling
 Plug 'joeytwiddle/sexy_scroller.vim'
 
-Plug 'fannheyward/coc-deno'
-
-Plug 'lambdalisue/fila.vim'
-
+" Documentation generator
 Plug 'kkoomen/vim-doge'
 
+" Rename both sides of a tag at once
 Plug 'AndrewRadev/tagalong.vim'
+
+" See dependencies information in packages.json
+Plug 'meain/vim-package-info', { 'do': 'npm install' }
 
 call plug#end()
 
@@ -289,8 +288,6 @@ nnoremap <leader>B :enew<cr>
 nnoremap <leader>bq :bp <bar> bd! #<cr>
 "close all open buffers
 nnoremap <leader>ba :bufdo bd!<cr>
-" put word in caps in edit mode
-inoremap <leader><c-u> <esc>viwUea
 " surrounds in normal mode
 nnoremap <leader>" bi"<esc>lea"<esc>
 nnoremap <leader>' bi'<esc>lea'<esc>
@@ -555,7 +552,7 @@ let g:codi#aliases = {
 	 \ }
 let g:codi#rightalign = 0 
 let g:codi#virtual_text_prefix = ' ﬌ '
-highlight CodiVirtualText cterm=bold ctermfg=3 guibg=LightYellow
+" highlight CodiVirtualText cterm=bold ctermfg=3 guibg=LightYellow
 
 let g:clap_current_selection_sign = { 'text': ' ', 'texthl': 'WarningMsg', 'linehl': 'ClapCurrentSelection'}
 

@@ -150,7 +150,7 @@ alias o='mimeopen'
 # fd
 alias fd='fdfind'
 
-alias codi="vim -c 'let g:startify_disable_at_vimenter = 1 | set bt=nofile ls=0 noru nonu nornu | hi ColorColumn ctermbg=NONE | hi VertSplit ctermbg=NONE | hi NonText ctermfg=0 | Codi'"
+alias codi="vim -c 'let g:startify_disable_at_vimenter = 1 | set bt=nofile ls=0 noru nonu nornu | hi ColorColumn ctermbg=NONE | hi VertSplit ctermbg=NONE | hi NonText ctermfg=0 | Codi' example.ts"
 
 ### Completion things
 zstyle ':completion:*' completer _complete _ignored
