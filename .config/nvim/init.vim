@@ -147,6 +147,10 @@ Plug 'coc-extensions/coc-svelte', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-neco'
+
+" Needed for coc-neco
+Plug 'Shougo/neco-vim'
 
 "" Git stuff
 " Git wrapper for vim
@@ -255,9 +259,6 @@ Plug 'lambdalisue/fila.vim'
 Plug 'kkoomen/vim-doge'
 
 Plug 'AndrewRadev/tagalong.vim'
-
-Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
 
 call plug#end()
 
