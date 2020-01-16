@@ -252,9 +252,13 @@ Plug 'fannheyward/coc-deno'
 
 Plug 'lambdalisue/fila.vim'
 
+Plug 'kkoomen/vim-doge'
+
+Plug 'AndrewRadev/tagalong.vim'
 call plug#end()
 
 """ Mappings
+
 
 " Set map leader
 let mapleader = "\<Space>"
@@ -262,6 +266,11 @@ let g:mapleader = "\<Space>"
 
 "save current buffer
 nnoremap <leader>w :w<cr>
+nnoremap , :w<cr>
+nnoremap \ :wqa<cr>
+
+"Backspace to save and quit
+nnoremap <silent><BS> :w<cr>:bd<cr>
 
 "move lines around
 nnoremap <leader>k :m-2<cr>==
