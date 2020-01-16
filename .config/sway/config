@@ -73,6 +73,9 @@ set $WSHDMI 0:HDMI
 hide_edge_borders both
 # Gaps settings
 smart_gaps on
+# do not show a border by default
+default_border none
+# Gaps values
 gaps {
 	inner 5
 	outer 5
