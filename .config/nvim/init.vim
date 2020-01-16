@@ -255,6 +255,10 @@ Plug 'lambdalisue/fila.vim'
 Plug 'kkoomen/vim-doge'
 
 Plug 'AndrewRadev/tagalong.vim'
+
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+
 call plug#end()
 
 """ Mappings
@@ -284,6 +288,20 @@ nnoremap <leader>B :enew<cr>
 nnoremap <leader>bq :bp <bar> bd! #<cr>
 "close all open buffers
 nnoremap <leader>ba :bufdo bd!<cr>
+" put word in caps in edit mode
+inoremap <leader><c-u> <esc>viwUea
+" surrounds in normal mode
+nnoremap <leader>" bi"<esc>lea"<esc>
+nnoremap <leader>' bi'<esc>lea'<esc>
+" surronds in visual mode
+" the l is necessary because adding one character messes up the `>
+vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+" duplicate line
+nnoremap <leader>dl Vyp
 
 "Tab to switch to next open buffer
 nnoremap <Tab> :bnext<cr>
@@ -309,6 +327,12 @@ function! WinMove(key)
 	endif
 endfunction
 
+" move to end of line
+nnoremap L $
+vnoremap L $
+" move to start of line
+nnoremap H ^
+vnoremap H ^
 
 "" Center search completion
 noremap <plug>(slash-after) zz
