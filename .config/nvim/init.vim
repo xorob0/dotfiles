@@ -138,7 +138,6 @@ Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/vim-jsx-improve', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-translator', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-gitignore', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-webpack', {'do': 'yarn install --frozen-lockfile'}
@@ -149,6 +148,7 @@ Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
 
 " Needed for coc-neco
 Plug 'Shougo/neco-vim'
@@ -214,7 +214,7 @@ Plug 'VincentCordobes/vim-translate'
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Everything fuzzy finder
-Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim'
@@ -263,7 +263,6 @@ call plug#end()
 
 """ Mappings
 
-
 " Set map leader
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -300,6 +299,12 @@ vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
 " duplicate line
 nnoremap <leader>dl Vyp
+" translator
+nnoremap <silent> <leader>tt :Translate<CR>
+vnoremap <silent> <leader>tt :TranslateVisual<CR>
+vnoremap <silent> <leader>tr :TranslateReplace<CR>
+nmap <leader>ts <Plug>Translate
+nmap <leader>tr <Plug>TranslateReplace
 
 "Tab to switch to next open buffer
 nnoremap <Tab> :bnext<cr>
@@ -447,10 +452,6 @@ if !exists('g:not_finish_vimplug')
 endif
 hi Normal guibg=NONE ctermbg=NONE
 
-"" Translation
-let g:trans_default_source = "fr"
-let g:trans_default_target = "en"
-
 "" Indent Guide
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
@@ -555,6 +556,8 @@ let g:codi#virtual_text_prefix = ' ﬌ '
 " highlight CodiVirtualText cterm=bold ctermfg=3 guibg=LightYellow
 
 let g:clap_current_selection_sign = { 'text': ' ', 'texthl': 'WarningMsg', 'linehl': 'ClapCurrentSelection'}
+
+let g:translate#default_languages = { 'fr': 'en', 'en': 'fr' }
 
 """ Theme
 let no_buffers_menu=1

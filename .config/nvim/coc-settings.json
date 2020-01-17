@@ -23,6 +23,7 @@
   "java.format.comments.enabled": true,
   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
   "java.completion.overwrite": true,
+	"translator.toLang" : "en",
   "explorer.keyMappings": {
     "k": "nodePrev",
     "j": "nodeNext",
