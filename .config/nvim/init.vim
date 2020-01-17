@@ -121,7 +121,6 @@ Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
@@ -134,7 +133,6 @@ Plug 'iamcco/coc-tailwindcss', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tabnine', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/vim-jsx-improve', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
@@ -149,6 +147,12 @@ Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
+Plug 'tjdevries/coc-zsh', {'do': 'yarn install --frozen-lockfile'}
+Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
+Plug 'danielwelch/coc-homeassistant', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-project', {'do': 'yarn install --frozen-lockfile'}
 
 " Needed for coc-neco
 Plug 'Shougo/neco-vim'
@@ -156,7 +160,6 @@ Plug 'Shougo/neco-vim'
 "" Git stuff
 " Git wrapper for vim
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-rhubarb'
 " Git branchviewer
 Plug 'rbong/vim-flog'

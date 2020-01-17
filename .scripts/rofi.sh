@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #!/bin/sh
 
 SCREEN_POS=$(swaymsg -t get_outputs \
