@@ -111,6 +111,12 @@ let g:session_command_aliases = 1
 let g:python_host_prog='/usr/bin/python3.7'
 
 """ Plugins
+" If not installed, install Plug
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync
+endif
 " Loading plug
 call plug#begin('~/.vim/plugged')
 
@@ -363,10 +369,17 @@ map // :Clap blines<CR>
 map <leader>h :Clap history<CR>
 map <leader>p :Clap registers<CR>
 
+"" easy search and replace
+map <leader>r :%s//g<left><left>
+
 "" Easier Diff
-map <leader>r :diffg RE<CR>
-map <leader>o :diffg LO<CR>
-map <leader>b :diffg BA<CR>
+map <leader>dr :diffg RE<CR>
+map <leader>do :diffg LO<CR>
+map <leader>db :diffg BA<CR>
+
+" use <leader>df to display line git diff
+nmap <leader>df <Plug>(git-p-diff-preview)
+
 
 "" Open Startify
 nmap <leader>st :Startify<cr>
@@ -412,9 +425,6 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Run jest for current test
 nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
-
-" use <leader>df to display line git diff
-nmap <leader>df <Plug>(git-p-diff-preview)
 
 "" Autocompletion
 " Use <c-space>for trigger completion
