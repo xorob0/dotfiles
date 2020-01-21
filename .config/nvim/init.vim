@@ -14,6 +14,7 @@ set backspace=indent,eol,start
 set cursorline
 
 "" Blocking all the interrupting errors
+set shortmess+=T
 set cmdheight=2
 
 "" Tabs. May be overriten by autocmd rules
