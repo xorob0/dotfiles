@@ -118,7 +118,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Completion Extentions
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
@@ -146,13 +145,22 @@ Plug 'weirongxu/coc-calc', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
-Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tjdevries/coc-zsh', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'danielwelch/coc-homeassistant', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-project', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'aperezdc/vim-template'
+
+" Coc snippets
+Plug 'xabikos/vscode-react', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'xabikos/vscode-javascript', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'Rocketseat/rocketseat-vscode-react-native-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'abusaidm/html-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'Nash0x7E2/awesome-flutter-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
 
 " Needed for coc-neco
 Plug 'Shougo/neco-vim'
@@ -161,6 +169,7 @@ Plug 'Shougo/neco-vim'
 " Git wrapper for vim
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'cedarbaum/fugitive-azure-devops.vim'
 " Git branchviewer
 Plug 'rbong/vim-flog'
 " Perfect git plugin
@@ -220,7 +229,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " Markdown preview
-Plug 'iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " LaTeX preview
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
@@ -509,6 +518,11 @@ let g:startify_bookmarks = [
 			\ ]
 
 autocmd User Startified setlocal cursorline
+
+" Properties for templates
+let g:email = 'xorob0@posteo.net'
+let g:username = 'xorob0'
+let g:license = 'GPL'
 
 "" COC
 " Highlight symbol under cursor on CursorHold
