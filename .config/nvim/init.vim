@@ -13,6 +13,9 @@ set backspace=indent,eol,start
 "" Cursor line in different color
 set cursorline
 
+"" Blocking all the interrupting errors
+set cmdheight=2
+
 "" Tabs. May be overriten by autocmd rules
 set tabstop=2
 set softtabstop=2
