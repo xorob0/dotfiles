@@ -1,3 +1,4 @@
+
 """ General
 "" Encoding
 set encoding=utf-8
@@ -14,8 +15,14 @@ set backspace=indent,eol,start
 set cursorline
 
 "" Blocking all the interrupting errors
-set shortmess+=T
-set cmdheight=2
+set shortmess=saoOTIAcF
+set cmdheight=1
+set noshowmode
+set noshowcmd
+set nomodeline
+set nowarn
+set noerrorbells
+set noexrc
 
 "" Tabs. May be overriten by autocmd rules
 set tabstop=2
@@ -290,12 +297,12 @@ let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
 "save current buffer
-nnoremap <leader>w :w<cr>
-nnoremap , :w<cr>
-nnoremap \ :wqa<cr>
+nnoremap <silent><leader>w :silent! w!<cr>
+nnoremap <silent>, :silent! w!<cr>
+nnoremap <silent>\ :silent wqa!<cr>
 
 "Backspace to save and quit
-nnoremap <silent><BS> :w<cr>:bd<cr>
+nnoremap <silent><BS> :silent w!<cr>:bd<cr>
 
 "move lines around
 nnoremap <leader>k :m-2<cr>==
@@ -304,7 +311,7 @@ xnoremap <leader>k :m-2<cr>gv=gv
 xnoremap <leader>j :m'>+<cr>gv=gv
 
 "create a new buffer (save it with :w ./path/to/FILENAME)
-nnoremap <leader>B :enew<cr>
+nnoremap <leader>B :enew!<cr>
 "close current buffer
 nnoremap <leader>bq :bp <bar> bd! #<cr>
 "close all open buffers
