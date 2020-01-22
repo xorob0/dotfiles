@@ -1,4 +1,3 @@
-
 """ General
 "" Encoding
 set encoding=utf-8
@@ -83,6 +82,9 @@ set wildmenu
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
+
+" Time to wait before registering an input
+set timeoutlen=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -196,9 +198,6 @@ Plug 'iamcco/git-p.nvim'
 " TS syntax
 Plug 'HerringtonDarkholme/yats.vim'
 
-"" Docs generation
-Plug 'kkoomen/vim-doge'
-
 " Change date with <C-A> and <C-X>
 Plug 'tpope/vim-speeddating'
 
@@ -252,7 +251,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
 
 " Show registers content before user
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 
 " Better search
 Plug 'junegunn/vim-slash'
@@ -288,6 +287,9 @@ Plug 'AndrewRadev/tagalong.vim'
 " See dependencies information in packages.json
 Plug 'meain/vim-package-info', { 'do': 'npm install' }
 
+" Help to see all mappings
+Plug 'liuchengxu/vim-which-key'
+
 call plug#end()
 
 """ Mappings
@@ -295,6 +297,63 @@ call plug#end()
 " Set map leader
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
+
+let g:which_key_map = {
+	\'name' : 'Leader',
+	\'w' : 'Save silently',
+	\'"' : 'Surround "',
+	\"'" : "Surround \'",
+	\'/' : 'Search in project',
+	\'a' : 'Open actions',
+	\'b' : {
+		\ 'name' : '+buffers',
+		\ 'o' : 'Open new',
+		\ 'a' : 'Close',
+		\ 'q' : 'Close all opened buffers'
+  \ 	},
+	\'g' : {
+		\ 'name' : '+goTo',
+		\ 'i' : 'Implementation',
+		\ 'r' : 'References',
+		\ 'y' : 'Type definition',
+		\ 'd' : 'Definition'
+  \ 	},
+	\'o' : 'Generate documentation',
+	\'e' : 'Open explorer on the right',
+	\'pr' : 'Create a pull request',
+	\'f' : 'Format selection',
+	\'rn' : 'Rename variable',
+	\'l' : 'Duplicate line',
+	\'d' : {
+		\ 'name' : '+diff',
+		\ 'o' : 'Selecte mine',
+		\ 'r' : 'Selecte yours',
+		\ 'b' : 'Selecte older',
+  \ 	},
+	\'p' : {
+		\ 'name' : '+git',
+		\ 'b' : 'Blame of current line',
+		\ 'd' : 'Diff of current line',
+		\ 'p' : 'Open a pull request',
+  \ 	},
+	\'t' : {
+		\ 'name' : '+translate',
+		\ 'r' : 'Replace',
+		\ 't' : 'Translate',
+  \ 	},
+	\'j' : 'Open or go to buffer downside',
+	\'k' : 'Open or go to buffer upside',
+	\'r' : 'Search and replace',
+	\'q' : 'Quickfix',
+	\'s' : 'Startify',
+	\'_' : {'name': 'which_key_ignore'},
+	\'i' : {'name': 'which_key_ignore'},
+  \ }
+
+
+call which_key#register('<Space>', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
 "save current buffer
 nnoremap <silent><leader>w :silent! w!<cr>
@@ -311,7 +370,7 @@ xnoremap <leader>k :m-2<cr>gv=gv
 xnoremap <leader>j :m'>+<cr>gv=gv
 
 "create a new buffer (save it with :w ./path/to/FILENAME)
-nnoremap <leader>B :enew!<cr>
+nnoremap <leader>bo :enew!<cr>
 "close current buffer
 nnoremap <leader>bq :bp <bar> bd! #<cr>
 "close all open buffers
@@ -327,12 +386,12 @@ vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
 " duplicate line
-nnoremap <leader>dl Vyp
+nnoremap <leader>l Vyp
 " translator
 nnoremap <silent> <leader>tt :Translate<CR>
 vnoremap <silent> <leader>tt :TranslateVisual<CR>
 vnoremap <silent> <leader>tr :TranslateReplace<CR>
-nmap <leader>ts <Plug>Translate
+nmap <leader>tt <Plug>Translate
 nmap <leader>tr <Plug>TranslateReplace
 
 "Tab to switch to next open buffer
@@ -369,12 +428,15 @@ vnoremap H ^
 "" Center search completion
 noremap <plug>(slash-after) zz
 
+"" Doc generation
+let g:doge_mapping = '<Leader>o'
+
 "" Fuzzy search mapping
 map <leader><leader> :Clap files<CR>
 map <leader>/ :Clap grep<CR>
 map // :Clap blines<CR>
 map <leader>h :Clap history<CR>
-map <leader>p :Clap registers<CR>
+map ' :Clap registers<CR>
 
 "" easy search and replace
 map <leader>r :%s//g<left><left>
@@ -385,15 +447,11 @@ map <leader>do :diffg LO<CR>
 map <leader>db :diffg BA<CR>
 
 " use <leader>df to display line git diff
-nmap <leader>df <Plug>(git-p-diff-preview)
-
+nmap <leader>pd <Plug>(git-p-diff-preview)
+nmap <leader>pb <Plug>(git-p-i-blame)
 
 "" Open Startify
-nmap <leader>st :Startify<cr>
-
-"" Fila
-nmap <leader>i :Fila -drawer -toggle -width=50<cr>
-xmap <leader>i :Fila -drawer -toggle -width=50<cr>
+nmap <leader>s :Startify<cr>
 
 "" COC
 " Prettier
@@ -419,19 +477,18 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+vmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>q  <Plug>(coc-fix-current)
 
 " Run jest for current test
-nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+" nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 "" Autocompletion
 " Use <c-space>for trigger completion
@@ -449,7 +506,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 			\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " make PR from vim (github only)
-noremap <leader>pr :!hub pull-request<CR>
+noremap <leader>pp :!hub pull-request<CR>
 
 """ Addons configuration
 "" Autocompletion
@@ -652,3 +709,4 @@ let g:lightline.component_expand = {
 let g:lightline.component_type = {
 			\		'buffers': 'tabsel'
 			\}
+

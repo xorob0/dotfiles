@@ -316,3 +316,18 @@ bindkey '^[OB' history-beginning-search-forward
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 source /home/tim/.config/broot/launcher/bash/br
+
+# entering an empty line cleans the screen
+
+magic-enter () {
+        if [[ -z $BUFFER ]]
+        then
+                zle clear-screen
+        else
+                zle accept-line
+        fi
+}
+
+zle -N magic-enter
+
+bindkey "^M" magic-enter

@@ -187,7 +187,8 @@ searchengines = {
     'ipt' : 'https://www.iptorrents.com/t?q={}',
     'deal' : 'https://www.dealabs.com/search?q={}',
     'mdeal' : 'https://www.mydealz.de/search?q={}',
-    'gh' : 'https://github.com/search?q={}'
+    'gh' : 'https://github.com/search?q={}',
+    'cd' : 'https://www.cdiscount.com/search/10/{}.html'
 }
 
 for alias, url in searchengines.items():
