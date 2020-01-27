@@ -95,8 +95,7 @@ set signcolumn=yes
 """ Visual
 syntax on
 set ruler
-set number
-set relativenumber
+set number relativenumber
 
 "Show tabline
 set showtabline=2  
@@ -204,8 +203,8 @@ Plug 'tpope/vim-speeddating'
 " Comment with <gcc>
 Plug 'tomtom/tcomment_vim'
 
-" Enable multiple curors with <C-n>
-Plug 'terryma/vim-multiple-cursors'
+" Enable multiple curors with <C-n> and more
+Plug 'mg979/vim-visual-multi'
 
 " Syntax colorization for almost all languages
 Plug 'sheerun/vim-polyglot'
@@ -250,9 +249,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " LaTeX preview
 Plug 'donRaphaco/neotex', { 'for': 'tex' }
 
-" Show registers content before user
-" Plug 'junegunn/vim-peekaboo'
-
 " Better search
 Plug 'junegunn/vim-slash'
 
@@ -275,9 +271,6 @@ Plug 'Pablo1107/codi.vim', { 'branch': 'nvim-virtual-text' }
 " Search for TODO, FIXME and XXX
 Plug 'gilsondev/searchtasks.vim'
 
-" smooth scrolling
-Plug 'joeytwiddle/sexy_scroller.vim'
-
 " Documentation generator
 Plug 'kkoomen/vim-doge'
 
@@ -290,6 +283,9 @@ Plug 'meain/vim-package-info', { 'do': 'npm install' }
 " Help to see all mappings
 Plug 'liuchengxu/vim-which-key'
 
+" Better line numbers
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 call plug#end()
 
 """ Mappings
@@ -297,63 +293,6 @@ call plug#end()
 " Set map leader
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
-
-let g:which_key_map = {
-	\'name' : 'Leader',
-	\'w' : 'Save silently',
-	\'"' : 'Surround "',
-	\"'" : "Surround \'",
-	\'/' : 'Search in project',
-	\'a' : 'Open actions',
-	\'b' : {
-		\ 'name' : '+buffers',
-		\ 'o' : 'Open new',
-		\ 'a' : 'Close',
-		\ 'q' : 'Close all opened buffers'
-  \ 	},
-	\'g' : {
-		\ 'name' : '+goTo',
-		\ 'i' : 'Implementation',
-		\ 'r' : 'References',
-		\ 'y' : 'Type definition',
-		\ 'd' : 'Definition'
-  \ 	},
-	\'o' : 'Generate documentation',
-	\'e' : 'Open explorer on the right',
-	\'pr' : 'Create a pull request',
-	\'f' : 'Format selection',
-	\'rn' : 'Rename variable',
-	\'l' : 'Duplicate line',
-	\'d' : {
-		\ 'name' : '+diff',
-		\ 'o' : 'Selecte mine',
-		\ 'r' : 'Selecte yours',
-		\ 'b' : 'Selecte older',
-  \ 	},
-	\'p' : {
-		\ 'name' : '+git',
-		\ 'b' : 'Blame of current line',
-		\ 'd' : 'Diff of current line',
-		\ 'p' : 'Open a pull request',
-  \ 	},
-	\'t' : {
-		\ 'name' : '+translate',
-		\ 'r' : 'Replace',
-		\ 't' : 'Translate',
-  \ 	},
-	\'j' : 'Open or go to buffer downside',
-	\'k' : 'Open or go to buffer upside',
-	\'r' : 'Search and replace',
-	\'q' : 'Quickfix',
-	\'s' : 'Startify',
-	\'_' : {'name': 'which_key_ignore'},
-	\'i' : {'name': 'which_key_ignore'},
-  \ }
-
-
-call which_key#register('<Space>', "g:which_key_map")
-
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
 "save current buffer
 nnoremap <silent><leader>w :silent! w!<cr>
@@ -653,6 +592,66 @@ let g:codi#virtual_text_prefix = ' ﬌ '
 let g:clap_current_selection_sign = { 'text': ' ', 'texthl': 'WarningMsg', 'linehl': 'ClapCurrentSelection'}
 
 let g:translate#default_languages = { 'fr': 'en', 'en': 'fr' }
+
+"" Help for leader mapping
+let g:which_key_position="topleft"
+
+let g:which_key_map = {
+	\'name' : 'Leader',
+	\'w' : 'Save silently',
+	\'"' : 'Surround "',
+	\"'" : "Surround \'",
+	\'/' : 'Search in project',
+	\'a' : 'Open actions',
+	\'b' : {
+		\ 'name' : '+buffers',
+		\ 'o' : 'Open new',
+		\ 'a' : 'Close',
+		\ 'q' : 'Close all opened buffers'
+  \ 	},
+	\'g' : {
+		\ 'name' : '+goTo',
+		\ 'i' : 'Implementation',
+		\ 'r' : 'References',
+		\ 'y' : 'Type definition',
+		\ 'd' : 'Definition'
+  \ 	},
+	\'o' : 'Generate documentation',
+	\'e' : 'Open explorer on the right',
+	\'pr' : 'Create a pull request',
+	\'f' : 'Format selection',
+	\'rn' : 'Rename variable',
+	\'l' : 'Duplicate line',
+	\'d' : {
+		\ 'name' : '+diff',
+		\ 'o' : 'Selecte mine',
+		\ 'r' : 'Selecte yours',
+		\ 'b' : 'Selecte older',
+  \ 	},
+	\'p' : {
+		\ 'name' : '+git',
+		\ 'b' : 'Blame of current line',
+		\ 'd' : 'Diff of current line',
+		\ 'p' : 'Open a pull request',
+  \ 	},
+	\'t' : {
+		\ 'name' : '+translate',
+		\ 'r' : 'Replace',
+		\ 't' : 'Translate',
+  \ 	},
+	\'j' : 'Open or go to buffer downside',
+	\'k' : 'Open or go to buffer upside',
+	\'r' : 'Search and replace',
+	\'q' : 'Quickfix',
+	\'s' : 'Startify',
+	\'_' : {'name': 'which_key_ignore'},
+	\'i' : {'name': 'which_key_ignore'},
+  \ }
+
+call which_key#register('<Space>', "g:which_key_map")
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
 
 """ Theme
 let no_buffers_menu=1

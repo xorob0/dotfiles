@@ -43,7 +43,7 @@
   "prettier.stylelintIntegration": true,
   "prettier.statusItemText": "",
   "codeLens.enable": true,
-  "tslint.jsEnable": true,
+  "tslint.jsEnable": false,
   "tslint.autoFixOnSave": true,
   "jest.terminalPosition": "bottom",
   "explorer.position": "right",
