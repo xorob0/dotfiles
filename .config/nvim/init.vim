@@ -164,7 +164,6 @@ Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-neco', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-deno', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-bookmark', {'do': 'yarn install --frozen-lockfile'}
 Plug 'tjdevries/coc-zsh', {'do': 'yarn install --frozen-lockfile'}
 Plug 'amiralies/coc-flow', {'do': 'yarn install --frozen-lockfile'}
 Plug 'danielwelch/coc-homeassistant', {'do': 'yarn install --frozen-lockfile'}
@@ -285,6 +284,9 @@ Plug 'liuchengxu/vim-which-key'
 
 " Better line numbers
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+" See what takes time on startup 
+Plug 'dstein64/vim-startuptime'
 
 call plug#end()
 

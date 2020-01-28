@@ -1,6 +1,7 @@
 {
   "suggest.snippetIndicator": " ►",
   "suggest.echodocSupport": true,
+	"typescript.referencesCodeLens.enable": false,
   "suggest.maxCompleteItemCount": 20,
   "suggest.detailField": "abbr",
   "suggest.completionItemKindLabels": {
@@ -72,9 +73,6 @@
     "elixir": ["mix_credo", "mix_credo_compile"],
     "eelixir": ["mix_credo", "mix_credo_compile"],
   },
-  "template.email": "xorob0@posteo.net",
-  "template.username": "xorob0",
-  "template.license": "GPL",
   "cSpell.fixSpellingWithRenameProvider": true,
   "cSpell.enabledLanguageIds": [
     "asciidoc",
