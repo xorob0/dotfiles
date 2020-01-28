@@ -305,10 +305,12 @@ nnoremap <silent>\ :silent wqa!<cr>
 nnoremap <silent><BS> :silent w!<cr>:bd<cr>
 
 "move lines around
-nnoremap <leader>k :m-2<cr>==
-nnoremap <leader>j :m+<cr>==
-xnoremap <leader>k :m-2<cr>gv=gv
-xnoremap <leader>j :m'>+<cr>gv=gv
+xnoremap <leader>j J
+nnoremap <leader>j J
+nnoremap K :m-2<cr>==
+nnoremap J :m+<cr>==
+xnoremap K :m-2<cr>gv=gv
+xnoremap J :m'>+<cr>gv=gv
 
 "create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>bo :enew!<cr>
@@ -641,8 +643,7 @@ let g:which_key_map = {
 		\ 'r' : 'Replace',
 		\ 't' : 'Translate',
   \ 	},
-	\'j' : 'Open or go to buffer downside',
-	\'k' : 'Open or go to buffer upside',
+	\'j' : 'Join bottom line to current line',
 	\'r' : 'Search and replace',
 	\'q' : 'Quickfix',
 	\'s' : 'Startify',
