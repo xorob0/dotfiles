@@ -318,16 +318,15 @@ bindkey '^[OB' history-beginning-search-forward
 source /home/tim/.config/broot/launcher/bash/br
 
 # entering an empty line cleans the screen
-
 magic-enter () {
-        if [[ -z $BUFFER ]]
+        if [[ -n $BUFFER ]]
         then
-                zle clear-screen
-        else
                 zle accept-line
+        else
+                zle clear-screen
         fi
 }
 
 zle -N magic-enter
 
-bindkey "^M" magic-enter
+# bindkey "^M" magic-enter
