@@ -133,8 +133,8 @@ Plug 'ryanoasis/vim-devicons'
 
 " Completion Framework
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Completion Extentions
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" " Completion Extentions
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile', 'for' : ['typescript', 'typescriptreact']}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
@@ -145,11 +145,10 @@ Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'iamcco/coc-tailwindcss', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile', 'for': ['css', 'wxss', 'scss', 'less', 'postcss', 'sugarss', 'vue']}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-stylelint', {'do': 'yarn install --frozen-lockfile', 'for': ['css', 'wxss', 'scss', 'less', 'postcss', 'sugarss', 'vue']}
 Plug 'neoclide/vim-jsx-improve', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-jest', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
@@ -170,6 +169,7 @@ Plug 'danielwelch/coc-homeassistant', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-project', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'aperezdc/vim-template'
 
 " Coc snippets
@@ -186,7 +186,6 @@ Plug 'Shougo/neco-vim'
 " Git wrapper for vim
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'cedarbaum/fugitive-azure-devops.vim'
 " Git branchviewer
 Plug 'rbong/vim-flog'
 " Perfect git plugin
@@ -288,7 +287,62 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " See what takes time on startup 
 Plug 'dstein64/vim-startuptime'
 
+" Better default
+Plug 'tpope/vim-sensible'
+
+" Jenkins integration
+Plug 'burnettk/vim-jenkins'
 call plug#end()
+
+
+" Function
+" Creates a floating window with a most recent buffer to be used
+function! CreateCenteredFloatingWindow()
+    let width = float2nr(&columns * 0.6)
+    let height = float2nr(&lines * 0.6)
+    let top = ((&lines - height) / 2) - 1
+    let left = (&columns - width) / 2
+    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+    let top = "╭" . repeat("─", width - 2) . "╮"
+    let mid = "│" . repeat(" ", width - 2) . "│"
+    let bot = "╰" . repeat("─", width - 2) . "╯"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:buf, v:true, opts)
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    autocmd BufWipeout <buffer> exe 'bwipeout '.s:buf
+endfunction
+
+function! ToggleTerm(cmd)
+    if empty(bufname(a:cmd))
+        call CreateCenteredFloatingWindow()
+        call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
+    else
+        bwipeout!
+    endif
+endfunction
+
+function! ToggleScratchTerm()
+    call ToggleTerm('zsh')
+endfunction
+
+function! ToggleLazyGit()
+    call ToggleTerm('lazygit')
+endfunction
+
+
+function! OnTermExit(job_id, code, event) dict
+    if a:code == 0
+        bwipeout!
+    endif
+endfunction
 
 """ Mappings
 
@@ -305,12 +359,8 @@ nnoremap <silent>\ :silent wqa!<cr>
 nnoremap <silent><BS> :silent w!<cr>:bd<cr>
 
 "move lines around
-xnoremap <leader>j J
-nnoremap <leader>j J
-nnoremap K :m-2<cr>==
-nnoremap J :m+<cr>==
-xnoremap K :m-2<cr>gv=gv
-xnoremap J :m'>+<cr>gv=gv
+vnoremap K :m-2<cr>gv=gv
+vnoremap J :m'>+<cr>gv=gv
 
 "create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>bo :enew!<cr>
@@ -379,7 +429,8 @@ map <leader><leader> :Clap files<CR>
 map <leader>/ :Clap grep<CR>
 map // :Clap blines<CR>
 map <leader>h :Clap history<CR>
-map ' :Clap registers<CR>
+map <leader>" :Clap registers<CR>
+map <leader>' :Clap marks<CR>
 
 "" easy search and replace
 map <leader>r :%s//g<left><left>
@@ -390,8 +441,14 @@ map <leader>do :diffg LO<CR>
 map <leader>db :diffg BA<CR>
 
 " use <leader>df to display line git diff
-nmap <leader>pd <Plug>(git-p-diff-preview)
-nmap <leader>pb <Plug>(git-p-i-blame)
+nmap <leader>vd <Plug>(git-p-diff-preview)
+nmap <leader>vb <Plug>(git-p-i-blame)
+
+" open lazygit
+nnoremap <silent> <leader>G :call ToggleLazyGit()<CR>
+
+" open scratchtern
+nnoremap <silent> <leader>T :call ToggleScratchTerm()<CR>
 
 "" Open Startify
 nmap <leader>s :Startify<cr>
@@ -449,7 +506,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 			\"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " make PR from vim (github only)
-noremap <leader>pp :!hub pull-request<CR>
+noremap <leader>vp :!hub pull-request<CR>
 
 """ Addons configuration
 "" Autocompletion
@@ -493,7 +550,7 @@ hi IndentGuidesEven ctermbg=0
 
 "" Markdown preview
 " Open the preview when opening a md file
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 
 "" Copy/Paste/Cut
 if has('unnamedplus')
@@ -544,6 +601,12 @@ autocmd User Startified setlocal cursorline
 let g:email = 'xorob0@posteo.net'
 let g:username = 'xorob0'
 let g:license = 'GPL'
+
+" When term starts, auto go into insert mode
+autocmd TermOpen * startinsert
+
+" Turn off line numbers etc
+autocmd TermOpen * setlocal listchars= nonumber norelativenumber
 
 "" COC
 " Highlight symbol under cursor on CursorHold
@@ -711,4 +774,3 @@ let g:lightline.component_expand = {
 let g:lightline.component_type = {
 			\		'buffers': 'tabsel'
 			\}
-
