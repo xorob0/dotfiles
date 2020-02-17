@@ -27,6 +27,9 @@ if ! zgen saved; then
 
 	zgen load romkatv/powerlevel10k powerlevel10k
 
+# Auto pairs
+	zgen load hlissner/zsh-autopair
+
 	# 256 colors in the terminal
 	zgen load chrissicool/zsh-256color
 
@@ -42,6 +45,7 @@ if ! zgen saved; then
 
 # Fish like autosuggestions
 	zgen load zsh-users/zsh-autosuggestions
+
 
 	# Generate the init script from plugins above
 	zgen save
@@ -317,16 +321,4 @@ bindkey '^[OB' history-beginning-search-forward
 
 source /home/tim/.config/broot/launcher/bash/br
 
-# entering an empty line cleans the screen
-magic-enter () {
-        if [[ -n $BUFFER ]]
-        then
-                zle accept-line
-        else
-                zle clear-screen
-        fi
-}
-
-zle -N magic-enter
-
-# bindkey "^M" magic-enter
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=brackets
