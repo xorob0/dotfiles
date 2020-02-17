@@ -141,6 +141,7 @@ Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
@@ -261,7 +262,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'mhinz/vim-startify'
 
 " Focus mode
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight!!' }
+Plug 'xi/limelight.vim', { 'branch': 'feature-movement' }
 
 " Quokka is not free
 " Plug 'metakirby5/codi.vim'
@@ -358,7 +359,6 @@ let g:mapleader = "\<Space>"
 
 "save current buffer
 nnoremap <silent><leader>w :silent! w!<cr>
-nnoremap <silent><leader>A :silent! Gw!<cr>
 nnoremap <silent>\ :silent wa!\|qa!<cr>
 
 "Backspace to save and quit
@@ -454,6 +454,11 @@ nmap <leader>db :diffg BA<CR>
 " use <leader>df to display line git diff
 nmap <leader>vd <Plug>(git-p-diff-preview)
 nmap <leader>vb <Plug>(git-p-i-blame)
+
+nnoremap <silent><leader>vw :silent! Gw!<cr>
+nnoremap <silent><leader>vc :silent Gcommit!<cr>
+nnoremap <silent><leader>vp :silent Gpush!<cr>
+nnoremap <silent><leader>vpl :silent Gpull!<cr>
 
 " open lazygit
 nnoremap <silent> <leader>G :call ToggleLazyGit()<CR>
@@ -792,6 +797,9 @@ let g:lightline.component_type = {
 			\		'buffers': 'tabsel'
 			\}
 
+" Make fugitive work with husky
+let g:fugitive_pty = 0
+
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
@@ -803,9 +811,10 @@ let g:limelight_conceal_guifg = '#4c566a'
 " Default: 0.5
 let g:limelight_default_coefficient = 0.7
 
-let g:limelight_bop = '^.*$'
-let g:limelight_eop = '\n'
-let g:limelight_paragraph_span = 1
+let g:limelight_mode = 'movement'
+let g:limelight_bop = '{'
+let g:limelight_eop = '}'
+let g:limelight_paragraph_span = 0
 
 
 " Highlighting priority (default: 10)
@@ -828,3 +837,4 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 :autocmd BufEnter *.png,*.jpg,*gif exec "! kitty +kitten icat ".expand("%") | :bw
+
