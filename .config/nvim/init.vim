@@ -200,6 +200,7 @@ Plug 'tpope/vim-speeddating'
 
 " Comment with <gcc>
 Plug 'tomtom/tcomment_vim'
+" Plug 'cometsong/CommentFrame.vim'
 
 " Enable multiple curors with <C-n> and more
 Plug 'mg979/vim-visual-multi'
@@ -292,6 +293,11 @@ Plug 'tpope/vim-sensible'
 
 " Jenkins integration
 Plug 'burnettk/vim-jenkins'
+
+" Debugger to piss off Fabio
+Plug 'vim-vdebug/vdebug'
+
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 
@@ -352,15 +358,17 @@ let g:mapleader = "\<Space>"
 
 "save current buffer
 nnoremap <silent><leader>w :silent! w!<cr>
-nnoremap <silent>, :silent! w!<cr>
-nnoremap <silent>\ :silent wqa!<cr>
+nnoremap <silent><leader>A :silent! Gw!<cr>
+nnoremap <silent>\ :silent wa!\|qa!<cr>
 
 "Backspace to save and quit
-nnoremap <silent><BS> :silent w!<cr>:bd<cr>
+nnoremap <silent><BS> :silent :w!\|bd<cr>
 
 "move lines around
-vnoremap K :m-2<cr>gv=gv
-vnoremap J :m'>+<cr>gv=gv
+" xnoremap <silent> K :silent m-2
+" vnoremap <silent> J :silent m+
+xnoremap <silent> K :m-2<cr>gv=gv
+xnoremap <silent> J :m'>+<cr>gv=gv
 
 "create a new buffer (save it with :w ./path/to/FILENAME)
 nnoremap <leader>bo :enew!<cr>
@@ -384,8 +392,8 @@ nnoremap <leader>l Vyp
 nnoremap <silent> <leader>tt :Translate<CR>
 vnoremap <silent> <leader>tt :TranslateVisual<CR>
 vnoremap <silent> <leader>tr :TranslateReplace<CR>
-nmap <leader>tt <Plug>Translate
-nmap <leader>tr <Plug>TranslateReplace
+nnoremap <leader>tt <Plug>Translate
+nnoremap <leader>tr <Plug>TranslateReplace
 
 "Tab to switch to next open buffer
 nnoremap <Tab> :bnext<cr>
@@ -425,20 +433,23 @@ noremap <plug>(slash-after) zz
 let g:doge_mapping = '<Leader>o'
 
 "" Fuzzy search mapping
-map <leader><leader> :Clap files<CR>
-map <leader>/ :Clap grep<CR>
-map // :Clap blines<CR>
-map <leader>h :Clap history<CR>
-map <leader>" :Clap registers<CR>
-map <leader>' :Clap marks<CR>
+nmap <leader><leader> :Clap files<CR>
+nmap <leader>/ :Clap grep<CR>
+nmap // :Clap blines<CR>
+nmap <leader>h :Clap history<CR>
+nmap <leader>" :Clap registers<CR>
+nmap <leader>' :Clap marks<CR>
+nmap <leader>n :Clap filer<CR>
+nmap <leader>j :Clap jumps<CR>
+nmap <leader>? :Clap maps<CR>
 
 "" easy search and replace
-map <leader>r :%s//g<left><left>
+nmap <leader>r :%s//g<left><left>
 
 "" Easier Diff
-map <leader>dr :diffg RE<CR>
-map <leader>do :diffg LO<CR>
-map <leader>db :diffg BA<CR>
+nmap <leader>dr :diffg RE<CR>
+nmap <leader>do :diffg LO<CR>
+nmap <leader>db :diffg BA<CR>
 
 " use <leader>df to display line git diff
 nmap <leader>vd <Plug>(git-p-diff-preview)
@@ -507,6 +518,10 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 
 " make PR from vim (github only)
 noremap <leader>vp :!hub pull-request<CR>
+
+" Easy CocCommand
+noremap <leader>cc :CocCommand 
+noremap <leader>cf :CocCommand flutter.
 
 """ Addons configuration
 "" Autocompletion
@@ -658,6 +673,9 @@ let g:codi#virtual_text_prefix = ' ﬌ '
 
 let g:clap_current_selection_sign = { 'text': ' ', 'texthl': 'WarningMsg', 'linehl': 'ClapCurrentSelection'}
 
+let g:clap_provider_grep_delay = 0
+let g:clap_popup_input_delay = 0
+
 let g:translate#default_languages = { 'fr': 'en', 'en': 'fr' }
 
 "" Help for leader mapping
@@ -718,7 +736,6 @@ call which_key#register('<Space>', "g:which_key_map")
 
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
-
 """ Theme
 let no_buffers_menu=1
 
@@ -774,3 +791,40 @@ let g:lightline.component_expand = {
 let g:lightline.component_type = {
 			\		'buffers': 'tabsel'
 			\}
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#4c566a'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+
+let g:limelight_bop = '^.*$'
+let g:limelight_eop = '\n'
+let g:limelight_paragraph_span = 1
+
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+
+augroup writing
+	autocmd!
+	autocmd InsertEnter * Limelight
+	autocmd InsertLeave * :let __line=line('.')
+	autocmd InsertLeave * :let __col=col('.')
+	autocmd InsertLeave * Limelight!
+	autocmd InsertLeave * :cal cursor(__line,__col)
+	autocmd InsertLeave * :unlet __col
+	autocmd InsertLeave * :unlet __line
+augroup END
+"
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+:autocmd BufEnter *.png,*.jpg,*gif exec "! kitty +kitten icat ".expand("%") | :bw
