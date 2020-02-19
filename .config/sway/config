@@ -151,6 +151,8 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 # Launch calculator
 bindsym Mod4+c exec speedcrunch
+# Directly open vim
+bindsym Mod4+v exec $term -e nvim
 ## Moving around
 # Move your focus around
 bindsym $mod+$left focus left
@@ -233,8 +235,6 @@ bindsym Print swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"
 ## Dmenu scripts
 # Use OTP with a Yubikey
 bindsym Mod4+y exec ~/.scripts/dmenuYubi.sh
-# VPN chooser with dmenu
-bindsym Mod4+v exec ~/.scripts/VPNdmenu.sh
 # Wifi chooser with rofi 
 bindsym Mod4+minus exec ~/.scripts/rofi-wifi-menu.sh
 ## Media Keys
