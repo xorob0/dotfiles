@@ -299,6 +299,8 @@ Plug 'burnettk/vim-jenkins'
 Plug 'vim-vdebug/vdebug'
 
 Plug 'junegunn/goyo.vim'
+
+Plug 'kana/vim-repeat'
 call plug#end()
 
 
@@ -527,6 +529,10 @@ noremap <leader>vp :!hub pull-request<CR>
 " Easy CocCommand
 noremap <leader>cc :CocCommand 
 noremap <leader>cf :CocCommand flutter.
+
+
+" Exit terminal
+tnoremap <Esc> <C-\><C-n>
 
 """ Addons configuration
 "" Autocompletion
