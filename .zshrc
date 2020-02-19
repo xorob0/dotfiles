@@ -25,6 +25,8 @@ if ! zgen saved; then
 	zgen oh-my-zsh plugins/pip
 	zgen oh-my-zsh plugins/yarn
 
+	zgen load momo-lab/zsh-abbrev-alias
+
 	zgen load romkatv/powerlevel10k powerlevel10k
 
 # Auto pairs
@@ -65,94 +67,91 @@ setopt COMPLETE_ALIASES
 
 ### Setting aliases
 # Colorized aliases for ls
-alias l="lsd"
-alias ls="lsd"
-alias ll='l -l'
-alias lsl='ls -l'
-alias lt='l -lt'
-alias lst='ls -lt'
-alias lla='l -lA'
-alias lsla='l -lA'
-alias la='l -A'
-alias lsa='ls -A'
-alias lg='l -l | grep'
-alias lsg='ls -l | grep'
+abbrev-alias l="lsd"
+abbrev-alias ls="lsd"
+abbrev-alias ll='l -l'
+abbrev-alias lsl='ls -l'
+abbrev-alias lt='l -lt'
+abbrev-alias lst='ls -lt'
+abbrev-alias lla='l -lA'
+abbrev-alias lsla='l -lA'
+abbrev-alias la='l -A'
+abbrev-alias lsa='ls -A'
+abbrev-alias lg='l -l | grep'
+abbrev-alias lsg='ls -l | grep'
 # Easy .zshrc edit
-alias zshrc="$EDITOR ~/.zshrc"
+abbrev-alias zshrc="$EDITOR ~/.zshrc"
 # History access
-alias hist="history"
+abbrev-alias hist="history"
 # Obligatory git aliases
 # Hub alisaes
-alias h="hub"
-alias hpr="hub pull-request"
-alias hc="hub create"
-alias hb="hub browse"
-alias g="h"
-# alias ga="g add"
-alias gc="g commit -m"
-alias gC="g commit"
-alias gcl="g clone"
-alias gaa="g add -A"
-alias gca="g commit -am"
-alias gpl="g pull"
-alias gp="g push"
-alias gl="g log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
-alias gs="g status -s"
-alias gb="g branch"
-alias gm="g merge"
-alias gmv="g mv"
-alias grm="g rm"
-alias gck="g checkout"
-alias gcb="g checkout -b"
-alias gcd="g checkout develop"
-alias gcm="g checkout master"
-alias gf="g fetch"
-alias gmd="g merge develop"
-alias gmm="g merge master"
-alias gmt="g mergetool"
-alias gpu="g push -u origin HEAD"
-alias gcz="g cz"
+abbrev-alias h="hub"
+abbrev-alias hpr="hub pull-request"
+abbrev-alias hc="hub create"
+abbrev-alias hb="hub browse"
+abbrev-alias g="hub"
+# abbrev-alias ga="g add"
+abbrev-alias gc="hub commit -m"
+abbrev-alias gC="hub commit"
+abbrev-alias gcl="hub clone"
+abbrev-alias gaa="hub add -A"
+abbrev-alias gca="hub commit -am"
+abbrev-alias gpl="hub pull"
+abbrev-alias gp="hub push"
+abbrev-alias gl="hub log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
+abbrev-alias gs="hub status -s"
+abbrev-alias gb="hub branch"
+abbrev-alias gm="hub merge"
+abbrev-alias gmv="hub mv"
+abbrev-alias grm="hub rm"
+abbrev-alias gck="hub checkout"
+abbrev-alias gcb="hub checkout -b"
+abbrev-alias gcd="hub checkout develop"
+abbrev-alias gcm="hub checkout master"
+abbrev-alias gf="hub fetch"
+abbrev-alias gmd="hub merge develop"
+abbrev-alias gmm="hub merge master"
+abbrev-alias gmt="hub mergetool"
+abbrev-alias gpu="hub push -u origin HEAD"
+abbrev-alias gcz="hub cz"
 # Top order
-alias cpu='top -o cpu'   # CPU
-alias mem='top -o rsize' # Memory
+abbrev-alias cpu='top -o cpu'   # CPU
+abbrev-alias mem='top -o rsize' # Memory
 # Convert document to pdf
 alias doc2pdf="libreoffice --headless --convert-to pdf *.docx"
 alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
 # Enable the trash
-alias rm='echo "This is not the command you are looking for"; false'
-alias /rm="rm"
-alias tp='trash-put'
-# Some alias for backward directory
-alias -g ..=".."
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
+abbrev-alias rm='echo "This is not the command you are looking for"; false'
+abbrev-alias /rm="rm"
+abbrev-alias tp='trash-put'
+# Some abbrev-alias for backward directory
+abbrev-alias -g ..=".."
+abbrev-alias -g ...='../..'
+abbrev-alias -g ....='../../..'
+abbrev-alias -g .....='../../../..'
+abbrev-alias -g ......='../../../../..'
 # Easy Grep
-alias -g G='| grep'
+abbrev-alias -g G='| grep'
 # Easy Sudo
-alias _='sudo'
-# Wifi-menu (obfscated and non-obfuscated passwords)
-alias wm='sudo wifi-menu -o'
-alias wmm='sudo wifi-menu'
+abbrev-alias _='sudo'
 # editor
-alias -g e='$EDITOR'
-alias se='sudo $EDITOR'
+abbrev-alias -g e='vim'
+abbrev-alias se='sudo vim'
 # Python
-alias p='python'
-alias p2='python2'
-alias pi='pip install'
+abbrev-alias p='python'
+abbrev-alias p2='python2'
+abbrev-alias pi='pip install'
 # For when I forget I'm in normal mode in zsh
-alias nger="ranger"
+abbrev-alias nger="ranger"
 # Root GUI
-alias zl='xhost +local'
+abbrev-alias zl='xhost +local'
 # Youtube downloades
-alias yt='youtube-dl'
+abbrev-alias yt='youtube-dl'
 # easier open
 alias open='mimeopen'
 alias o='mimeopen'
 # fd
-alias fd='fdfind'
+abbrev-alias fd='fdfind'
 
 alias codi="vim -c 'let g:startify_disable_at_vimenter = 1 | set bt=nofile ls=0 noru nonu nornu | hi ColorColumn ctermbg=NONE | hi VertSplit ctermbg=NONE | hi NonText ctermfg=0 | Codi' example.ts"
 
