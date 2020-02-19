@@ -152,6 +152,10 @@ alias open='mimeopen'
 alias o='mimeopen'
 # fd
 abbrev-alias fd='fdfind'
+# apt
+abbrev-alias install='sudo apt install'
+abbrev-alias update='sudo apt update'
+abbrev-alias upgrade='sudo apt upgrade'
 
 alias codi="vim -c 'let g:startify_disable_at_vimenter = 1 | set bt=nofile ls=0 noru nonu nornu | hi ColorColumn ctermbg=NONE | hi VertSplit ctermbg=NONE | hi NonText ctermfg=0 | Codi' example.ts"
 
