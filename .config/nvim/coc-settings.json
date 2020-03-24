@@ -39,6 +39,7 @@
     "javascriptreact",
     "dart"
   ],
+	"coc.source.emoji.filetypes": null,
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": true,
   "prettier.stylelintIntegration": true,
@@ -201,5 +202,6 @@
     "]c": "gitNext",
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+	"nextword.filetypes":[ "markdown" ]
 }

@@ -59,3 +59,5 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Bit Warden Session
 export BW_SESSION="HCG8qrtm8GgSEwUg0XWjL172odOpiCLsi9u9oYPysr00AE8mmxJZuS6mOsJcFfK/+La1j/fbGyvaT8eOJHFtGg=="
+
+export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword

@@ -114,6 +114,7 @@ abbrev-alias gmm="hub merge master"
 abbrev-alias gmt="hub mergetool"
 abbrev-alias gpu="hub push -u origin HEAD"
 abbrev-alias gcz="hub cz"
+abbrev-alias nov="hub commit --no-verify"
 # Top order
 abbrev-alias cpu='top -o cpu'   # CPU
 abbrev-alias mem='top -o rsize' # Memory

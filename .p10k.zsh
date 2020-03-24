@@ -92,7 +92,7 @@ fi
   # POWERLEVEL9K_DIR_VISUAL_IDENTIFIER_EXPANSION='⭐'.
   #
   # To assign a specific icon to a segment in a given state (e.g., dir in state NOT_WRITABLE),
-  set POWERLEVEL9K_DIR_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION='⭐'.
+  set POWERLEVEL9K_DIR_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION='🚫'.
   #
   # Note: You can use $'\u2B50' instead of '⭐'. It's especially convenient when specifying
   # icons that your text editor cannot render. Don't forget to put $ and use single quotes when
@@ -134,7 +134,7 @@ fi
   # Or for a specific segment in specific state:
   #
   #   POWERLEVEL9K_DIR_NOT_WRITABLE_ICON_BEFORE_CONTENT=false
-  typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=
+  typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT='🚫'
 
   # Add an empty line before each prompt.
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true

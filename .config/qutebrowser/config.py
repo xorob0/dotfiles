@@ -137,7 +137,7 @@ c.tabs.width = '10%'
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-c.url.default_page = 'https://org.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=1&shb=0&shl=1'
+c.url.default_page = 'https://duckduckgo.com/'
 
 # Open base URL of the searchengine if a searchengine shortcut is
 # invoked without parameters.
@@ -158,7 +158,8 @@ c.url.open_base_url = True
 # Type: Dict
 
 searchengines = {
-    'DEFAULT' : 'https://www.qwant.com/?r=BE&sr=fr&l=en_gb&h=0&s=0&a=1&b=0&vt=0&hc=1&smartNews=1&smartSocial=1&theme=0&i=1&donation=1&qoz=0&shb=0&shl=1&q={}',
+    'DEFAULT' : 'https://duckduckgo.com/?q={}',
+    'ddg' : 'https://duckduckgo.com/?q={}',
     'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
     'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
     'cb' : 'https://www.coolblue.be/en/search?query={}',
@@ -175,7 +176,6 @@ searchengines = {
     'auk' : 'https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords={}',
     'aukw' : 'https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Dwarehouse-deals&field-keywords={}',
     'aw' : 'https://wiki.archlinux.org/?search={}',
-    'ddg' : 'https://duckduckgo.com/?q={}',
     'gg' : 'https://www.google.com/search?q={}',
     'wen' : 'https://en.wikipedia.org/w/?search={}',
     'wfr' : 'https://fr.wikipedia.org/w/?search={}',

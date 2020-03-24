@@ -2,7 +2,7 @@
 ### General ###
 ###############
 # Setting up font
-font pango: InconsolataLGC Nerd Font 9
+font pango: Fira Mono Medium Nerd Font Complete 9
 
 set $nord0 #2E3440
 set $nord1 #3B4252
@@ -31,8 +31,8 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Using alacritty as main terminal emulator
-set $term alacritty
+# Using kitty as main terminal emulator
+set $term kitty
 # Using j4-dmenu to launch programs
 set $menu "sh ~/.scripts/rofi.sh"
 # Using firefox as main browser
@@ -104,6 +104,10 @@ output DP-4 {
 	pos 1920,2160 
 	transform 270
 }
+output DP-5 {
+	pos 1920,2160 
+	transform 270
+}
 
 seat seat0 xcursor_theme captaine 48 
 
@@ -117,14 +121,19 @@ input * {
   repeat_rate 30
   xkb_layout us
   xkb_variant intl
-  xkb_options caps:escape,shift:both_shiftlock
 
 # Touchpad
 	dwt enabled
 	tap enabled
-	natural_scroll enabled
 	middle_emulation enabled
 	scroll_method two_finger
+}
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_options caps:escape,shift:both_shiftlock
+}
+
+input "1739:30383:DELL07E6:00_06CB:76AF_Touchpad" {
+	natural_scroll enabled
 }
 
 ################
@@ -345,7 +354,7 @@ exec --no-startup-id swaymsg 'exec ferdi'
 # Launch browser on startup
 exec --no-startup-id swaymsg 'exec qutebrowser'
 # Launch term on startup
-exec --no-startup-id swaymsg 'workspace "1:term", exec alacritty'
+exec --no-startup-id swaymsg 'workspace "1:term", exec kitty'
 # Going to the main workspace
 exec --no-startup-id swaymsg 'workspace "1:term"'
 # Launching polkit agent

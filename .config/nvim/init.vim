@@ -171,6 +171,7 @@ Plug 'iamcco/coc-project', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'voldikss/coc-floaterm', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'aperezdc/vim-template'
 
 " Coc snippets
@@ -301,6 +302,20 @@ Plug 'vim-vdebug/vdebug'
 Plug 'junegunn/goyo.vim'
 
 Plug 'kana/vim-repeat'
+
+Plug 'voldikss/coc-tasks'
+
+Plug 'ashisha/image.vim'
+
+Plug 'rakr/vim-one'
+
+Plug 'dbaileychess/vim-screeps'
+
+Plug 'dkarter/bullets.vim'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'SidOfc/mkdx'
 call plug#end()
 
 
@@ -577,6 +592,9 @@ hi IndentGuidesEven ctermbg=0
 "" Markdown preview
 " Open the preview when opening a md file
 let g:mkdp_auto_start = 0
+
+"" Markdown conceal
+set conceallevel=2
 
 "" Copy/Paste/Cut
 if has('unnamedplus')
