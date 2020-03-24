@@ -4,7 +4,7 @@ cd "$HOME" || exit
 
 system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
 
-if [ "$system_version" = "Ubuntu" || "$system_version" = "Microsoft"]; then
+if [ "$system_version" = "Ubuntu" || "$system_version" = "Microsoft" ]; then
 	echo "Adding PPA"
 	sudo add-apt-repository ppa:neovim-ppa/unstable
 	sudo apt-get update
