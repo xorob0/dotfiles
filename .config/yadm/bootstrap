@@ -2,5 +2,25 @@
 
 cd "$HOME" || exit
 
+system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
+
+if [ "$system_version" = "Ubuntu" ]; then
+	echo "Adding PPA"
+	sudo add-apt-repository ppa:neovim-ppa/unstable
+	sudo apt-get update
+	echo "Installing NeoVim"
+	sudo apt-get install neovim
+	echo "Installing NeoVim's depenencies"
+	sudo apt-get install python-neovim
+	sudo apt-get install python3-neovim
+	echo "Setting up environement"
+	set -u
+	sudo update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
+	sudo update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
+	sudo update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
+	sudo update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
+	sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+fi
+
 echo "Installing zgen"
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
