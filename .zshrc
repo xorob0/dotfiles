@@ -66,55 +66,84 @@ setopt NO_BEEP
 setopt COMPLETE_ALIASES
 
 ### Setting aliases
+# Conditionnal aliases
+function rm mv () {
+    if git rev-parse --is-inside-work-tree &> /dev/null
+    then
+        git $0 "$@"
+    else
+        command $0 "$@"
+    fi
+}
+
+function git () {
+    if which hub 0 &> /dev/null
+    then
+        hub "$@"
+    else
+        command $0 "$@"
+    fi
+}
+
+function ls () {
+    if which lsd &> /dev/null
+    then
+        lsd "$@"
+    else
+        command $0 "$@"
+    fi
+}
+
+function rm () {
+    if which trash-put &> /dev/null
+    then
+        echo "This is not the command you are looking for"; false
+    else
+        command $0 "$@"
+    fi
+}
+
 # Colorized aliases for ls
-abbrev-alias l="lsd"
-abbrev-alias ls="lsd"
-abbrev-alias ll='l -l'
-abbrev-alias lsl='ls -l'
-abbrev-alias lt='l -lt'
-abbrev-alias lst='ls -lt'
-abbrev-alias lla='l -lA'
-abbrev-alias lsla='l -lA'
-abbrev-alias la='l -A'
-abbrev-alias lsa='ls -A'
-abbrev-alias lg='l -l | grep'
-abbrev-alias lsg='ls -l | grep'
+abbrev-alias l="ls"
+abbrev-alias ll='ls -l'
+abbrev-alias lt='ls -lt'
+abbrev-alias lla='ls -lA'
+abbrev-alias la='ls -A'
+abbrev-alias lg='ls -l | grep'
 # Easy .zshrc edit
-abbrev-alias zshrc="$EDITOR ~/.zshrc"
+alias zshrc="$EDITOR ~/.zshrc"
 # History access
 abbrev-alias hist="history"
 # Obligatory git aliases
 # Hub alisaes
-abbrev-alias h="hub"
 abbrev-alias hpr="hub pull-request"
 abbrev-alias hc="hub create"
 abbrev-alias hb="hub browse"
-abbrev-alias g="hub"
-# abbrev-alias ga="g add"
-abbrev-alias gc="hub commit -m"
-abbrev-alias gC="hub commit"
-abbrev-alias gcl="hub clone"
-abbrev-alias gaa="hub add -A"
-abbrev-alias gca="hub commit -am"
-abbrev-alias gpl="hub pull"
-abbrev-alias gp="hub push"
-abbrev-alias gl="hub log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
-abbrev-alias gs="hub status -s"
-abbrev-alias gb="hub branch"
-abbrev-alias gm="hub merge"
-abbrev-alias gmv="hub mv"
-abbrev-alias grm="hub rm"
-abbrev-alias gck="hub checkout"
-abbrev-alias gcb="hub checkout -b"
-abbrev-alias gcd="hub checkout develop"
-abbrev-alias gcm="hub checkout master"
-abbrev-alias gf="hub fetch"
-abbrev-alias gmd="hub merge develop"
-abbrev-alias gmm="hub merge master"
-abbrev-alias gmt="hub mergetool"
-abbrev-alias gpu="hub push -u origin HEAD"
-abbrev-alias gcz="hub cz"
-abbrev-alias nov="hub commit --no-verify"
+abbrev-alias ga="git add"
+abbrev-alias gc="git commit -m"
+abbrev-alias gC="git commit"
+abbrev-alias gcl="git clone"
+abbrev-alias gaa="git add -A"
+abbrev-alias gca="git commit -am"
+abbrev-alias gpl="git pull"
+abbrev-alias gp="git push"
+abbrev-alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an> %Creset' --abbrev-commit"
+abbrev-alias gs="git status -s"
+abbrev-alias gb="git branch"
+abbrev-alias gm="git merge"
+abbrev-alias gmv="git mv"
+abbrev-alias grm="git rm"
+abbrev-alias gck="git checkout"
+abbrev-alias gcb="git checkout -b"
+abbrev-alias gcd="git checkout develop"
+abbrev-alias gcm="git checkout master"
+abbrev-alias gf="git fetch"
+abbrev-alias gmd="git merge develop"
+abbrev-alias gmm="git merge master"
+abbrev-alias gmt="git mergetool"
+abbrev-alias gpu="git push -u origin HEAD"
+abbrev-alias gcz="git cz"
+abbrev-alias nov="git commit --no-verify"
 # Top order
 abbrev-alias cpu='top -o cpu'   # CPU
 abbrev-alias mem='top -o rsize' # Memory
@@ -122,8 +151,7 @@ abbrev-alias mem='top -o rsize' # Memory
 alias doc2pdf="libreoffice --headless --convert-to pdf *.docx"
 alias odt2pdf="libreoffice --headless --convert-to pdf *.odt"
 # Enable the trash
-abbrev-alias rm='echo "This is not the command you are looking for"; false'
-abbrev-alias /rm="rm"
+alias /rm="rm"
 abbrev-alias tp='trash-put'
 # Some abbrev-alias for backward directory
 abbrev-alias -g ..=".."
@@ -136,8 +164,8 @@ abbrev-alias -g G='| grep'
 # Easy Sudo
 abbrev-alias _='sudo'
 # editor
-abbrev-alias -g e='vim'
-abbrev-alias se='sudo vim'
+abbrev-alias -g e='editor'
+abbrev-alias se='sudo editor'
 # Python
 abbrev-alias p='python'
 abbrev-alias p2='python2'
@@ -150,7 +178,7 @@ abbrev-alias zl='xhost +local'
 abbrev-alias yt='youtube-dl'
 # easier open
 alias open='mimeopen'
-alias o='mimeopen'
+abbrev-alias o='open'
 # fd
 abbrev-alias fd='fdfind'
 # apt
@@ -306,6 +334,8 @@ setopt inc_append_history
 setopt share_history
 # Do not keep blanks in history
 setopt hist_reduce_blanks
+# Ignore command starting with a space
+setopt histignorespace
 
 ### Keybindigs
 # Working backspace
