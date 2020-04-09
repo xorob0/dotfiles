@@ -5,15 +5,20 @@ cd "$HOME" || exit
 system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
 
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Microsoft" ]; then
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	sudo apt update
+	sudo apt install yarn
 	echo "Adding PPA"
-	sudo add-apt-repository ppa:neovim-ppa/unstable
-	sudo apt-get update
+	sudo add-apt-repository -y ppa:neovim-ppa/unstable
+	sudo apt-get -y update
 	echo "Installing NeoVim"
-	sudo apt-get install neovim
+	sudo apt-get -y install neovim
 	echo "Installing NeoVim's depenencies"
-	sudo apt-get install python-neovim
-	sudo apt-get install python3-neovim
+	sudo apt-get -y install python-neovim
+	sudo apt-get -y install python3-neovim
 	echo "Setting up environement"
+	CUSTOM_NVIM_PATH=$(which nvim)
 	set -u
 	sudo update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
 	sudo update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
