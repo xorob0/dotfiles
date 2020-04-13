@@ -129,7 +129,7 @@ input * {
 	scroll_method two_finger
 }
 input "1:1:AT_Translated_Set_2_keyboard" {
-  xkb_options caps:escape,shift:both_capslock_cancel,nbsp:level2,grp:alts_toggle
+  xkb_options caps:escape,shift:both_capslock_cancel,nbsp:level2,grp:ctrls_toggle
 }
 
 input "1739:30383:DELL07E6:00_06CB:76AF_Touchpad" {
