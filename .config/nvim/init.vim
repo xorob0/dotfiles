@@ -596,6 +596,9 @@ let g:mkdp_auto_start = 0
 "" Markdown conceal
 set conceallevel=2
 
+"" Markdown without the folding
+let g:vim_markdown_folding_disabled = 1
+
 "" Copy/Paste/Cut
 if has('unnamedplus')
 	set clipboard=unnamed,unnamedplus
