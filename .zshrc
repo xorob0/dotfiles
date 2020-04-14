@@ -1,6 +1,13 @@
 # Source envs
 source "${HOME}/.zshenv"
 
+system_type=$(uname -v | head -n1 | sed -e 's/\s.*$//' | head -n1 | sed 's/^[^-]*-//')
+if [ "$system_type" = "Darwin" ]; then
+    eval $(gdircolors $HOME/.dir_colors)
+else
+    eval $(dircolors -b $HOME/.dir_colors)
+fi
+
 ###############
 ### Plugins ###
 ###############
@@ -103,6 +110,40 @@ function rm () {
     fi
 }
 
+function install () {
+case $system_type in
+  Ubuntu|Microsoft)
+		sudo apt install
+    ;;
+  *)
+		echo "This os is not supported"
+    ;;
+esac
+}
+
+function update () {
+case $system_type in
+  Ubuntu|Microsoft)
+		sudo apt update
+    ;;
+  *)
+		echo "This os is not supported"
+    ;;
+esac
+}
+
+function upgrade () {
+case $system_type in
+  Ubuntu|Microsoft)
+		sudo apt upgrade
+    ;;
+  *)
+		echo "This os is not supported"
+    ;;
+esac
+}
+
+
 # Colorized aliases for ls
 abbrev-alias l="ls"
 abbrev-alias ll='ls -l'
@@ -181,10 +222,6 @@ alias open='mimeopen'
 abbrev-alias o='open'
 # fd
 abbrev-alias fd='fdfind'
-# apt
-abbrev-alias install='sudo apt install'
-abbrev-alias update='sudo apt update'
-abbrev-alias upgrade='sudo apt upgrade'
 
 alias codi="vim -c 'let g:startify_disable_at_vimenter = 1 | set bt=nofile ls=0 noru nonu nornu | hi ColorColumn ctermbg=NONE | hi VertSplit ctermbg=NONE | hi NonText ctermfg=0 | Codi' example.ts"
 
