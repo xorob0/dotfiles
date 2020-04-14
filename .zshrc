@@ -2,11 +2,6 @@
 source "${HOME}/.zshenv"
 
 system_type=$(uname -v | head -n1 | sed -e 's/\s.*$//' | head -n1 | sed 's/^[^-]*-//')
-if [ "$system_type" = "Darwin" ]; then
-    eval $(gdircolors $HOME/.dir_colors)
-else
-    eval $(dircolors -b $HOME/.dir_colors)
-fi
 
 ###############
 ### Plugins ###
@@ -20,7 +15,6 @@ if ! zgen saved; then
 	zgen oh-my-zsh plugins/vi-mode
 	zgen oh-my-zsh plugins/systemd
 	zgen oh-my-zsh plugins/git
-	zgen oh-my-zsh plugins/archlinux
 	zgen oh-my-zsh plugins/compleat
 	zgen oh-my-zsh plugins/copyfile
 	zgen oh-my-zsh plugins/docker
@@ -111,36 +105,46 @@ function rm () {
 }
 
 function install () {
-case $system_type in
-  Ubuntu|Microsoft)
-		sudo apt install
-    ;;
-  *)
-		echo "This os is not supported"
-    ;;
-esac
+	case $system_type in
+		Ubuntu|Microsoft)
+			sudo apt install "$@"
+			;;
+		archlinux)
+			sudo pacman -S "$@"
+			;;
+		*)
+			echo "This os is not supported"
+			;;
+	esac
 }
 
 function update () {
-case $system_type in
-  Ubuntu|Microsoft)
-		sudo apt update
-    ;;
-  *)
-		echo "This os is not supported"
-    ;;
-esac
+	case $system_type in
+		Ubuntu|Microsoft)
+			sudo apt update
+			;;
+		archlinux)
+			sudo pacman -Syy "$@"
+			;;
+		*)
+			echo "This os is not supported"
+			;;
+	esac
 }
 
 function upgrade () {
-case $system_type in
-  Ubuntu|Microsoft)
-		sudo apt upgrade
-    ;;
-  *)
-		echo "This os is not supported"
-    ;;
-esac
+	update
+	case $system_type in
+		Ubuntu|Microsoft)
+			sudo apt upgrade "$@"
+			;;
+		archlinux)
+			sudo pacman -Syu "$@"
+			;;
+		*)
+			echo "This os is not supported"
+			;;
+	esac
 }
 
 
