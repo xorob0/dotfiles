@@ -22,7 +22,7 @@ elif [ "$OSTYPE" = "linux-gnu" ]; then
 		apt install xdg-utils 
 	elif [ "$system_version" = "Fedora" ];then
 		dnf install xdg-utils
-	elif [ "$system_version" = "Archlinux" ];then
+	elif [ "$system_version" = "Arch" ];then
 		pacman --noconfirm -S xdg-utils
 	elif [ "$system_version" = "Gentoo" ];then
 		emerge -av xdg-utils
@@ -36,7 +36,7 @@ if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 	apt install git-all 
 elif [ "$system_version" = "Fedora" ];then
 	dnf install git-all
-elif [ "$system_version" = "Archlinux" ];then
+elif [ "$system_version" = "Arch" ];then
 	pacman --noconfirm -S git
 elif [ "$system_version" = "Gentoo" ];then
 	emerge -av dev-vcs/git
@@ -56,7 +56,7 @@ elif [ "$system_version" = "Fedora" ];then
 	curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 	dnf install yarn
-elif [ "$system_version" = "Archlinux" ];then
+elif [ "$system_version" = "Arch" ];then
 	pacman --noconfirm -S yarn
 elif [ "$system_version" = "Gentoo" ];then
 	emerge -av sys-apps/yarn
@@ -89,7 +89,7 @@ elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	brew install neovim
 elif [ "$system_version" = "Fedora" ];then
 	dnf install -y neovim python3-neovim
-elif [ "$system_version" = "Archlinux" ];then
+elif [ "$system_version" = "Arch" ];then
 	pacman --noconfirm -S neovim python-pynvim
 elif [ "$system_version" = "Gentoo" ];then
 	emerge -a app-editors/neovim
@@ -105,7 +105,7 @@ if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 	apt install qutebrowser gstreamer1.0-plugins-{bad,base,good,ugly}
 elif [ "$system_version" = "Fedora" ];then
 	dnf install qutebrowser qt5-qtwebengine-freeworld
-elif [ "$system_version" = "Archlinux" ];then
+elif [ "$system_version" = "Arch" ];then
 	pacman --noconfirm -S qutebrowser gst-plugins-{base,good,bad,ugly} gst-libav
 elif [ "$system_version" = "Gentoo" ];then
 	emerge -av qutebrowser gst-plugins-{base,good,bad,ugly,libav}
