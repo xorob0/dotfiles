@@ -29,4 +29,4 @@ jobs:
         yadm bootstrap
 
     - name: Run test file
-      run: bash $GITHUB_WORKSPACE/.config/yadm/test.s
+      run: bash $GITHUB_WORKSPACE/.yadm/test.s
