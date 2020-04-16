@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: archlinux
+      options: --user 1001
 
     steps:
 
