@@ -1,1 +1,2 @@
-.config/yadm/bootstrap
+#/bin/sh
+bash $HOME/.config/yadm/bootstrap
