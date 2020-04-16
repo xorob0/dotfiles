@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Intall yadm
-      run: sudo apt install yadm
+    #- name: Intall yadm
+ #     run: sudo apt install yadm
  
-    - name: Bootstrap yadm
-      run: yadm clone 
+   # - name: Bootstrap yadm
+    #  run: yadm clone 
 
     # Runs a single command using the runners shell
     #- name: Run test file
