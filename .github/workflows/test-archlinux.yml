@@ -30,8 +30,8 @@ jobs:
       env:
         URL: ${{ github.repositoryUrl }}
       run: |
-        pacman -Sy --no-confirm
-        pacman -S git --no-confirm
+        pacman -Sy --noconfirm
+        pacman -S git --noconfirm
         yadm clone $URL
         yadm bootstrap
 
