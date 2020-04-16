@@ -24,7 +24,6 @@ elif [ "$OSTYPE" = "linux-gnu" ]; then
 	fi
 fi
 
-
 echo "Installing git"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 	sudo apt install git-all 
