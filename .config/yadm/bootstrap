@@ -2,7 +2,7 @@
 
 cd "$HOME" || exit
 
-system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
+system_version=$(grep ^NAME < /etc/os-release  | cut -d'"' -f 2)
 
 echo "$system_version"
 
