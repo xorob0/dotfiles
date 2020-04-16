@@ -2,6 +2,11 @@
 
 cd "$HOME" || exit
 
+if command -v pacman &> /dev/null; then
+	pacman -Sy
+	pacman -S lsb-release
+fi
+
 system_version=$(lsb_release -si )
 
 echo "$system_version"
