@@ -2,7 +2,7 @@
 
 echo "$OSTYPE"
 
-if [ "$OSTYPE" = "darwin" ]; then
+if [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	if [ -z "$(brew --version)" ];then
 		echo "✅ brew is installed"
 	else
@@ -10,7 +10,7 @@ if [ "$OSTYPE" = "darwin" ]; then
 	fi
 fi
 
-if [ "$OSTYPE" = "linux-gnu" ]; then
+if [[ "$OSTYPE" =~ ^linux.* ]]; then
 	if [ "$(xdg-settings get default-web-browser)" = "org.qutebrowser.qutebrowser.desktop" ] || [ "$(xdg-settings get default-web-browser)" = "qutebrowser.desktop" ];then
 		echo "✅ qutebrowser is the default browser"
 	else
