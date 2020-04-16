@@ -26,7 +26,7 @@ jobs:
         URL: ${{ github.repositoryUrl }}
       run: |
         yadm clone $URL
-        yadm bootstrap
+        sudo yadm bootstrap
 
     - name: Run test file
       run: bash $HOME/.config/yadm/test.sh
