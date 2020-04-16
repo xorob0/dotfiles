@@ -23,6 +23,7 @@ jobs:
 
     - name: Install yay
       run: |
+        pacman -Sy
         pacman -S git
         git clone https://aur.archlinux.org/yay.git
         cd yay
