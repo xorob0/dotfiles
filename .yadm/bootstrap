@@ -4,12 +4,26 @@ cd "$HOME" || exit
 
 system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
 
+echo "Installing depedencies"
 
 if [ "$OSTYPE" = "darwin" ];then
 	echo "Installing brew"
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew doctor
+elif [ "$OSTYPE" = "linux-gnu" ]; then
+	if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
+		sudo apt install xdg-utils 
+	elif [ "$system_version" = "Fedora" ];then
+		sudo dnf install xdg-utils
+	elif [ "$system_version" = "Archlinux" ];then
+		sudo pacman -S xdg-utils
+	elif [ "$system_version" = "Gentoo" ];then
+		sudo emerge -av xdg-utils
+	elif [ "$system_version" = "FreeBSD" ];then
+		sudo pkg install xdg-utils
+	fi
 fi
+
 
 echo "Installing git"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
