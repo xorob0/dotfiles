@@ -36,7 +36,8 @@ echo "Installing zgen"
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 echo "Installing qutebrowser"
-if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Microsoft" ]; then
+if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 	sudo apt install qutebrowser
-	xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
 fi
+echo "Setting qutebrowser as default"
+xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
