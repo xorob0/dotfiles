@@ -30,6 +30,7 @@ jobs:
       env:
         URL: ${{ github.repositoryUrl }}
       run: |
+        sudo pacman -S git
         yadm clone $URL
         yadm bootstrap
 
