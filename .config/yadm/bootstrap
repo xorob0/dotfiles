@@ -4,6 +4,8 @@ cd "$HOME" || exit
 
 system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
 
+echo "$system_version"
+
 echo "Installing depedencies"
 
 if [[ "$OSTYPE" =~ ^darwin.* ]]; then
@@ -16,7 +18,7 @@ elif [ "$OSTYPE" = "linux-gnu" ]; then
 	elif [ "$system_version" = "Fedora" ];then
 		sudo dnf install xdg-utils
 	elif [ "$system_version" = "Archlinux" ];then
-		sudo pacman -S xdg-utils
+		sudo pacman --noconfirm -S xdg-utils
 	elif [ "$system_version" = "Gentoo" ];then
 		sudo emerge -av xdg-utils
 	elif [ "$system_version" = "FreeBSD" ];then
@@ -30,7 +32,7 @@ if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 elif [ "$system_version" = "Fedora" ];then
 	sudo dnf install git-all
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman -S git
+	sudo pacman --noconfirm -S git
 elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -av dev-vcs/git
 elif [ "$system_version" = "FreeBSD" ];then
@@ -50,7 +52,7 @@ elif [ "$system_version" = "Fedora" ];then
 	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
 	sudo dnf install yarn
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman -S yarn
+	sudo pacman --noconfirm -S yarn
 elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -av sys-apps/yarn
 elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
@@ -83,7 +85,7 @@ elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 elif [ "$system_version" = "Fedora" ];then
 	sudo dnf install -y neovim python3-neovim
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman -S neovim python-pynvim
+	sudo pacman --noconfirm -S neovim python-pynvim
 elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -a app-editors/neovim
 elif [ "$system_version" = "FreeBSD" ];then
@@ -99,7 +101,7 @@ if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
 elif [ "$system_version" = "Fedora" ];then
 	sudo dnf install qutebrowser qt5-qtwebengine-freeworld
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman -S qutebrowser gst-plugins-{base,good,bad,ugly} gst-libav
+	sudo pacman --noconfirm -S qutebrowser gst-plugins-{base,good,bad,ugly} gst-libav
 elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -av qutebrowser gst-plugins-{base,good,bad,ugly,libav}
 elif [ "$system_version" = "FreeBSD" ];then
