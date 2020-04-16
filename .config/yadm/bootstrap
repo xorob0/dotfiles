@@ -2,7 +2,7 @@
 
 cd "$HOME" || exit
 
-system_version=$(grep ^DISTRIB_ID < /etc/lsb-release | cut -d'=' -f 2)
+system_version=$(lsb_release -si )
 
 echo "$system_version"
 
