@@ -21,19 +21,10 @@ jobs:
       options: --user 1001
 
     steps:
-
-    - name: Install yay
-      run: |
-        yes | sudo pacman -Sy
-        yes | sudo pacman -S git
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        sudo makepkg -si
-        cd
-
     - name: Intall yadm
-      run: sudo yay -Syu yadm-git
-
+      run: |
+        wget https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm
+        mv ./yadm /bin/yadm
  
     - name: Bootstrap yadm
       env:
