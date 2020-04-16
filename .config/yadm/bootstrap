@@ -6,7 +6,7 @@ system_version=$(uname -v | head -n1 | sed -e 's/\s.*$//' | sed 's/^[^-]*-//')
 
 echo "Installing depedencies"
 
-if [ "$OSTYPE" = "darwin" ];then
+if [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	echo "Installing brew"
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew doctor
@@ -35,7 +35,7 @@ elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -av dev-vcs/git
 elif [ "$system_version" = "FreeBSD" ];then
 	sudo pkg install git
-elif [ "$OSTYPE" = "darwin" ];then
+elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	sudo brew install git
 fi
 
@@ -53,7 +53,7 @@ elif [ "$system_version" = "Archlinux" ];then
 	sudo pacman -S yarn
 elif [ "$system_version" = "Gentoo" ];then
 	sudo emerge -av sys-apps/yarn
-elif [ "$OSTYPE" = "darwin" ];then
+elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	sudo brew install yarn
 else
 	curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -78,7 +78,7 @@ if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ] || [ "$s
 	sudo update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
 	sudo update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
 	sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
-elif [ "$OSTYPE" = "darwin" ];then
+elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	sudo brew install neovim
 elif [ "$system_version" = "Fedora" ];then
 	sudo dnf install -y neovim python3-neovim
@@ -106,7 +106,7 @@ elif [ "$system_version" = "FreeBSD" ];then
 	cd /usr/ports/www/qutebrowser || return
 	sudo make install clean
 	cd "$HOME" || return
-elif [ "$OSTYPE" = "darwin" ];then
+elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	sudo brew cask install qutebrowser
 fi
 
