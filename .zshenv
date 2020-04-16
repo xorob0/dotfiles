@@ -43,7 +43,7 @@ export PAGER="less"
 export TERM="xterm-256color"
 # Default browser depend on the display type
 if [ -n "$DISPLAY" ]; then
-    export BROWSER=qutebrowser
+    # export BROWSER=qutebrowser
 else 
     export BROWSER=links
 fi
