@@ -24,11 +24,11 @@ jobs:
 
     - name: Install yay
       run: |
-        yes | pacman -Sy
-        yes | pacman -S git
+        yes | sudo pacman -Sy
+        yes | sudo pacman -S git
         git clone https://aur.archlinux.org/yay.git
         cd yay
-        makepkg -si
+        sudo makepkg -si
         cd
 
     - name: Intall yadm
