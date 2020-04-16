@@ -1,5 +1,6 @@
 #! /bin/bash
 
+echo "$OSTYPE"
 
 if [ "$OSTYPE" = "darwin" ]; then
 	if [ -z "$(brew --version)" ];then
