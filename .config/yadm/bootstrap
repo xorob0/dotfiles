@@ -14,49 +14,49 @@ if [[ "$OSTYPE" =~ ^darwin.* ]]; then
 	brew doctor
 elif [ "$OSTYPE" = "linux-gnu" ]; then
 	if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
-		sudo apt install xdg-utils 
+		apt install xdg-utils 
 	elif [ "$system_version" = "Fedora" ];then
-		sudo dnf install xdg-utils
+		dnf install xdg-utils
 	elif [ "$system_version" = "Archlinux" ];then
-		sudo pacman --noconfirm -S xdg-utils
+		pacman --noconfirm -S xdg-utils
 	elif [ "$system_version" = "Gentoo" ];then
-		sudo emerge -av xdg-utils
+		emerge -av xdg-utils
 	elif [ "$system_version" = "FreeBSD" ];then
-		sudo pkg install xdg-utils
+		pkg install xdg-utils
 	fi
 fi
 
 echo "Installing git"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
-	sudo apt install git-all 
+	apt install git-all 
 elif [ "$system_version" = "Fedora" ];then
-	sudo dnf install git-all
+	dnf install git-all
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman --noconfirm -S git
+	pacman --noconfirm -S git
 elif [ "$system_version" = "Gentoo" ];then
-	sudo emerge -av dev-vcs/git
+	emerge -av dev-vcs/git
 elif [ "$system_version" = "FreeBSD" ];then
-	sudo pkg install git
+	pkg install git
 elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
-	sudo brew install git
+	brew install git
 fi
 
 echo "Installing yarn"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
-	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-	sudo apt update
-	sudo apt install yarn
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+	apt update
+	apt install yarn
 elif [ "$system_version" = "Fedora" ];then
-	curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-	curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
-	sudo dnf install yarn
+	curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+	curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+	dnf install yarn
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman --noconfirm -S yarn
+	pacman --noconfirm -S yarn
 elif [ "$system_version" = "Gentoo" ];then
-	sudo emerge -av sys-apps/yarn
+	emerge -av sys-apps/yarn
 elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
-	sudo brew install yarn
+	brew install yarn
 else
 	curl -o- -L https://yarnpkg.com/install.sh | bash
 fi
@@ -64,32 +64,32 @@ fi
 
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Microsoft" ]; then
 	echo "Adding PPA for NeoVim unstable"
-	sudo add-apt-repository -y ppa:neovim-ppa/unstable
-	sudo apt -y update
+	add-apt-repository -y ppa:neovim-ppa/unstable
+	apt -y update
 fi
 
 echo "Installing NeoVim"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ] || [ "$system_version" = "Microsoft" ]; then
-	sudo apt -y install neovim python-neovim python3-neovim
+	apt -y install neovim python-neovim python3-neovim
 
 	echo "Setting up environement"
 	CUSTOM_NVIM_PATH=$(which nvim)
 	set -u
-	sudo update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
-	sudo update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
-	sudo update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
-	sudo update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
-	sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+	update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
+	update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
+	update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
+	update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
+	update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
 elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
-	sudo brew install neovim
+	brew install neovim
 elif [ "$system_version" = "Fedora" ];then
-	sudo dnf install -y neovim python3-neovim
+	dnf install -y neovim python3-neovim
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman --noconfirm -S neovim python-pynvim
+	pacman --noconfirm -S neovim python-pynvim
 elif [ "$system_version" = "Gentoo" ];then
-	sudo emerge -a app-editors/neovim
+	emerge -a app-editors/neovim
 elif [ "$system_version" = "FreeBSD" ];then
-	sudo pkg install neovim py27-pynvim py36-pynvim
+	pkg install neovim py27-pynvim py36-pynvim
 fi
 
 echo "Installing zgen"
@@ -97,19 +97,19 @@ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 echo "Installing qutebrowser"
 if [ "$system_version" = "Ubuntu" ] || [ "$system_version" = "Debian" ]; then
-	sudo apt install qutebrowser gstreamer1.0-plugins-{bad,base,good,ugly}
+	apt install qutebrowser gstreamer1.0-plugins-{bad,base,good,ugly}
 elif [ "$system_version" = "Fedora" ];then
-	sudo dnf install qutebrowser qt5-qtwebengine-freeworld
+	dnf install qutebrowser qt5-qtwebengine-freeworld
 elif [ "$system_version" = "Archlinux" ];then
-	sudo pacman --noconfirm -S qutebrowser gst-plugins-{base,good,bad,ugly} gst-libav
+	pacman --noconfirm -S qutebrowser gst-plugins-{base,good,bad,ugly} gst-libav
 elif [ "$system_version" = "Gentoo" ];then
-	sudo emerge -av qutebrowser gst-plugins-{base,good,bad,ugly,libav}
+	emerge -av qutebrowser gst-plugins-{base,good,bad,ugly,libav}
 elif [ "$system_version" = "FreeBSD" ];then
 	cd /usr/ports/www/qutebrowser || return
-	sudo make install clean
+	make install clean
 	cd "$HOME" || return
 elif [[ "$OSTYPE" =~ ^darwin.* ]]; then
-	sudo brew cask install qutebrowser
+	brew cask install qutebrowser
 fi
 
 if [ "$OSTYPE" = "linux-gnu" ]; then
