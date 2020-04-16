@@ -23,8 +23,9 @@ jobs:
     steps:
     - name: Intall yadm
       run: |
-        wget https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm
+        curl https://raw.githubusercontent.com/TheLocehiliosan/yadm/master/yadm > yadm
         mv ./yadm /bin/yadm
+        chmod +x /bin/yadm
  
     - name: Bootstrap yadm
       env:
