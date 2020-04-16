@@ -115,6 +115,7 @@ if [ "$OSTYPE" = "linux-gnu" ]; then
 	echo "Setting qutebrowser as default"
 	unset BROWSER
 	xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+	xdg-settings set default-web-browser qutebrowser.desktop
 else
 	echo "You should set qutebrowser as default manualy"
 fi
