@@ -3,8 +3,8 @@
 cd "$HOME" || exit
 
 if command -v pacman &> /dev/null; then
-	pacman -Sy
-	pacman -S lsb-release
+	pacman -Sy --noconfirm
+	pacman -S lsb-release --noconfirm
 fi
 
 system_version=$(lsb_release -si )
