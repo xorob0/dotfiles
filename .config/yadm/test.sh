@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [[ "$OSTYPE" =~ ^darwin.* ]]; then
-	if [ -z "$(brew --version)" ];then
+	if hash brew 2>/dev/null;then
 		echo "✅ brew is installed"
 	else
 		echo "❌ brew is not installed"
