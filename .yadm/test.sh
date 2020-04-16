@@ -1,5 +1,6 @@
 #! /bin/bash
 
+ls /usr/share/applications/
 if [ "$(xdg-settings get default-web-browser)" = "org.qutebrowser.qutebrowser.desktop" ];then
 	echo "✅ qutebrowser is the default browser"
 else
