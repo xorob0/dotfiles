@@ -87,26 +87,32 @@ workspace_auto_back_and_forth yes
 # Output configuration #
 ########################
 
+set $laptop eDP-1
+set $vertical 'Samsung Electric Company S22E450 H4ZK103954'
+set $big 'Samsung Electric Company U32J59x HTPM101214'
+
 # Wallpaper
 output "*" background ~/Pictures/background.jpg fill
-# HDMI dongle on top
-output DP-2 pos 3060,0 
-output DP-1 pos 3060,0 
-# HDMI on dock on the left
-output DP-3 pos 0,2160  
-# HDMI on dock on the left
-output DP-3 pos 0,2160  res 1920x1080
-# Laptop screen on the right
-output eDP-1 pos 3060,2160 res 1920x1080
-output eDP-1 scale 2
-# DisplayPort output in the center
-output DP-4 {
-	pos 1920,2160 
-	transform 270
+
+# Disable laptop screen when lid off
+bindswitch --reload lid:on output $laptop disable
+bindswitch --reload lid:off output $laptop enable
+
+output $laptop {
+	pos 0,2160
+	scale 2
+	res 3840x2160
 }
-output DP-5 {
-	pos 1920,2160 
-	transform 270
+
+output $vertical {
+	pos 0,0
+	transform 90 
+	res 1080x1920
+}
+
+output $big {
+	pos 1080,0 
+	res 3840x2160
 }
 
 seat seat0 xcursor_theme captaine 48 
@@ -291,10 +297,11 @@ mode $mode_power {
 }
 bindsym $mod+0 mode $mode_power
 # Screenshots interface
-set $mode_screenshot "Screenshot (a) full screen, (f) focused"
+set $mode_screenshot "Screenshot (a) full screen, (f) focused (m) enter screencast mode"
 mode $mode_screenshot {
 	bindsym a exec swaygrab ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
 	bindsym f exec swaygrab -f ~/Pictures/Screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png"), mode "default"
+	bindsym m output * disable, output DP-2 enable, output DP-2 res 1920x1080, gaps inner 0, gaps outer 0, killall python3, mode "default"
 	# return to default mode
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
