@@ -49,7 +49,6 @@
   "tslint.autoFixOnSave": true,
   "jest.terminalPosition": "bottom",
   "explorer.position": "right",
-  "explorer.icon.enableVimDevions": true,
   "deno.enable": true,
   "explorer.icon.enableNerdfont": true,
   "java.format.onType.enabled": true,
@@ -203,5 +202,7 @@
     "<<": "gitStage",
     ">>": "gitUnstage"
   },
-	"nextword.filetypes":[ "markdown" ]
+	"markdownlint.config":{
+		"line-length": false
+	}
 }
