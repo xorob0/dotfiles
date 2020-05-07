@@ -158,8 +158,15 @@ c.url.open_base_url = True
 # Type: Dict
 
 searchengines = {
-    'DEFAULT' : 'https://duckduckgo.com/?q={}',
+    'DEFAULT' : 'https://searx.gneee.tech?q={}&categories=general&language=en-US',
     'ddg' : 'https://duckduckgo.com/?q={}',
+    'sx' : 'https://searx.gneee.tech?q={}&categories=general&language=en-US',
+    'xit' : 'https://searx.gneee.tech?q={}&categories=it,general&language=en-US',
+    'xmap' : 'https://searx.gneee.tech?q={}&categories=map&language=en-US',
+    'xvid' : 'https://searx.gneee.tech?q={}&categories=video&language=en-US',
+    'xf' : 'https://searx.gneee.tech?q={}&categories=files&language=en-US',
+    'ximg' : 'https://searx.gneee.tech?q={}&categories=images&language=en-US',
+    'xmusic' : 'https://searx.gneee.tech?q={}&categories=music&language=en-US',
     'qwl' : 'https://lite.qwant.com/?si=1&l=en&s=0&q={}',
     'qw' : 'https://www.qwant.com/?l=en&h=0&hc=1&a=1&s=0&b=0&i=1&r=BE&sr=fr&q={}',
     'cb' : 'https://www.coolblue.be/en/search?query={}',
